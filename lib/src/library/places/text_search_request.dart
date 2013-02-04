@@ -14,10 +14,21 @@
 
 part of google_maps_places;
 
-class TextSearchRequest extends jsw.IsJsProxy {
-  set bounds(LatLngBounds bounds) => $.bounds = bounds;
-  set location(LatLng location) => $.location = location;
-  set query(String query) => $.query = query;
-  set radius(num radius) => $.radius = radius;
-  set types(List<String> types) => $.types = types;
+abstract class _TextSearchRequest {
+  LatLngBounds bounds;
+  LatLng location;
+  String query;
+  num radius;
+  List<String> types;
+}
+
+class TextSearchRequest extends jsw.TypedProxy implements _TextSearchRequest {
+  static TextSearchRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TextSearchRequest.fromJsProxy(jsProxy));
+
+  TextSearchRequest() : super();
+  TextSearchRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  @override LatLng get location => LatLng.cast($unsafe.location);
+  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
 }

@@ -14,8 +14,19 @@
 
 part of google_maps_places;
 
-class AutocompleteOptions extends jsw.IsJsProxy {
-  set bounds(LatLngBounds bounds) => $.bounds = bounds;
-  set componentRestrictions(ComponentRestrictions componentRestrictions) => $.componentRestrictions = componentRestrictions;
-  set types(List<String> types) => $.types = types;
+abstract class _AutocompleteOptions {
+  LatLngBounds bounds;
+  ComponentRestrictions componentRestrictions;
+  List<String> types;
+}
+
+class AutocompleteOptions extends jsw.TypedProxy implements _AutocompleteOptions {
+  static AutocompleteOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AutocompleteOptions.fromJsProxy(jsProxy));
+
+  AutocompleteOptions() : super();
+  AutocompleteOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  @override ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe.componentRestrictions);
+  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
 }

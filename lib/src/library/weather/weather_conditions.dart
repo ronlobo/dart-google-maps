@@ -14,18 +14,21 @@
 
 part of google_maps_weather;
 
-class WeatherConditions extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherConditions.fromJsProxy(jsProxy);
+abstract class _WeatherConditions {
+  String day;
+  String description;
+  num high;
+  num humidity;
+  num low;
+  String shortDay;
+  num temperature;
+  String windDirection;
+  num windSpeed;
+}
 
+class WeatherConditions extends jsw.TypedProxy implements _WeatherConditions {
+  static WeatherConditions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherConditions.fromJsProxy(jsProxy));
+
+  WeatherConditions() : super();
   WeatherConditions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-
-  String get day => $.day.value;
-  String get description => $.description.value;
-  num get high => $.high.value;
-  num get humidity => $.humidity.value;
-  num get low => $.low.value;
-  String get shortDay => $.shortDay.value;
-  num get temperature => $.temperature.value;
-  String get windDirection => $.windDirection.value;
-  num get windSpeed => $.windSpeed.value;
 }

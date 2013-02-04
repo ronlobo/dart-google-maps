@@ -14,15 +14,26 @@
 
 part of google_maps_adsense;
 
-class AdUnitOptions extends jsw.IsJsProxy {
-  set backgroundColor(String backgroundColor) => $.backgroundColor = backgroundColor;
-  set borderColor(String borderColor) => $.borderColor = borderColor;
-  set channelNumber(String channelNumber) => $.channelNumber = channelNumber;
-  set format(AdFormat format) => $.format = format;
-  set map(GMap map) => $.map = map;
-  set position(ControlPosition position) => $.position = position;
-  set publisherId(String publisherId) => $.publisherId = publisherId;
-  set textColor(String textColor) => $.textColor = textColor;
-  set titleColor(String titleColor) => $.titleColor = titleColor;
-  set urlColor(String urlColor) => $.urlColor = urlColor;
+abstract class _AdUnitOptions {
+  String backgroundColor;
+  String borderColor;
+  String channelNumber;
+  AdFormat format;
+  GMap map;
+  ControlPosition position;
+  String publisherId;
+  String textColor;
+  String titleColor;
+  String urlColor;
+}
+
+class AdUnitOptions extends jsw.TypedProxy implements _AdUnitOptions {
+  static AdUnitOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AdUnitOptions.fromJsProxy(jsProxy));
+
+  AdUnitOptions() : super();
+  AdUnitOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override AdFormat get format => AdFormat.find($unsafe.format);
+  @override GMap get map => GMap.cast($unsafe.map);
+  @override ControlPosition get position => ControlPosition.find($unsafe.position);
 }

@@ -14,14 +14,17 @@
 
 part of google_maps_weather;
 
-class WeatherForecast extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherForecast.fromJsProxy(jsProxy);
+abstract class _WeatherForecast {
+  String day;
+  String description;
+  num high;
+  num low;
+  String shortDay;
+}
 
+class WeatherForecast extends jsw.TypedProxy implements _WeatherForecast {
+  static WeatherForecast cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherForecast.fromJsProxy(jsProxy));
+
+  WeatherForecast() : super();
   WeatherForecast.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-
-  String get day => $.day.value;
-  String get description => $.description.value;
-  num get high => $.high.value;
-  num get low => $.low.value;
-  String get shortDay => $.shortDay.value;
 }

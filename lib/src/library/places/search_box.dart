@@ -14,12 +14,19 @@
 
 part of google_maps_places;
 
-class SearchBox extends MVCObject {
-  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super.newInstance(maps.places.SearchBox, [inputField, opts]);
+abstract class _SearchBox {
+  @jsw.dartified LatLngBounds getBounds();
+  @jsw.dartified void setBounds(LatLngBounds bounds);
+}
+
+class SearchBox extends MVCObject implements _SearchBox {
+  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps.places.SearchBox, [inputField, opts]);
   SearchBox.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  set bounds(LatLngBounds bounds) => $.setBounds(bounds);
+  @override LatLngBounds getBounds() => LatLngBounds.cast($unsafe.getBounds());
+
+  LatLngBounds get bounds => this.getBound();
+  set bounds(LatLngBounds bounds) => this.setBound(bounds);
 
   SearchBoxEvents get on => new SearchBoxEvents._(this);
 }

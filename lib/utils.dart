@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2013, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps_adsense;
+library utils;
 
-import 'dart:html' as html;
-import 'package:js/js.dart' as js;
 import 'package:js_wrap/js_wrap.dart' as jsw;
 import 'package:meta/meta.dart';
-import 'google_maps.dart';
-import 'utils.dart';
 
-part 'src/library/adsense/ad_unit.dart';
-part 'src/library/adsense/ad_unit_options.dart';
-part 'src/library/adsense/ad_format.dart';
+// utility to get js.Proxy even if out of scope
+dynamic findIn(List elements, Object o) => elements.where((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
+
+dynamic firstNotNull(List elements) {
+  for (final e in elements) {
+    if (e != null) return e;
+  }
+  return null;
+}
+
+class IsEnum<E> implements jsw.JsWrapper {
+  E value;
+
+  IsEnum(this.value);
+
+  @override dynamic toJs() => value;
+}

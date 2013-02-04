@@ -14,13 +14,18 @@
 
 part of google_maps_geometry;
 
-class Encoding {
-  static List<LatLng> decodePath(String encodedPath) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.encoding).$.decodePath(encodedPath).map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
-  static String encodePath(Object path) {
-    if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      return new jsw.IsJsProxy.fromJsProxy(maps.geometry.encoding).$.encodePath(path).value;
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
+Encoding get encoding => new Encoding();
+
+abstract class _Encoding {
+  List<LatLng> decodePath(String encodedPath);
+  String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path);
+}
+class Encoding extends jsw.TypedProxy implements _Encoding {
+  static Encoding cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Encoding.fromJsProxy(jsProxy));
+
+  Encoding() : super(maps.geometry.encoding);
+  Encoding.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override List<LatLng> decodePath(String encodedPath) => jsw.JsArray.cast($unsafe.decodePath(encodedPath), LatLng.cast);
+  @override String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.encodePath(path is List<LatLng> ? jsw.JsArray.jsify(path) : path);
 }

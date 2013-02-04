@@ -14,7 +14,17 @@
 
 part of google_maps_drawing;
 
-class DrawingControlOptions extends jsw.IsJsProxy {
-  set drawingModes(List<OverlayType> drawingModes) => $.drawingModes = drawingModes;
-  set position(ControlPosition position) => $.position = position;
+abstract class _DrawingControlOptions {
+  List<OverlayType> drawingModes;
+  ControlPosition position;
+}
+
+class DrawingControlOptions extends jsw.TypedProxy implements _DrawingControlOptions {
+  static DrawingControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DrawingControlOptions.fromJsProxy(jsProxy));
+
+  DrawingControlOptions() : super();
+  DrawingControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override List<OverlayType> get drawingModes => jsw.JsArray.cast($unsafe.drawingModes, OverlayType.find);
+  @override ControlPosition get position => ControlPosition.find($unsafe.position);
 }

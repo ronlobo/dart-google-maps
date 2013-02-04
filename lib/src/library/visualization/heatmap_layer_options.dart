@@ -14,12 +14,23 @@
 
 part of google_maps_visualization;
 
-class HeatmapLayerOptions extends jsw.IsJsProxy {
-  set data(MVCArray<LatLng> data) => $.data = data;
-  set dissipating(bool dissipating) => $.dissipating = dissipating;
-  set gradient(List<String> gradient) => $.gradient = gradient;
-  set map(GMap map) => $.map = map;
-  set maxIntensity(num maxIntensity) => $.maxIntensity = maxIntensity;
-  set opacity(num opacity) => $.opacity = opacity;
-  set radius(num radius) => $.radius = radius;
+abstract class _HeatmapLayerOptions {
+  MVCArray<LatLng> data;
+  bool dissipating;
+  List<String> gradient;
+  GMap map;
+  num maxIntensity;
+  num opacity;
+  num radius;
+}
+
+class HeatmapLayerOptions extends jsw.TypedProxy implements _HeatmapLayerOptions {
+  static HeatmapLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new HeatmapLayerOptions.fromJsProxy(jsProxy));
+
+  HeatmapLayerOptions() : super();
+  HeatmapLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override MVCArray<LatLng> get data => MVCArray.cast($unsafe.data, LatLng.cast);
+  @override List<String> get gradient => jsw.JsArray.cast($unsafe.gradient);
+  @override GMap get map => GMap.cast($unsafe.map);
 }

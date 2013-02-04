@@ -14,5 +14,12 @@
 
 part of google_maps_places;
 
-class SearchBoxOptions extends jsw.IsJsProxy {
+abstract class _SearchBoxOptions {
+}
+
+class SearchBoxOptions extends jsw.TypedProxy implements _SearchBoxOptions {
+  static SearchBoxOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new SearchBoxOptions.fromJsProxy(jsProxy));
+
+  SearchBoxOptions() : super();
+  SearchBoxOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 }

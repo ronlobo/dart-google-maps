@@ -14,18 +14,23 @@
 
 part of google_maps_places;
 
-class PlaceReview extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceReview.fromJsProxy(jsProxy);
+abstract class _PlaceReview {
+  List<PlaceAspectRating> aspects;
+  @jsw.dartified String author_name;
+  @jsw.dartified String author_url;
+  String text;
+}
+
+class PlaceReview extends jsw.TypedProxy implements _PlaceReview {
+  static PlaceReview cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceReview.fromJsProxy(jsProxy));
 
   PlaceReview() : super();
   PlaceReview.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<PlaceAspectRating> get aspects => $.aspects.map((js.Proxy jsProxy) => new jsw.JsList<PlaceAspectRating>.fromJsProxy(jsProxy, PlaceAspectRating.INSTANCIATOR)).value;
-  String get authorName => $.author_name.value;
-  String get authorUrl => $.author_url.value;
-  String get text => $.text.value;
-  set aspects(List<PlaceAspectRating> aspects) => $.aspects = aspects;
-  set authorName(String authorName) => $.author_name = authorName;
-  set authorUrl(String authorUrl) => $.author_url = authorUrl;
-  set text(String text) => $.text = text;
+  @override List<PlaceAspectRating> get aspects => jsw.JsArray.cast($unsafe.aspects, PlaceAspectRating.cast);
+
+  String get authorName => author_name;
+  set authorName(String authorName) => author_name = authorName;
+  String get authorUrl => author_url;
+  set authorUrl(String authorUrl) => author_url = authorUrl;
 }

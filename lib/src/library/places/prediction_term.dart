@@ -14,14 +14,14 @@
 
 part of google_maps_places;
 
-class PredictionTerm extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PredictionTerm.fromJsProxy(jsProxy);
+abstract class _PredictionTerm {
+  num offset;
+  String value;
+}
+
+class PredictionTerm extends jsw.TypedProxy implements _PredictionTerm {
+  static PredictionTerm cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PredictionTerm.fromJsProxy(jsProxy));
 
   PredictionTerm() : super();
   PredictionTerm.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-
-  num get offset => $.offset;
-  String get value => $.value;
-  set offset(num offset) => $.offset = offset;
-  set value(String value) => $.value = value;
 }

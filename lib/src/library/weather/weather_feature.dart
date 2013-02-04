@@ -14,14 +14,22 @@
 
 part of google_maps_weather;
 
-class WeatherFeature extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherFeature.fromJsProxy(jsProxy);
+abstract class _WeatherFeature {
+  WeatherConditions current;
+  List<WeatherForecast> forecast;
+  String location;
+  TemperatureUnit temperatureUnit;
+  WindSpeedUnit windSpeedUnit;
+}
 
+class WeatherFeature extends jsw.TypedProxy implements _WeatherFeature {
+  static WeatherFeature cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherFeature.fromJsProxy(jsProxy));
+
+  WeatherFeature() : super();
   WeatherFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  WeatherConditions get current => $.current.map(WeatherConditions.INSTANCIATOR).value;
-  List<WeatherForecast> get forecast => $.forecast.map((js.Proxy jsProxy) => new jsw.JsList<WeatherForecast>.fromJsProxy(jsProxy, WeatherForecast.INSTANCIATOR)).value;
-  String get location => $.location.value;
-  TemperatureUnit get temperatureUnit => $.temperatureUnit.map(TemperatureUnit.find).value;
-  WindSpeedUnit get windSpeedUnit => $.windSpeedUnit.map(WindSpeedUnit.find).value;
+  @override WeatherConditions get current => WeatherConditions.cast($unsafe.current);
+  @override List<WeatherForecast> get forecast => jsw.JsArray.cast($unsafe.forecast, WeatherForecast.cast);
+  @override TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe.temperatureUnit);
+  @override WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe.windSpeedUnit);
 }

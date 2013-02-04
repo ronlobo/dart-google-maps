@@ -14,13 +14,21 @@
 
 part of google_maps_places;
 
-class AutocompleteService extends jsw.IsJsProxy {
-  AutocompleteService() : super.newInstance(maps.places.AutocompleteService, []);
+abstract class _AutocompleteService {
+  void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status));
+  void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status));
+}
 
-  void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
-    $.getPlacePredictions(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<AutocompletePrediction>.fromJsProxy(e, AutocompletePrediction.INSTANCIATOR)).value, status.map(PlacesServiceStatus.find).value)));
+class AutocompleteService extends jsw.TypedProxy implements _AutocompleteService {
+  static AutocompleteService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AutocompleteService.fromJsProxy(jsProxy));
+
+  AutocompleteService() : super(maps.places.AutocompleteService);
+  AutocompleteService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
+    $unsafe.getPlacePredictions(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArray.cast(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))));
   }
-  void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status)) {
-    $.getQueryPredictions(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<QueryAutocompletePrediction>.fromJsProxy(e, QueryAutocompletePrediction.INSTANCIATOR)).value, status.map(PlacesServiceStatus.find).value)));
+  @override void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status)) {
+    $unsafe.getQueryPredictions(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArray.cast(results, QueryAutocompletionRequest.cast), PlacesServiceStatus.find(status))));
   }
 }

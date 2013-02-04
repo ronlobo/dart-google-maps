@@ -14,20 +14,25 @@
 
 part of google_maps_places;
 
-class PlacesService extends jsw.IsJsProxy {
-  PlacesService(Object attrContainer) : super.newInstance(maps.places.PlacesService, [attrContainer]) {
-    if (!(attrContainer is html.DivElement || attrContainer is GMap)) {
-      throw new UnsupportedError("Parameter must be of type DivElement or GMap");
-    }
-  }
+abstract class _PlacesService {
+  void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status));
+  void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination));
+  void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status));
+}
 
-  void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    $.getDetails(request, new jsw.Callback.once((Option<js.Proxy> result, Option<js.Proxy> status) => callback(result.map(PlaceResult.INSTANCIATOR).value, status.map(PlacesServiceStatus.find).value)));
+class PlacesService extends jsw.TypedProxy implements _PlacesService {
+  static PlacesService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlacesService.fromJsProxy(jsProxy));
+
+  PlacesService(dynamic/*HTMLDivElement|Map*/ attrContainer) : super(maps.places.PlacesService, [attrContainer]);
+  PlacesService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
+    $unsafe.getDetails(request, new jsw.Callback.once((js.Proxy result, js.Proxy status) => callback(PlaceResult.cast(result), PlacesServiceStatus.find(status))));
   }
-  void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $.nearbySearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status, Option<js.Proxy> pagination) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value, pagination.map(PlaceSearchPagination.INSTANCIATOR).value)));
+  @override void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
+    $unsafe.nearbySearch(request, new jsw.Callback.once((js.Proxy results, js.Proxy status, js.Proxy pagination) => callback(jsw.JsArray.cast(results, PlaceResult.cast), PlacesServiceStatus.find(status), PlaceSearchPagination.cast(pagination))));
   }
-  void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $.textSearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value)));
+  @override void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
+    $unsafe.textSearch(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArray.cast(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
   }
 }

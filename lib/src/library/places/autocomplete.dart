@@ -14,22 +14,35 @@
 
 part of google_maps_places;
 
-class Autocomplete extends MVCObject {
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(maps.places.Autocomplete, [inputField, opts]);
+abstract class _Autocomplete {
+  @jsw.dartified LatLngBounds getBounds();
+  @jsw.dartified PlaceResult getPlace();
+  @jsw.dartified void setBounds(LatLngBounds bounds);
+  @jsw.dartified void setComponentRestrictions(ComponentRestrictions restrictions);
+  @jsw.dartified void setTypes(List<String> types);
+}
+
+class Autocomplete extends MVCObject implements _Autocomplete {
+  static Autocomplete cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Autocomplete.fromJsProxy(jsProxy));
+
+  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps.places.Autocomplete, [inputField, opts]);
   Autocomplete.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  PlaceResult get place => $.getPlace().map(PlaceResult.INSTANCIATOR).value;
-  set bounds(LatLngBounds bounds) => $.setBounds(bounds);
-  set componentRestrictions(ComponentRestrictions restrictions) => $.setComponentRestrictions(restrictions);
-  set types(List<String> types) => $.setTypes(types);
+  @override LatLngBounds getBounds() => LatLngBounds.cast($unsafe.getBound());
+  @override PlaceResult getPlace() => PlaceResult.cast($unsafe.getPlace());
+
+  LatLngBounds get bounds => getBounds();
+  PlaceResult get place => getPlace();
+  set bounds(LatLngBounds bounds) => setBounds(bounds);
+  set componentRestrictions(ComponentRestrictions restrictions) => setComponentRestrictions(restrictions);
+  set types(List<String> types) => setTypes(types);
 
   AutocompleteEvents get on => new AutocompleteEvents._(this);
 }
 
 class AutocompleteEvents {
   static final PLACE_CHANGED = "place_changed";
-  
+
   final Autocomplete _autocomplete;
 
   AutocompleteEvents._(this._autocomplete);

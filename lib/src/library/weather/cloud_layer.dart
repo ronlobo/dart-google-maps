@@ -14,10 +14,19 @@
 
 part of google_maps_weather;
 
-class CloudLayer extends MVCObject {
-  CloudLayer() : super.newInstance(maps.weather.CloudLayer);
+abstract class _CloudLayer {
+  @jsw.dartified GMap getMap();
+  @jsw.dartified void setMap(GMap map);
+}
+
+class CloudLayer extends MVCObject implements _CloudLayer {
+  static CloudLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new CloudLayer.fromJsProxy(jsProxy));
+
+  CloudLayer() : super(maps.weather.CloudLayer);
   CloudLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set map(GMap map) => $.setMap(map);
+  @override GMap getMap() => GMap.cast($unsafe.getMap());
+
+  GMap get map => getMap();
+  set map(GMap map) => setMap(map);
 }

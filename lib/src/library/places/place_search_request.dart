@@ -14,12 +14,24 @@
 
 part of google_maps_places;
 
-class PlaceSearchRequest extends jsw.IsJsProxy {
-  set bounds(LatLngBounds bounds) => $.bounds = bounds;
-  set keyword(String keyword) => $.keyword = keyword;
-  set location(LatLng location) => $.location = location;
-  set name(String name) => $.name = name;
-  set radius(num radius) => $.radius = radius;
-  set rankBy(RankBy rankBy) => $.rankBy = rankBy;
-  set types(List<String> types) => $.types = types;
+abstract class _PlaceSearchRequest {
+  LatLngBounds bounds;
+  String keyword;
+  LatLng location;
+  String name;
+  num radius;
+  RankBy rankBy;
+  List<String> types;
+}
+
+class PlaceSearchRequest extends jsw.TypedProxy implements _PlaceSearchRequest {
+  static PlaceSearchRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceSearchRequest.fromJsProxy(jsProxy));
+
+  PlaceSearchRequest() : super();
+  PlaceSearchRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  @override LatLng get location => LatLng.cast($unsafe.location);
+  @override RankBy get rankBy => RankBy.find($unsafe.rankBy);
+  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
 }

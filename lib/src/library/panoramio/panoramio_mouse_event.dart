@@ -14,12 +14,20 @@
 
 part of google_maps_panoramio;
 
-class PanoramioMouseEvent extends jsw.IsJsProxy {
-  PanoramioMouseEvent();
+abstract class _PanoramioMouseEvent {
+  PanoramioFeature featureDetails;
+  String infoWindowHtml;
+  LatLng latLng;
+  Size pixelOffset;
+}
+
+class PanoramioMouseEvent extends jsw.TypedProxy implements _PanoramioMouseEvent {
+  static PanoramioMouseEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PanoramioMouseEvent.fromJsProxy(jsProxy));
+
+  PanoramioMouseEvent() : super();
   PanoramioMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  PanoramioFeature get featureDetails => $.featureDetails.map(PanoramioFeature.INSTANCIATOR).value;
-  String get infoWindowHtml => $.infoWindowHtml.value;
-  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+  @override PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe.featureDetails);
+  @override LatLng get latLng => LatLng.cast($unsafe.latLng);
+  @override Size get pixelOffset => Size.cast($unsafe.pixelOffset);
 }

@@ -15,8 +15,10 @@
 library google_maps_drawing;
 
 import 'package:js/js.dart' as js;
-import 'js_wrap.dart' as jsw;
+import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:meta/meta.dart';
 import 'google_maps.dart';
+import 'utils.dart';
 
 part 'src/library/drawing/drawing_manager.dart';
 part 'src/library/drawing/drawing_manager_options.dart';
@@ -25,44 +27,44 @@ part 'src/library/drawing/overlay_complete_event.dart';
 part 'src/library/drawing/overlay_type.dart';
 
 class CircleCompleteEventListenerAdder extends EventListenerAdder {
-  CircleCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+  CircleCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(Circle circle)) { super.add((e) => handler(e.map((e) => new Circle.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(Circle circle)) => super.addTemporary((e) => handler(e.map((e) => new Circle.fromJsProxy(e)).value));
+  void add(void handler(Circle circle)) { super.add((e) => handler(Circle.cast(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(Circle circle)) => super.addTemporary((e) => handler(Circle.cast(e)));
 }
 
 class MarkerCompleteEventListenerAdder extends EventListenerAdder {
-  MarkerCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+  MarkerCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(Marker marker)) { super.add((e) => handler(e.map((e) => new Marker.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(Marker marker)) => super.addTemporary((e) => handler(e.map((e) => new Marker.fromJsProxy(e)).value));
+  void add(void handler(Marker marker)) { super.add((e) => handler(Marker.cast(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(Marker marker)) => super.addTemporary((e) => handler(Marker.cast(e)));
 }
 
 class OverlayCompleteEventListenerAdder extends EventListenerAdder {
-  OverlayCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+  OverlayCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(OverlayCompleteEvent e)) { super.add((e) => handler(e.map((e) => new OverlayCompleteEvent.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(OverlayCompleteEvent e)) => super.addTemporary((e) => handler(e.map((e) => new OverlayCompleteEvent.fromJsProxy(e)).value));
+  void add(void handler(OverlayCompleteEvent e)) { super.add((e) => handler(OverlayCompleteEvent.cast(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(OverlayCompleteEvent e)) => super.addTemporary((e) => handler(OverlayCompleteEvent.cast(e)));
 }
 
 class PolygonCompleteEventListenerAdder extends EventListenerAdder {
-  PolygonCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+  PolygonCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(Polygon polygon)) { super.add((e) => handler(e.map((e) => new Polygon.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(Polygon polygon)) => super.addTemporary((e) => handler(e.map((e) => new Polygon.fromJsProxy(e)).value));
+  void add(void handler(Polygon polygon)) { super.add((e) => handler(Polygon.cast(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(Polygon polygon)) => super.addTemporary((e) => handler(Polygon.cast(e)));
 }
 
 class PolylineCompleteEventListenerAdder extends EventListenerAdder {
-  PolylineCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+  PolylineCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(Polyline polyline)) { super.add((e) => handler(e.map((e) => new Polyline.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(Polyline polyline)) => super.addTemporary((e) => handler(e.map((e) => new Polyline.fromJsProxy(e)).value));
+  void add(void handler(Polyline polyline)) { super.add((e) => handler(Polyline.cast(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(Polyline polyline)) => super.addTemporary((e) => handler(Polyline.cast(e)));
 }
 
 class RectangleCompleteEventListenerAdder extends EventListenerAdder {
-  RectangleCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+  RectangleCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(Rectangle rectangle)) { super.add((e) => handler(e.map((e) => new Rectangle.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(Rectangle rectangle)) => super.addTemporary((e) => handler(e.map((e) => new Rectangle.fromJsProxy(e)).value));
+  void add(void handler(Rectangle rectangle)) { super.add((e) => handler(Rectangle.cast(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(Rectangle rectangle)) => super.addTemporary((e) => handler(Rectangle.cast(e)));
 }
 

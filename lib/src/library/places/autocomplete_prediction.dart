@@ -14,22 +14,25 @@
 
 part of google_maps_places;
 
-class AutocompletePrediction extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new AutocompletePrediction.fromJsProxy(jsProxy);
+abstract class _AutocompletePrediction {
+  String description;
+  String id;
+  @jsw.dartified List<PredictionSubstring> matched_substrings;
+  String reference;
+  List<PredictionTerm> terms;
+  List<String> types;
+}
+
+class AutocompletePrediction extends jsw.TypedProxy implements _AutocompletePrediction {
+  static AutocompletePrediction cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AutocompletePrediction.fromJsProxy(jsProxy));
 
   AutocompletePrediction() : super();
   AutocompletePrediction.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String get description => $.description.value;
-  String get id => $.id.value;
-  List<PredictionSubstring> get matchedSubstrings => $.matched_substrings.map((js.Proxy jsProxy) => new jsw.JsList<PredictionSubstring>.fromJsProxy(jsProxy, PredictionSubstring.INSTANCIATOR)).value;
-  String get reference => $.reference.value;
-  List<PredictionTerm> get terms => $.terms.map((js.Proxy jsProxy) => new jsw.JsList<PredictionTerm>.fromJsProxy(jsProxy, PredictionTerm.INSTANCIATOR)).value;
-  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  set description(String description) => $.description = description;
-  set id(String id) => $.id = id;
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $.matched_substrings = matchedSubstrings;
-  set reference(String reference) => $.reference = reference;
-  set terms(List<PredictionTerm> terms) => $.terms = terms;
-  set types(List<String> types) => $.types = types;
+  @override List<PredictionSubstring> get matched_substrings => jsw.JsArray.cast($unsafe.matched_substrings, PredictionSubstring.cast);
+  @override List<PredictionTerm> get terms => jsw.JsArray.cast($unsafe.terms, PredictionTerm.cast);
+  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+
+  List<PredictionSubstring> get matchedSubstrings => matched_substrings;
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => this.matched_substrings = matchedSubstrings;
 }

@@ -14,14 +14,30 @@
 
 part of google_maps_drawing;
 
-class DrawingManagerOptions extends jsw.IsJsProxy {
-  set circleOptions(CircleOptions circleOptions) => $.circleOptions = circleOptions;
-  set drawingControl(bool drawingControl) => $.drawingControl = drawingControl;
-  set drawingControlOptions(DrawingControlOptions drawingControlOptions) => $.drawingControlOptions = drawingControlOptions;
-  set drawingMode(OverlayType drawingMode) => $.drawingMode = drawingMode;
-  set map(GMap map) => $.map = map;
-  set markerOptions(MarkerOptions markerOptions) => $.markerOptions = markerOptions;
-  set polygonOptions(PolygonOptions polygonOptions) => $.polygonOptions = polygonOptions;
-  set polylineOptions(PolylineOptions polylineOptions) => $.polylineOptions = polylineOptions;
-  set rectangleOptions(RectangleOptions rectangleOptions) => $.rectangleOptions = rectangleOptions;
+abstract class _DrawingManagerOptions {
+  CircleOptions circleOptions;
+  bool drawingControl;
+  DrawingControlOptions drawingControlOptions;
+  OverlayType drawingMode;
+  GMap map;
+  MarkerOptions markerOptions;
+  PolygonOptions polygonOptions;
+  PolylineOptions polylineOptions;
+  RectangleOptions rectangleOptions;
+}
+
+class DrawingManagerOptions extends jsw.TypedProxy implements _DrawingManagerOptions {
+  static DrawingManagerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DrawingManagerOptions.fromJsProxy(jsProxy));
+
+  DrawingManagerOptions() : super();
+  DrawingManagerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override CircleOptions get circleOptions => CircleOptions.cast($unsafe.circleOptions);
+  @override DrawingControlOptions get drawingControlOptions => DrawingControlOptions.cast($unsafe.drawingControlOptions);
+  @override OverlayType get drawingMode => OverlayType.find($unsafe.drawingMode);
+  @override GMap get map => GMap.cast($unsafe.map);
+  @override MarkerOptions get markerOptions => MarkerOptions.cast($unsafe.markerOptions);
+  @override PolygonOptions get polygonOptions => PolygonOptions.cast($unsafe.polygonOptions);
+  @override PolylineOptions get polylineOptions => PolylineOptions.cast($unsafe.polylineOptions);
+  @override RectangleOptions get rectangleOptions => RectangleOptions.cast($unsafe.rectangleOptions);
 }

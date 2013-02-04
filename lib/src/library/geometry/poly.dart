@@ -14,13 +14,16 @@
 
 part of google_maps_geometry;
 
-class Poly {
-  static bool containsLocation(LatLng point, Polygon polygon) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.poly).$.containsLocation(point, polygon).value;
-  static bool isLocationOnEdge(LatLng point, Object poly, [num tolerance]) {
-    if (poly is Polygon || poly is Polyline) {
-      return new jsw.IsJsProxy.fromJsProxy(maps.geometry.poly).$.isLocationOnEdge(point, poly, tolerance).value;
-    } else {
-      throw new UnsupportedError("Parameter must be of type Polygon or Polyline");
-    }
-  }
+Poly get poly => new Poly();
+
+abstract class _Poly {
+  bool containsLocation(LatLng point, Polygon polygon);
+  bool isLocationOnEdge(LatLng point, dynamic/*Polygon|Polyline*/ poly, [num tolerance]);
+}
+
+class Poly extends jsw.TypedProxy implements _Poly {
+  static Poly cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Poly.fromJsProxy(jsProxy));
+
+  Poly() : super(maps.geometry.poly);
+  Poly.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 }

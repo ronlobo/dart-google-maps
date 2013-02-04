@@ -14,15 +14,26 @@
 
 part of google_maps_drawing;
 
-class DrawingManager extends MVCObject {
-  DrawingManager([DrawingManagerOptions opts]) : super.newInstance(maps.drawing.DrawingManager, [opts]);
+abstract class _DrawingManager {
+  @jsw.dartified OverlayType getDrawingMode();
+  @jsw.dartified GMap getMap();
+  @jsw.dartified void setDrawingMode(OverlayType drawingMode);
+  @jsw.dartified void setMap(GMap map);
+  @jsw.dartified void setOptions(DrawingManagerOptions options);
+}
+
+class DrawingManager extends MVCObject implements _DrawingManager {
+  DrawingManager([DrawingManagerOptions opts]) : super(maps.drawing.DrawingManager, [opts]);
   DrawingManager.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  OverlayType get drawingMode => $.getDrawingMode().map(OverlayType.find).value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set drawingMode(OverlayType drawingMode) => $.setDrawingMode(drawingMode);
-  set map(GMap map) => $.setMap(map);
-  set options(DrawingManagerOptions options) => $.setOptions(options);
+  @override OverlayType getDrawingMode() => OverlayType.find($unsafe.getDrawingMode());
+  @override GMap getMap() => GMap.cast($unsafe.getMap());
+
+  OverlayType get drawingMode => getDrawingMode();
+  GMap get map => getMap();
+  set drawingMode(OverlayType drawingMode) => setDrawingMode(drawingMode);
+  set map(GMap map) => setMap(map);
+  set options(DrawingManagerOptions options) => setOptions(options);
 
   DrawingManagerEvents get on => new DrawingManagerEvents._(this);
 }
@@ -34,7 +45,7 @@ class DrawingManagerEvents {
   static final POLYGONCOMPLETE = "polygoncomplete";
   static final POLYLINECOMPLETE = "polylinecomplete";
   static final RECTANGLECOMPLETE = "rectanglecomplete";
-  
+
   final DrawingManager _drawingManager;
 
   DrawingManagerEvents._(this._drawingManager);

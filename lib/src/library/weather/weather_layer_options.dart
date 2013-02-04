@@ -14,11 +14,23 @@
 
 part of google_maps_weather;
 
-class WeatherLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set labelColor(LabelColor labelColor) => $.labelColor = labelColor;
-  set map(GMap map) => $.map = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
-  set temperatureUnits(TemperatureUnit temperatureUnits) => $.temperatureUnits = temperatureUnits;
-  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $.windSpeedUnits = windSpeedUnits;
+abstract class _WeatherLayerOptions {
+  bool clickable;
+  LabelColor labelColor;
+  GMap map;
+  bool suppressInfoWindows;
+  TemperatureUnit temperatureUnits;
+  WindSpeedUnit windSpeedUnits;
+}
+
+class WeatherLayerOptions extends jsw.TypedProxy implements _WeatherLayerOptions {
+  static WeatherLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherLayerOptions.fromJsProxy(jsProxy));
+
+  WeatherLayerOptions() : super();
+  WeatherLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override LabelColor get labelColor => LabelColor.find($unsafe.labelColor);
+  @override GMap get map => GMap.cast($unsafe.map);
+  @override TemperatureUnit get temperatureUnits => TemperatureUnit.find($unsafe.temperatureUnits);
+  @override WindSpeedUnit get windSpeedUnits => WindSpeedUnit.find($unsafe.windSpeedUnits);
 }

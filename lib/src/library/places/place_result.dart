@@ -14,27 +14,47 @@
 
 part of google_maps_places;
 
-class PlaceResult extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceResult.fromJsProxy(jsProxy);
+abstract class _PlaceResult {
+  @jsw.dartified List<GeocoderAddressComponent> address_components;
+  List<PlaceAspectRating> aspects;
+  @jsw.dartified String formatted_address;
+  @jsw.dartified String formatted_phone_number;
+  PlaceGeometry geometry;
+  @jsw.dartified List<String> html_attributions;
+  String icon;
+  String id;
+  @jsw.dartified String international_phone_number;
+  String name;
+  num rating;
+  String reference;
+  List<PlaceReview> reviews;
+  List<String> types;
+  String url;
+  String vicinity;
+  String website;
+}
+
+class PlaceResult extends jsw.TypedProxy implements _PlaceResult {
+  static PlaceResult cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceResult.fromJsProxy(jsProxy));
 
   PlaceResult() : super();
   PlaceResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<GeocoderAddressComponent> get addressComponents => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
-  List<PlaceAspectRating> get aspects => $.aspects.map((js.Proxy jsProxy) => new jsw.JsList<PlaceAspectRating>.fromJsProxy(jsProxy, PlaceAspectRating.INSTANCIATOR)).value;
-  String get formattedAddress => $.formatted_address.value;
-  String get formattedPhoneNumber => $.formatted_phone_number.value;
-  PlaceGeometry get geometry => $.geometry.map(PlaceGeometry.INSTANCIATOR).value;
-  List<String> get htmlAttributions => $.html_attributions.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  String get icon => $.icon.value;
-  String get id => $.id.value;
-  String get internationalPhoneNumber => $.international_phone_number.value;
-  String get name => $.name.value;
-  num get rating => $.rating.value;
-  String get reference => $.reference.value;
-  List<PlaceReview> get reviews => $.reviews.map((js.Proxy jsProxy) => new jsw.JsList<PlaceReview>.fromJsProxy(jsProxy, PlaceReview.INSTANCIATOR)).value;
-  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  String get url => $.url.value;
-  String get vicinity => $.vicinity.value;
-  String get website => $.website.value;
+  @override List<GeocoderAddressComponent> get address_components => jsw.JsArray.cast($unsafe.address_components, GeocoderAddressComponent.cast);
+  @override List<PlaceAspectRating> get aspects => jsw.JsArray.cast($unsafe.aspects, PlaceAspectRating.cast);
+  @override PlaceGeometry get geometry => PlaceGeometry.cast($unsafe.geometry);
+  @override List<String> get html_attributions => jsw.JsArray.cast($unsafe.html_attributions);
+  @override List<PlaceReview> get reviews => jsw.JsArray.cast($unsafe.reviews, PlaceReview.cast);
+  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+
+  List<GeocoderAddressComponent> get addressComponents => address_components;
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) => this.address_components = addressComponents;
+  String get formattedAddress => formatted_address;
+  set formattedAddress(String formattedAddress) => formatted_address = formattedAddress;
+  String get formattedPhoneNumber => formatted_phone_number;
+  set formattedPhoneNumber(String formattedPhoneNumber) => formatted_phone_number = formattedPhoneNumber;
+  List<String> get htmlAttributions => html_attributions;
+  set htmlAttributions(List<String> htmlAttributions) => this.html_attributions = htmlAttributions;
+  String get internationalPhoneNumber => international_phone_number;
+  set internationalPhoneNumber(String internationalPhoneNumber) => international_phone_number = internationalPhoneNumber;
 }

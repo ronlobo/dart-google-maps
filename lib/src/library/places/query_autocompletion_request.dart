@@ -14,21 +14,20 @@
 
 part of google_maps_places;
 
-class QueryAutocompletionRequest extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new QueryAutocompletionRequest.fromJsProxy(jsProxy);
+abstract class _QueryAutocompletionRequest {
+  LatLngBounds bounds;
+  String input;
+  LatLng location;
+  num offset;
+  num radius;
+}
+
+class QueryAutocompletionRequest extends jsw.TypedProxy implements _QueryAutocompletionRequest {
+  static QueryAutocompletionRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new QueryAutocompletionRequest.fromJsProxy(jsProxy));
 
   QueryAutocompletionRequest() : super();
   QueryAutocompletionRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds get bounds => $.bounds.map(LatLngBounds.INSTANCIATOR).value;
-  String get input => $.input.value;
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  num get offset => $.offset.value;
-  num get radius => $.radius.value;
-
-  set bounds(LatLngBounds bounds) => $.bounds = bounds;
-  set input(String input) => $.input = input;
-  set location(LatLng location) => $.location = location;
-  set offset(num offset) => $.offset = offset;
-  set radius(num radius) => $.radius = radius;
+  @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  @override LatLng get location => LatLng.cast($unsafe.location);
 }

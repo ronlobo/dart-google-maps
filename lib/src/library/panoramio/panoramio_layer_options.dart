@@ -14,10 +14,19 @@
 
 part of google_maps_panoramio;
 
-class PanoramioLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set map(GMap map) => $.map = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
-  set tag(String tag) => $.tag = tag;
-  set userId(String userId) => $.userId = userId;
+abstract class _PanoramioLayerOptions {
+  bool clickable;
+  GMap map;
+  bool suppressInfoWindows;
+  String tag;
+  String userId;
+}
+
+class PanoramioLayerOptions extends jsw.TypedProxy implements _PanoramioLayerOptions {
+  static PanoramioLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PanoramioLayerOptions.fromJsProxy(jsProxy));
+
+  PanoramioLayerOptions() : super();
+  PanoramioLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
+  @override GMap get map => GMap.cast($unsafe.map);
 }
