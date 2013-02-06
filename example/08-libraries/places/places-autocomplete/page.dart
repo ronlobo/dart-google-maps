@@ -23,7 +23,10 @@ void main() {
       ..map = map
     );
 
-    jsw.retainAll([map, marker, infowindow, autocomplete]);
+    jsw.retain(map);
+    jsw.retain(marker);
+    jsw.retain(infowindow);
+    jsw.retain(autocomplete);
     autocomplete.on.placeChanged.add(() {
       infowindow.close();
       final place = autocomplete.place;

@@ -3,17 +3,17 @@ import 'package:js/js.dart' as js;
 import 'package:js_wrap/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
-class ColumnChart extends jsw.IsJsProxy {
-  ColumnChart(Node div) : super.newInstance(js.context.google.visualization.ColumnChart, [div]);
+class ColumnChart extends jsw.TypedProxy {
+  ColumnChart(Node div) : super(js.context.google.visualization.ColumnChart, [div]);
 
-  void draw(DataTable data, [jsw.IsJsProxy options]) { $.draw(data, options); }
+  void draw(DataTable data, [jsw.TypedProxy options]) { $unsafe.draw(data, options); }
 }
 
-class DataTable extends jsw.IsJsProxy {
-  DataTable() : super.newInstance(js.context.google.visualization.DataTable);
+class DataTable extends jsw.TypedProxy {
+  DataTable() : super(js.context.google.visualization.DataTable);
 
-  void addColumn(String type, [String label, String id]) { $.addColumn(type, label, id); }
-  void addRow([List<Object> cellArray]) { $.addRow(cellArray); }
+  void addColumn(String type, [String label, String id]) { $unsafe.addColumn(type, label, id); }
+  void addRow([List<Object> cellArray]) { $unsafe.addRow(cellArray); }
 }
 
 ElevationService elevator;
@@ -100,7 +100,7 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
 
     // Draw the chart using the data within its DIV.
     query('#elevation_chart').style.display = 'block';
-    chart.draw(data, new jsw.IsJsProxy()
+    chart.draw(data, new jsw.TypedProxy()
       ..$.width = 640
       ..$.height = 200
       ..$.legend = 'none'

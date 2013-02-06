@@ -46,7 +46,7 @@ void processSVData(StreetViewPanoramaData data, StreetViewStatus status) {
     ;
     panorama.visible = true;
 
-    jsw.retainAll([data]);
+    jsw.retain(data);
     marker.on.click.add((e) {
       final markerPanoID = data.location.pano;
       // Set the Pano to use the passed panoID

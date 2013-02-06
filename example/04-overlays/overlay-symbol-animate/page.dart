@@ -42,8 +42,7 @@ void animateCircle() {
   window.setInterval(() {
     js.scoped(() {
       count = (count + 1) % 200;
-
-      final icons = new jsw.JsList.fromJsProxy(line.get('icons'), (e) => new IconSequence.fromJsProxy(e));
+      final icons = jsw.JsArray.cast(line.get('icons'), IconSequence.cast);
       icons[0].offset = '${count / 2}%';
       line.set('icons', icons);
     });

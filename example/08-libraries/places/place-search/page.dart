@@ -46,7 +46,8 @@ void createMarker(PlaceResult place) {
     ..position = place.geometry.location
   );
 
-  jsw.retainAll([marker, place]);
+  jsw.retain(marker);
+  jsw.retain(place);
   marker.on.click.add((e) {
     infowindow.content = place.name;
     infowindow.open(map, marker);

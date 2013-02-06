@@ -66,7 +66,7 @@ void update() {
   final path = [marker1.position, marker2.position];
   poly.path = path;
   geodesicPoly.path = path;
-  final heading = Spherical.computeHeading(path[0], path[1]);
+  final heading = spherical.computeHeading(path[0], path[1]);
   (query('#heading') as InputElement).value = heading.toString();
   (query('#origin') as InputElement).value = path[0].toString();
   (query('#destination') as InputElement).value = path[1].toString();

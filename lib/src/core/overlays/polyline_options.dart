@@ -34,6 +34,7 @@ class PolylineOptions extends jsw.TypedProxy implements _PolylineOptions {
   PolylineOptions() : super();
   PolylineOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
+  @override set icons(List<IconSequence> icons) => $unsafe.icons = jsw.JsArray.jsify(icons);
   @override GMap get map => GMap.cast($unsafe.map);
   @override dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ get path {
     final result = $unsafe.path;
@@ -44,5 +45,4 @@ class PolylineOptions extends jsw.TypedProxy implements _PolylineOptions {
     }
   }
   @override set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.path = path is List ? jsw.JsArray.jsify(path) : path;
-
 }

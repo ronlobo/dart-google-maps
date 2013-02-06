@@ -7,11 +7,11 @@ class CoordMapType extends MapType {
   CoordMapType() : super() {
     this.tileSize = jsw.retain(new Size(256,256));
     this.maxZoom = 19;
-    $.getTile = new jsw.Callback.many((Option<js.Proxy> tileCoord, Option<num> zoom, Option<js.Proxy> ownerDocument) {
-      if (ownerDocument.value.createElement("div") is js.Proxy) {
-        return _getTileFromOtherDocument(tileCoord.map(Point.INSTANCIATOR).value, zoom.value, ownerDocument.map((e) => new jsw.IsJsProxy.fromJsProxy(e)).value);
+    $unsafe.getTile = new jsw.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
+      if (ownerDocument.createElement("div") is js.Proxy) {
+        return _getTileFromOtherDocument(Point.cast(tileCoord), zoom, new jsw.TypedProxy.fromJsProxy(ownerDocument));
       } else {
-        return _getTile(tileCoord.map(Point.INSTANCIATOR).value, zoom.value);
+        return _getTile(Point.cast(tileCoord), zoom);
       }
     });
     this.name = 'Tile #s';
@@ -34,19 +34,19 @@ class CoordMapType extends MapType {
     return div;
   }
 
-  jsw.IsJsProxy _getTileFromOtherDocument(Point coord, num zoom, jsw.IsJsProxy ownerDocument) {
-    final div = new jsw.IsJsProxy.fromJsProxy(ownerDocument.$.createElement("div"))
-      ..$.innerHTML = coord.toString()
+  jsw.TypedProxy _getTileFromOtherDocument(Point coord, num zoom, jsw.TypedProxy ownerDocument) {
+    final div = new jsw.TypedProxy.fromJsProxy(ownerDocument.$unsafe.createElement("div"))
+      ..$unsafe.innerHTML = coord.toString()
       ;
-    final style = new jsw.IsJsProxy.fromJsProxy(div.$.style);
+    final style = new jsw.TypedProxy.fromJsProxy(div.$unsafe.style);
     style
-      ..$.width = '${tileSize.width}px'
-      ..$.height = '${tileSize.height}px'
-      ..$.fontSize = '10'
-      ..$.borderStyle = 'solid'
-      ..$.borderWidth = '1px'
-      ..$.borderColor = '#AAAAAA'
-      ..$.backgroundColor = '#E5E3DF'
+      ..$unsafe.width = '${tileSize.width}px'
+      ..$unsafe.height = '${tileSize.height}px'
+      ..$unsafe.fontSize = '10'
+      ..$unsafe.borderStyle = 'solid'
+      ..$unsafe.borderWidth = '1px'
+      ..$unsafe.borderColor = '#AAAAAA'
+      ..$unsafe.backgroundColor = '#E5E3DF'
       ;
     return div;
   }

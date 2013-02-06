@@ -21,14 +21,16 @@ void main() {
     final infowindow = new InfoWindow();
     final service = new PlacesService(map);
 
-    jsw.retainAll([map, infowindow]);
+    jsw.retain(map);
+    jsw.retain(infowindow);
     service.getDetails(request, (place, status) {
       if (status == PlacesServiceStatus.OK) {
         final marker = new Marker(new MarkerOptions()
           ..map = map
           ..position = place.geometry.location
         );
-        jsw.retainAll([marker, place]);
+        jsw.retain(marker);
+        jsw.retain(place);
         marker.on.click.add((e) {
           infowindow.content = place.name;
           infowindow.open(map, marker);
