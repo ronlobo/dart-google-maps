@@ -26,19 +26,19 @@ abstract class _MVCObject {
   void unbindAll();
 }
 
-class MVCObject extends jsw.TypedProxy implements _MVCObject {
-  static MVCObject cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MVCObject.fromJsProxy(jsProxy));
+class MVCObject extends jsw.MagicProxy implements _MVCObject {
+  static MVCObject cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MVCObject.fromProxy(proxy));
 
   MVCObject([js.FunctionProxy function, List args]) : super(function != null ? function : maps.MVCObject, args);
-  MVCObject.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MVCObject.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override MapsEventListener addListener(String eventName, Function handler) {
-    final callback = new jsw.Callback.many(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
+    final callback = new js.Callback.many(handler);
+    final instanciator = (js.Proxy proxy) => new MapsEventListener.fromProxy(proxy, () => callback.dispose());
     return $unsafe.addListener(eventName, callback).map(instanciator);
   }
   @override void setValues(Map<String, dynamic> values) {
-    final valuesJs = new jsw.TypedProxy();
+    final valuesJs = new jsw.JsObjectToMapAdapter.fromProxy(js.map({}));
     values.forEach((key, value) {
       valuesJs[key] = value;
     });

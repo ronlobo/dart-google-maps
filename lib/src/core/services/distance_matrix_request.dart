@@ -24,14 +24,14 @@ abstract class _DistanceMatrixRequest {
   UnitSystem unitSystem;
 }
 
-class DistanceMatrixRequest extends jsw.TypedProxy implements _DistanceMatrixRequest {
-  static DistanceMatrixRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DistanceMatrixRequest.fromJsProxy(jsProxy));
+class DistanceMatrixRequest extends jsw.MagicProxy implements _DistanceMatrixRequest {
+  static DistanceMatrixRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DistanceMatrixRequest.fromProxy(proxy));
 
   DistanceMatrixRequest() : super();
-  DistanceMatrixRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DistanceMatrixRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.JsArray.cast($unsafe.destinations, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
-  @override List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.JsArray.cast($unsafe.origins, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  @override List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.destinations, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  @override List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.origins, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
   @override TravelMode get travelMode => TravelMode.find($unsafe.travelMode);
   @override UnitSystem get unitSystem => UnitSystem.find($unsafe.unitSystem);
 }

@@ -19,12 +19,12 @@ abstract class _MaxZoomService {
 }
 
 class MaxZoomService extends jsw.TypedProxy implements _MaxZoomService {
-  static MaxZoomService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MaxZoomService.fromJsProxy(jsProxy));
+  static MaxZoomService cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MaxZoomService.fromProxy(proxy));
 
   MaxZoomService() : super(maps.MaxZoomService);
-  MaxZoomService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MaxZoomService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    $unsafe.getMaxZoomAtLatLng(latlng, new jsw.Callback.once((js.Proxy result) => callback(MaxZoomResult.cast(result))));
+    $unsafe.getMaxZoomAtLatLng(latlng, new js.Callback.once((js.Proxy result) => callback(MaxZoomResult.cast(result))));
   }
 }

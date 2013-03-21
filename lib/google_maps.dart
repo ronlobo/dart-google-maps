@@ -15,10 +15,12 @@
 library google_maps;
 
 import 'dart:html' as html;
+
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:meta/meta.dart';
-import 'utils.dart';
+
+import 'src/utils.dart';
 
 part 'src/core/map/map.dart';
 part 'src/core/map/map_options.dart';
@@ -168,10 +170,10 @@ part 'src/core/mvc/mvc_array.dart';
 final maps = js.retain(js.context.google.maps);
 
 class NativeEvent extends jsw.TypedProxy {
-  static NativeEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new NativeEvent.fromJsProxy(jsProxy));
+  static NativeEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (js.Proxy proxy) => new NativeEvent.fromProxy(proxy));
 
   NativeEvent() : super();
-  NativeEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  NativeEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }
 
 class EventListenerAdder {
@@ -181,7 +183,7 @@ class EventListenerAdder {
   EventListenerAdder(this._instance, this._eventName);
 
   void add(Function handler) { event.addListener(_instance, _eventName, handler); }
-  MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(jsw.retain(event.addListener(_instance, _eventName, handler)));
+  MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(js.retain(event.addListener(_instance, _eventName, handler)));
 }
 
 class MapsEventListenerRegistration {
@@ -191,7 +193,7 @@ class MapsEventListenerRegistration {
   void removeListener() {
     js.scoped(() {
       event.removeListener(_mapsEventListener);
-      jsw.release(_mapsEventListener);
+      js.release(_mapsEventListener);
     });
   }
 }
@@ -246,11 +248,11 @@ class NumEventListenerAdder extends EventListenerAdder {
 }
 
 class NumAndElementEventListenerAdder<E> extends EventListenerAdder {
-  jsw.Transformer _transform;
+  jsw.Mapper _mapper;
 
-  NumAndElementEventListenerAdder(jsw.TypedProxy _instance, String _eventName, this._transform) : super(_instance, _eventName);
+  NumAndElementEventListenerAdder(jsw.TypedProxy _instance, String _eventName, this._mapper) : super(_instance, _eventName);
 
-  void add(void handler(num number, E e)) { super.add((number, e) => handler(number, jsw.transformIfNotNull(e, _transform))); }
-  MapsEventListenerRegistration addTemporary(void handler(num number, E e)) => super.addTemporary((number, e) => handler(number, jsw.transformIfNotNull(e, _transform)));
+  void add(void handler(num number, E e)) { super.add((number, e) => handler(number, jsw.mapNotNull(e, _mapper))); }
+  MapsEventListenerRegistration addTemporary(void handler(num number, E e)) => super.addTemporary((number, e) => handler(number, jsw.mapNotNull(e, _mapper)));
 }
 

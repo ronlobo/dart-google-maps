@@ -15,19 +15,19 @@
 part of google_maps;
 
 abstract class _GeocoderAddressComponent {
-  @jsw.dartified String long_name;
-  @jsw.dartified String short_name;
+  @dartified String long_name;
+  @dartified String short_name;
   List<String> types;
 }
 
-class GeocoderAddressComponent extends jsw.TypedProxy implements _GeocoderAddressComponent {
-  static GeocoderAddressComponent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GeocoderAddressComponent.fromJsProxy(jsProxy));
+class GeocoderAddressComponent extends jsw.MagicProxy implements _GeocoderAddressComponent {
+  static GeocoderAddressComponent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GeocoderAddressComponent.fromProxy(proxy));
 
   GeocoderAddressComponent() : super();
-  GeocoderAddressComponent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GeocoderAddressComponent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
-  @override set types(List<String> types) => $unsafe.types = jsw.JsArray.jsify(types);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  @override set types(List<String> types) => $unsafe.types = jsifyList(types);
 
   String get longName => long_name;
   set longName(String longName) => long_name = longName;

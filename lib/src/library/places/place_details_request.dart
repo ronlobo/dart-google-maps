@@ -18,9 +18,9 @@ abstract class _PlaceDetailsRequest {
   String reference;
 }
 
-class PlaceDetailsRequest extends jsw.TypedProxy implements _PlaceDetailsRequest {
-  static PlaceDetailsRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceDetailsRequest.fromJsProxy(jsProxy));
+class PlaceDetailsRequest extends jsw.MagicProxy implements _PlaceDetailsRequest {
+  static PlaceDetailsRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PlaceDetailsRequest.fromProxy(proxy));
 
   PlaceDetailsRequest() : super();
-  PlaceDetailsRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceDetailsRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

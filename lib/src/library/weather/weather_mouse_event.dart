@@ -21,11 +21,11 @@ abstract class _WeatherMouseEvent {
   Size pixelOffset;
 }
 
-class WeatherMouseEvent extends jsw.TypedProxy implements _WeatherMouseEvent {
-  static WeatherMouseEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherMouseEvent.fromJsProxy(jsProxy));
+class WeatherMouseEvent extends jsw.MagicProxy implements _WeatherMouseEvent {
+  static WeatherMouseEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new WeatherMouseEvent.fromProxy(proxy));
 
   WeatherMouseEvent() : super();
-  WeatherMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override WeatherFeature get featureDetails => WeatherFeature.cast($unsafe.featureDetails);
   @override Size get pixelOffset => Size.cast($unsafe.pixelOffset);

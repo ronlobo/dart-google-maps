@@ -19,11 +19,11 @@ abstract class _LocationElevationRequest {
 }
 
 class LocationElevationRequest extends jsw.TypedProxy implements _LocationElevationRequest {
-  static LocationElevationRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new LocationElevationRequest.fromJsProxy(jsProxy));
+  static LocationElevationRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new LocationElevationRequest.fromProxy(proxy));
 
   LocationElevationRequest() : super();
-  LocationElevationRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  LocationElevationRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<LatLng> get locations => jsw.JsArray.cast($unsafe.locations, LatLng.cast);
-  @override set locations(List<LatLng> locations) => $unsafe.locations = jsw.JsArray.jsify(locations);
+  @override List<LatLng> get locations => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.locations, LatLng.cast);
+  @override set locations(List<LatLng> locations) => $unsafe.locations = jsifyList(locations);
 }

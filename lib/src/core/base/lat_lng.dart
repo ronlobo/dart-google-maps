@@ -22,14 +22,14 @@ abstract class _LatLng {
   String toUrlValue([num precision]);
 }
 
-class LatLng extends jsw.TypedProxy implements _LatLng {
-  static LatLng cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new LatLng.fromJsProxy(jsProxy));
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.LatLng);
+class LatLng extends jsw.MagicProxy implements _LatLng {
+  static LatLng cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new LatLng.fromProxy(proxy));
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.LatLng);
 
   LatLng(num lat, num lng, [bool noWrap]) : super(maps.LatLng, [lat, lng, noWrap]);
-  LatLng.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  LatLng.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   num get lat => $unsafe.lat();
   num get lng => $unsafe.lng();
-  @override String toString() => $unsafe.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", []));
+  @override String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
 }

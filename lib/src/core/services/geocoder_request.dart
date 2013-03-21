@@ -21,11 +21,11 @@ abstract class _GeocoderRequest {
   String region;
 }
 
-class GeocoderRequest extends jsw.TypedProxy implements _GeocoderRequest {
-  static GeocoderRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GeocoderRequest.fromJsProxy(jsProxy));
+class GeocoderRequest extends jsw.MagicProxy implements _GeocoderRequest {
+  static GeocoderRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GeocoderRequest.fromProxy(proxy));
 
   GeocoderRequest() : super();
-  GeocoderRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GeocoderRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override LatLng get location => LatLng.cast($unsafe.location);

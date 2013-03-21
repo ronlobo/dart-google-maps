@@ -15,42 +15,42 @@
 part of google_maps;
 
 abstract class _Marker {
-  @jsw.dartified Animation getAnimation();
-  @jsw.dartified bool getClickable();
-  @jsw.dartified String getCursor();
-  @jsw.dartified bool getDraggable();
-  @jsw.dartified bool getFlat();
-  @jsw.dartified dynamic/*string|Icon|Symbol*/ getIcon();
-  @jsw.dartified dynamic/*Map|StreetViewPanorama*/ getMap();
-  @jsw.dartified LatLng getPosition();
-  @jsw.dartified dynamic/*string|Icon|Symbol*/ getShadow();
-  @jsw.dartified MarkerShape getShape();
-  @jsw.dartified String getTitle();
-  @jsw.dartified bool getVisible();
-  @jsw.dartified num getZIndex();
-  @jsw.dartified void setAnimation(Animation animation);
-  @jsw.dartified void setClickable(bool flag);
-  @jsw.dartified void setCursor(String cursor);
-  @jsw.dartified void setDraggable(bool flag);
-  @jsw.dartified void setFlat(bool flag);
-  @jsw.dartified void setIcon(dynamic/*string|Icon|Symbol*/ icon);
-  @jsw.dartified void setMap(dynamic/*Map|StreetViewPanorama*/ map);
-  @jsw.dartified void setOptions(MarkerOptions options);
-  @jsw.dartified void setPosition(LatLng latlng);
-  @jsw.dartified void setShadow(dynamic/*string|Icon|Symbol*/ shadow);
-  @jsw.dartified void setShape(MarkerShape shape);
-  @jsw.dartified void setTitle(String title);
-  @jsw.dartified void setVisible(bool visible);
-  @jsw.dartified void setZIndex(num zIndex);
+  @dartified Animation getAnimation();
+  @dartified bool getClickable();
+  @dartified String getCursor();
+  @dartified bool getDraggable();
+  @dartified bool getFlat();
+  @dartified dynamic/*string|Icon|Symbol*/ getIcon();
+  @dartified dynamic/*Map|StreetViewPanorama*/ getMap();
+  @dartified LatLng getPosition();
+  @dartified dynamic/*string|Icon|Symbol*/ getShadow();
+  @dartified MarkerShape getShape();
+  @dartified String getTitle();
+  @dartified bool getVisible();
+  @dartified num getZIndex();
+  @dartified void setAnimation(Animation animation);
+  @dartified void setClickable(bool flag);
+  @dartified void setCursor(String cursor);
+  @dartified void setDraggable(bool flag);
+  @dartified void setFlat(bool flag);
+  @dartified void setIcon(dynamic/*string|Icon|Symbol*/ icon);
+  @dartified void setMap(dynamic/*Map|StreetViewPanorama*/ map);
+  @dartified void setOptions(MarkerOptions options);
+  @dartified void setPosition(LatLng latlng);
+  @dartified void setShadow(dynamic/*string|Icon|Symbol*/ shadow);
+  @dartified void setShape(MarkerShape shape);
+  @dartified void setTitle(String title);
+  @dartified void setVisible(bool visible);
+  @dartified void setZIndex(num zIndex);
 }
 
 class Marker extends MVCObject implements _Marker {
-  static Marker cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Marker.fromJsProxy(jsProxy));
+  static Marker cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Marker.fromProxy(proxy));
   static final num MAX_ZINDEX = maps.Marker.MAX_ZINDEX;
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Marker);
-  static String _isSymbolOrIcon(js.Proxy jsProxy) {
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Marker);
+  static String _isSymbolOrIcon(js.Proxy proxy) {
     try {
-      final path = jsProxy.path;
+      final path = proxy.path;
       return "Symbol";
     } on NoSuchMethodError {
       return "Icon";
@@ -58,7 +58,7 @@ class Marker extends MVCObject implements _Marker {
   }
 
   Marker([MarkerOptions opts]) : super(maps.Marker, [opts]);
-  Marker.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Marker.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Animation getAnimation() => Animation.find($unsafe.getAnimation());
   @override dynamic/*string|Icon|Symbol*/ getIcon() {

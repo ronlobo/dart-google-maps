@@ -19,10 +19,10 @@ abstract class _RotateControlOptions {
 }
 
 class RotateControlOptions extends jsw.TypedProxy implements _RotateControlOptions {
-  static RotateControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new RotateControlOptions.fromJsProxy(jsProxy));
+  static RotateControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new RotateControlOptions.fromProxy(proxy));
 
   RotateControlOptions() : super();
-  RotateControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  RotateControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   ControlPosition get position => ControlPosition.find($unsafe.position);
 }

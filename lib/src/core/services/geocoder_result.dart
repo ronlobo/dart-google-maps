@@ -21,17 +21,17 @@ abstract class _GeocoderResult {
   List<String> types;
 }
 
-class GeocoderResult extends jsw.TypedProxy implements _GeocoderResult {
-  static GeocoderResult cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GeocoderResult.fromJsProxy(jsProxy));
+class GeocoderResult extends jsw.MagicProxy implements _GeocoderResult {
+  static GeocoderResult cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GeocoderResult.fromProxy(proxy));
 
   GeocoderResult() : super();
-  GeocoderResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GeocoderResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<GeocoderAddressComponent> get address_components => jsw.JsArray.cast($unsafe.address_components, GeocoderAddressComponent.cast);
-  @override set address_components(List<GeocoderAddressComponent> address_components) => $unsafe.address_components = jsw.JsArray.jsify(address_components);
+  @override List<GeocoderAddressComponent> get address_components => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.address_components, GeocoderAddressComponent.cast);
+  @override set address_components(List<GeocoderAddressComponent> address_components) => $unsafe.address_components = jsifyList(address_components);
   @override GeocoderGeometry get geometry => GeocoderGeometry.cast($unsafe.geometry);
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
-  @override set types(List<String> types) => $unsafe.types = jsw.JsArray.jsify(types);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  @override set types(List<String> types) => $unsafe.types = jsifyList(types);
 
   List<GeocoderAddressComponent> get addressComponents => address_components;
   set addressComponents(List<GeocoderAddressComponent> addressComponents) => this.address_components = addressComponents;

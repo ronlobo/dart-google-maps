@@ -27,11 +27,11 @@ abstract class _AdUnitOptions {
   String urlColor;
 }
 
-class AdUnitOptions extends jsw.TypedProxy implements _AdUnitOptions {
-  static AdUnitOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AdUnitOptions.fromJsProxy(jsProxy));
+class AdUnitOptions extends jsw.MagicProxy implements _AdUnitOptions {
+  static AdUnitOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new AdUnitOptions.fromProxy(proxy));
 
   AdUnitOptions() : super();
-  AdUnitOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AdUnitOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override AdFormat get format => AdFormat.find($unsafe.format);
   @override GMap get map => GMap.cast($unsafe.map);

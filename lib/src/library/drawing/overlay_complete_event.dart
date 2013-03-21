@@ -20,23 +20,23 @@ abstract class _OverlayCompleteEvent {
 }
 
 class OverlayCompleteEvent extends jsw.TypedProxy implements _OverlayCompleteEvent {
-  static OverlayCompleteEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new OverlayCompleteEvent.fromJsProxy(jsProxy));
+  static OverlayCompleteEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new OverlayCompleteEvent.fromProxy(proxy));
 
   OverlayCompleteEvent() : super();
-  OverlayCompleteEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  OverlayCompleteEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
     final result = $unsafe.overlay;
     if (Marker.isInstance(result)) {
-      return new Marker.fromJsProxy(result);
+      return new Marker.fromProxy(result);
     } else if (Polygon.isInstance(result)) {
-      return new Polygon.fromJsProxy(result);
+      return new Polygon.fromProxy(result);
     } else if (Polyline.isInstance(result)) {
-      return new Polyline.fromJsProxy(result);
+      return new Polyline.fromProxy(result);
     } else if (Rectangle.isInstance(result)) {
-      return new Rectangle.fromJsProxy(result);
+      return new Rectangle.fromProxy(result);
     } else if (Circle.isInstance(result)) {
-      return new Circle.fromJsProxy(result);
+      return new Circle.fromProxy(result);
     } else {
       return result;
     }

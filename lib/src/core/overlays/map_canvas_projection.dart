@@ -19,14 +19,14 @@ abstract class _MapCanvasProjection {
   LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]);
   Point fromLatLngToContainerPixel(LatLng latLng);
   Point fromLatLngToDivPixel(LatLng latLng);
-  @jsw.dartified num getWorldWidth();
+  @dartified num getWorldWidth();
 }
 
 class MapCanvasProjection extends MVCObject implements _MapCanvasProjection {
-  static MapCanvasProjection cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapCanvasProjection.fromJsProxy(jsProxy));
+  static MapCanvasProjection cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapCanvasProjection.fromProxy(proxy));
 
   MapCanvasProjection() : super();
-  MapCanvasProjection.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapCanvasProjection.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => LatLng.cast($unsafe.fromContainerPixelToLatLng(pixel, nowrap));
   @override LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => LatLng.cast($unsafe.fromDivPixelToLatLng(pixel, nowrap));

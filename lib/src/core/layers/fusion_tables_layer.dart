@@ -21,10 +21,10 @@ abstract class _FusionTablesLayer {
 }
 
 class FusionTablesLayer extends jsw.TypedProxy implements _FusionTablesLayer {
-  static FusionTablesLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesLayer.fromJsProxy(jsProxy));
+  static FusionTablesLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesLayer.fromProxy(proxy));
 
   FusionTablesLayer(FusionTablesLayerOptions options) : super(maps.FusionTablesLayer, [options]);
-  FusionTablesLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   GMap get map => GMap.cast($unsafe.getMap());
   set map(GMap map) => $unsafe.setMap(map);

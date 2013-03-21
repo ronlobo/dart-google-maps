@@ -15,18 +15,18 @@
 part of google_maps;
 
 abstract class _TransitOptions {
-  Date arrivalTime;
-  Date departureTime;
+  DateTime arrivalTime;
+  DateTime departureTime;
 }
 
 class TransitOptions extends jsw.TypedProxy implements _TransitOptions {
-  static TransitOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TransitOptions.fromJsProxy(jsProxy));
+  static TransitOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TransitOptions.fromProxy(proxy));
 
   TransitOptions() : super();
-  TransitOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override Date get arrivalTime => jsw.JsDate.cast($unsafe.arrivalTime);
-  @override set arrivalTime(Date arrivalTime) => $unsafe.arrivalTime = jsw.JsDate.jsify(arrivalTime);
-  @override Date get departureTime => jsw.JsDate.cast($unsafe.departureTime);
-  @override set departureTime(Date departureTime) => $unsafe.departureTime = jsw.JsDate.jsify(departureTime);
+  @override DateTime get arrivalTime => jsw.JsDateToDateTimeAdapter.cast($unsafe.arrivalTime);
+  @override set arrivalTime(DateTime arrivalTime) => $unsafe.arrivalTime = jsifyDateTime(arrivalTime);
+  @override DateTime get departureTime => jsw.JsDateToDateTimeAdapter.cast($unsafe.departureTime);
+  @override set departureTime(DateTime departureTime) => $unsafe.departureTime = jsifyDateTime(departureTime);
 }

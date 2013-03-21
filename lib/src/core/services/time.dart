@@ -17,15 +17,15 @@ part of google_maps;
 abstract class _Time {
   String text;
   String timeZone;
-  Date value;
+  DateTime value;
 }
 
-class Time extends jsw.TypedProxy implements _Time {
-  static Time cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Time.fromJsProxy(jsProxy));
+class Time extends jsw.MagicProxy implements _Time {
+  static Time cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Time.fromProxy(proxy));
 
   Time() : super();
-  Time.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Time.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override Date get value => jsw.JsDate.cast($unsafe.value);
-  @override set value(Date value) => $unsafe.value = jsw.JsDate.jsify(value);
+  @override DateTime get value => jsw.JsDateToDateTimeAdapter.cast($unsafe.value);
+  @override set value(DateTime value) => $unsafe.value = jsifyDateTime(value);
 }

@@ -15,26 +15,26 @@
 part of google_maps;
 
 abstract class _Circle {
-  @jsw.dartified LatLngBounds getBounds();
-  @jsw.dartified LatLng getCenter();
-  @jsw.dartified bool getEditable();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified num getRadius();
-  @jsw.dartified bool getVisible();
-  @jsw.dartified void setCenter(LatLng center);
-  @jsw.dartified void setEditable(bool editable);
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOptions(CircleOptions options);
-  @jsw.dartified void setRadius(num radius);
-  @jsw.dartified void setVisible(bool visible);
+  @dartified LatLngBounds getBounds();
+  @dartified LatLng getCenter();
+  @dartified bool getEditable();
+  @dartified GMap getMap();
+  @dartified num getRadius();
+  @dartified bool getVisible();
+  @dartified void setCenter(LatLng center);
+  @dartified void setEditable(bool editable);
+  @dartified void setMap(GMap map);
+  @dartified void setOptions(CircleOptions options);
+  @dartified void setRadius(num radius);
+  @dartified void setVisible(bool visible);
 }
 
 class Circle extends MVCObject implements _Circle{
-  static Circle cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Circle.fromJsProxy(jsProxy));
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Circle);
+  static Circle cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Circle.fromProxy(proxy));
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Circle);
 
   Circle([CircleOptions opts]) : super(maps.Circle, [opts]);
-  Circle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Circle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds getBounds() => LatLngBounds.cast($unsafe.getBounds());
   @override LatLng getCenter() => LatLng.cast($unsafe.getCenter());

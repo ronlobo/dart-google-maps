@@ -21,11 +21,11 @@ abstract class _FusionTablesStyle {
   String where;
 }
 
-class FusionTablesStyle extends jsw.TypedProxy implements _FusionTablesStyle {
-  static FusionTablesStyle cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesStyle.fromJsProxy(jsProxy));
+class FusionTablesStyle extends jsw.MagicProxy implements _FusionTablesStyle {
+  static FusionTablesStyle cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesStyle.fromProxy(proxy));
 
   FusionTablesStyle() : super();
-  FusionTablesStyle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe.markerOptions);
   @override FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.cast($unsafe.polygonOptions);

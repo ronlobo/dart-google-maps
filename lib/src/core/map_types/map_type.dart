@@ -27,11 +27,11 @@ abstract class _MapType {
   Size tileSize;
 }
 
-class MapType extends jsw.TypedProxy implements _MapType {
-  static MapType cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapType.fromJsProxy(jsProxy));
+class MapType extends jsw.MagicProxy implements _MapType {
+  static MapType cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapType.fromProxy(proxy));
 
   MapType([js.FunctionProxy function, List args]) : super(function, args);
-  MapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   Projection get projection => Projection.cast($unsafe.projection);
   Size get tileSize => Size.cast($unsafe.tileSize);

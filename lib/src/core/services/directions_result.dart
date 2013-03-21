@@ -19,11 +19,11 @@ abstract class _DirectionsResult {
 }
 
 class DirectionsResult extends jsw.TypedProxy implements _DirectionsResult {
-  static DirectionsResult cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsResult.fromJsProxy(jsProxy));
+  static DirectionsResult cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsResult.fromProxy(proxy));
 
   DirectionsResult() : super();
-  DirectionsResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<DirectionsRoute> get routes => jsw.JsArray.cast($unsafe.routes, DirectionsRoute.cast);
-  @override set routes(List<DirectionsRoute> routes) => $unsafe.routes = jsw.JsArray.jsify(routes);
+  @override List<DirectionsRoute> get routes => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.routes, DirectionsRoute.cast);
+  @override set routes(List<DirectionsRoute> routes) => $unsafe.routes = jsifyList(routes);
 }

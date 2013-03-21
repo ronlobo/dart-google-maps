@@ -19,8 +19,8 @@ abstract class _StyledMapType {
 
 // TODO extends MVCObject mixin MapType
 class StyledMapType extends MapType implements _StyledMapType {
-  static StyledMapType cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StyledMapType.fromJsProxy(jsProxy));
+  static StyledMapType cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StyledMapType.fromProxy(proxy));
 
   StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super(maps.StyledMapType, [styles, options]);
-  StyledMapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StyledMapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

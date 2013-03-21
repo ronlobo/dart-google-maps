@@ -20,11 +20,11 @@ abstract class _DrawingControlOptions {
 }
 
 class DrawingControlOptions extends jsw.TypedProxy implements _DrawingControlOptions {
-  static DrawingControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DrawingControlOptions.fromJsProxy(jsProxy));
+  static DrawingControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DrawingControlOptions.fromProxy(proxy));
 
   DrawingControlOptions() : super();
-  DrawingControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DrawingControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<OverlayType> get drawingModes => jsw.JsArray.cast($unsafe.drawingModes, OverlayType.find);
+  @override List<OverlayType> get drawingModes => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.drawingModes, OverlayType.find);
   @override ControlPosition get position => ControlPosition.find($unsafe.position);
 }

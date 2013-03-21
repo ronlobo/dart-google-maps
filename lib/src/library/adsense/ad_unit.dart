@@ -15,33 +15,33 @@
 part of google_maps_adsense;
 
 abstract class _AdUnit {
-  @jsw.dartified String getBackgroundColor();
-  @jsw.dartified String getBorderColor();
-  @jsw.dartified String getChannelNumber();
-  @jsw.dartified html.Node getContainer();
-  @jsw.dartified AdFormat getFormat();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified ControlPosition getPosition();
-  @jsw.dartified String getPublisherId();
-  @jsw.dartified String getTextColor();
-  @jsw.dartified String getTitleColor();
-  @jsw.dartified String getUrlColor();
-  @jsw.dartified void setBackgroundColor(String backgroundColor);
-  @jsw.dartified void setBorderColor(String borderColor);
-  @jsw.dartified void setChannelNumber(String channelNumber);
-  @jsw.dartified void setFormat(AdFormat format);
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setPosition(ControlPosition position);
-  @jsw.dartified void setTextColor(String textColor);
-  @jsw.dartified void setTitleColor(String titleColor);
-  @jsw.dartified void setUrlColor(String urlColor);
+  @dartified String getBackgroundColor();
+  @dartified String getBorderColor();
+  @dartified String getChannelNumber();
+  @dartified html.Node getContainer();
+  @dartified AdFormat getFormat();
+  @dartified GMap getMap();
+  @dartified ControlPosition getPosition();
+  @dartified String getPublisherId();
+  @dartified String getTextColor();
+  @dartified String getTitleColor();
+  @dartified String getUrlColor();
+  @dartified void setBackgroundColor(String backgroundColor);
+  @dartified void setBorderColor(String borderColor);
+  @dartified void setChannelNumber(String channelNumber);
+  @dartified void setFormat(AdFormat format);
+  @dartified void setMap(GMap map);
+  @dartified void setPosition(ControlPosition position);
+  @dartified void setTextColor(String textColor);
+  @dartified void setTitleColor(String titleColor);
+  @dartified void setUrlColor(String urlColor);
 }
 
 class AdUnit extends MVCObject implements _AdUnit {
-  static AdUnit cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AdUnit.fromJsProxy(jsProxy));
+  static AdUnit cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new AdUnit.fromProxy(proxy));
 
   AdUnit(html.Node container, AdUnitOptions opts) : super(maps.adsense.AdUnit, [container, opts]);
-  AdUnit.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AdUnit.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override AdFormat getFormat() => AdFormat.find($unsafe.getFormat());
   @override GMap getMap() => GMap.cast($unsafe.getMap());

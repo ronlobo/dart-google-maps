@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
@@ -11,11 +11,11 @@ void main() {
       ..zoom = 6
       ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
+    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
     // Try HTML5 geolocation
     if (window.navigator.geolocation != null) {
-      window.navigator.geolocation.getCurrentPosition((position) {
+      window.navigator.geolocation.getCurrentPosition().then((position) {
         js.scoped(() {
           final pos = new LatLng(position.coords.latitude,
               position.coords.longitude);
@@ -28,7 +28,7 @@ void main() {
 
           map.center = pos;
         });
-      }, (error) {
+      }, onError: (error) {
         handleNoGeolocation(true);
       });
     } else {

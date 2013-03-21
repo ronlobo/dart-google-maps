@@ -23,11 +23,11 @@ abstract class _WeatherLayerOptions {
   WindSpeedUnit windSpeedUnits;
 }
 
-class WeatherLayerOptions extends jsw.TypedProxy implements _WeatherLayerOptions {
-  static WeatherLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherLayerOptions.fromJsProxy(jsProxy));
+class WeatherLayerOptions extends jsw.MagicProxy implements _WeatherLayerOptions {
+  static WeatherLayerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new WeatherLayerOptions.fromProxy(proxy));
 
   WeatherLayerOptions() : super();
-  WeatherLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LabelColor get labelColor => LabelColor.find($unsafe.labelColor);
   @override GMap get map => GMap.cast($unsafe.map);

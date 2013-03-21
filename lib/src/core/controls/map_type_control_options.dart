@@ -21,13 +21,13 @@ abstract class _MapTypeControlOptions {
 }
 
 class MapTypeControlOptions extends jsw.TypedProxy implements _MapTypeControlOptions {
-  static MapTypeControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapTypeControlOptions.fromJsProxy(jsProxy));
+  static MapTypeControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapTypeControlOptions.fromProxy(proxy));
 
   MapTypeControlOptions() : super();
-  MapTypeControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapTypeControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List get mapTypeIds => jsw.JsArray.cast($unsafe.mapTypeIds, (e) => firstNotNull([MapTypeId.find(e), e]));
-  @override set mapTypeIds(List mapTypeIds) => $unsafe.mapTypeIds = jsw.JsArray.jsify(mapTypeIds);
+  @override List get mapTypeIds => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.mapTypeIds, (e) => firstNotNull([MapTypeId.find(e), e]));
+  @override set mapTypeIds(List mapTypeIds) => $unsafe.mapTypeIds = jsifyList(mapTypeIds);
   @override ControlPosition get position => ControlPosition.find($unsafe.position);
   @override MapTypeControlStyle get style => MapTypeControlStyle.find($unsafe.style);
 }

@@ -21,15 +21,15 @@ abstract class _DistanceMatrixResponse {
 }
 
 class DistanceMatrixResponse extends jsw.TypedProxy implements _DistanceMatrixResponse {
-  static DistanceMatrixResponse cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DistanceMatrixResponse.fromJsProxy(jsProxy));
+  static DistanceMatrixResponse cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DistanceMatrixResponse.fromProxy(proxy));
 
   DistanceMatrixResponse() : super();
-  DistanceMatrixResponse.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DistanceMatrixResponse.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<String> get destinationAddresses => jsw.JsArray.cast($unsafe.destinationAddresses);
-  @override set destinationAddresses(List<String> destinationAddresses) => $unsafe.destinationAddresses = jsw.JsArray.jsify(destinationAddresses);
-  @override List<String> get originAddresses => jsw.JsArray.cast($unsafe.originAddresses);
-  @override set originAddresses(List<String> originAddresses) => $unsafe.originAddresses = jsw.JsArray.jsify(originAddresses);
-  @override List<DistanceMatrixResponseRow> get rows => jsw.JsArray.cast($unsafe.rows, DistanceMatrixResponseRow.cast);
-  @override set rows(List<DistanceMatrixResponseRow> rows) => $unsafe.rows = jsw.JsArray.jsify(rows);
+  @override List<String> get destinationAddresses => jsw.JsArrayToListAdapter.cast($unsafe.destinationAddresses);
+  @override set destinationAddresses(List<String> destinationAddresses) => $unsafe.destinationAddresses = jsifyList(destinationAddresses);
+  @override List<String> get originAddresses => jsw.JsArrayToListAdapter.cast($unsafe.originAddresses);
+  @override set originAddresses(List<String> originAddresses) => $unsafe.originAddresses = jsifyList(originAddresses);
+  @override List<DistanceMatrixResponseRow> get rows => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.rows, DistanceMatrixResponseRow.cast);
+  @override set rows(List<DistanceMatrixResponseRow> rows) => $unsafe.rows = jsifyList(rows);
 }

@@ -20,10 +20,10 @@ abstract class _TransitLayer {
 }
 
 class TransitLayer extends MVCObject implements _TransitLayer {
-  static TransitLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TransitLayer.fromJsProxy(jsProxy));
+  static TransitLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TransitLayer.fromProxy(proxy));
 
   TransitLayer() : super(maps.TransitLayer);
-  TransitLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   GMap get map => GMap.cast($unsafe.getMap());
   set map(GMap map) => $unsafe.setMap(map);

@@ -23,14 +23,14 @@ abstract class _FusionTablesLayerOptions {
   bool suppressInfoWindows;
 }
 
-class FusionTablesLayerOptions extends jsw.TypedProxy implements _FusionTablesLayerOptions {
-  static FusionTablesLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesLayerOptions.fromJsProxy(jsProxy));
+class FusionTablesLayerOptions extends jsw.MagicProxy implements _FusionTablesLayerOptions {
+  static FusionTablesLayerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesLayerOptions.fromProxy(proxy));
 
   FusionTablesLayerOptions() : super();
-  FusionTablesLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override FusionTablesHeatmap get heatmap => FusionTablesHeatmap.cast($unsafe.heatmap);
   @override GMap get map => GMap.cast($unsafe.map);
   @override FusionTablesQuery get query => FusionTablesQuery.cast($unsafe.query);
-  @override List<FusionTablesStyle> get styles => jsw.JsArray.cast($unsafe.styles, FusionTablesStyle.cast);
+  @override List<FusionTablesStyle> get styles => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.styles, FusionTablesStyle.cast);
 }

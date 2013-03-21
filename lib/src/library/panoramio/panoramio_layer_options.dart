@@ -22,11 +22,11 @@ abstract class _PanoramioLayerOptions {
   String userId;
 }
 
-class PanoramioLayerOptions extends jsw.TypedProxy implements _PanoramioLayerOptions {
-  static PanoramioLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PanoramioLayerOptions.fromJsProxy(jsProxy));
+class PanoramioLayerOptions extends jsw.MagicProxy implements _PanoramioLayerOptions {
+  static PanoramioLayerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PanoramioLayerOptions.fromProxy(proxy));
 
   PanoramioLayerOptions() : super();
-  PanoramioLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PanoramioLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap get map => GMap.cast($unsafe.map);
 }

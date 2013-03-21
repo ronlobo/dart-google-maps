@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 Polyline line;
@@ -25,7 +25,7 @@ void main() {
       ..scale = 4
       ;
 
-    line = jsw.retain(new Polyline(new PolylineOptions()
+    line = js.retain(new Polyline(new PolylineOptions()
       ..path = lineCoordinates
       ..strokeOpacity = 0
       ..icons = [new IconSequence()

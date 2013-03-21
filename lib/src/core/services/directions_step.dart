@@ -17,27 +17,27 @@ part of google_maps;
 abstract class _DirectionsStep {
   Distance distance;
   GDuration duration;
-  @jsw.dartified LatLng end_location;
+  @dartified LatLng end_location;
   String instructions;
   List<LatLng> path;
-  @jsw.dartified LatLng start_location;
+  @dartified LatLng start_location;
   List<DirectionsStep> steps;
   TransitDetails transit;
-  @jsw.dartified TravelMode travel_mode;
+  @dartified TravelMode travel_mode;
 }
 
-class DirectionsStep extends jsw.TypedProxy implements _DirectionsStep {
-  static DirectionsStep cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsStep.fromJsProxy(jsProxy));
+class DirectionsStep extends jsw.MagicProxy implements _DirectionsStep {
+  static DirectionsStep cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsStep.fromProxy(proxy));
 
   DirectionsStep() : super();
-  DirectionsStep.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsStep.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Distance get distance => Distance.cast($unsafe.distance);
   @override GDuration get duration => GDuration.cast($unsafe.duration);
   @override LatLng get end_location => LatLng.cast($unsafe.end_location);
-  @override List<LatLng> get path => jsw.JsArray.cast($unsafe.path, LatLng.cast);
+  @override List<LatLng> get path => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.path, LatLng.cast);
   @override LatLng get start_location => LatLng.cast($unsafe.start_location);
-  @override List<DirectionsStep> get steps => jsw.JsArray.cast($unsafe.steps, DirectionsStep.cast);
+  @override List<DirectionsStep> get steps => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.steps, DirectionsStep.cast);
   @override TransitDetails get transit => TransitDetails.cast($unsafe.transit);
   @override TravelMode get travel_mode => TravelMode.find($unsafe.travel_mode);
 

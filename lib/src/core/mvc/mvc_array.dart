@@ -17,7 +17,7 @@ part of google_maps;
 abstract class _MVCArray<E> {
   void clear();
   void forEach(void callback(E o, num index));
-  jsw.JsArray<E> getArray();
+  List<E> getArray();
   E getAt(num i);
   // num getLength(); // num get length;
   void insertAt(num i, E elem);
@@ -28,26 +28,26 @@ abstract class _MVCArray<E> {
 }
 
 class MVCArray<E> extends MVCObject implements _MVCArray<E>{
-  static MVCArray cast(js.Proxy jsProxy, [jsw.Transformer instantiator]) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MVCArray.fromJsProxy(jsProxy, instantiator));
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.MVCArray);
+  static MVCArray cast(js.Proxy proxy, [jsw.Translator translator]) => jsw.mapNotNull(proxy, (proxy) => new MVCArray.fromProxy(proxy, translator));
+  static MVCArray castListOfSerializables(js.Proxy proxy, jsw.Mapper<dynamic, js.Serializable> fromJs, {mapOnlyNotNull: false}) => proxy != null ? new MVCArray.fromProxy(proxy, new jsw.TranslatorForSerializable(fromJs, mapOnlyNotNull: mapOnlyNotNull)) : null;
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.MVCArray);
 
-  jsw.Transformer _transform;
+  final jsw.Translator<E> _translator;
 
-  MVCArray([List<E> array, E transform(e)]) : super(maps.MVCArray, [array]) {
-    _transform = transform != null ? transform : ((e) => e);
-  }
-  MVCArray.fromJsProxy(js.Proxy jsProxy, [E transform(e)]) : super.fromJsProxy(jsProxy) {
-    _transform = transform != null ? transform : ((e) => e);
-  }
+  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps.MVCArray, [array]), this._translator = translator;
+  MVCArray.fromProxy(js.Proxy proxy, [jsw.Translator<E> translator]) : super.fromProxy(proxy), this._translator = translator;
+
+  dynamic _toJs(E e) => _translator == null ? e : _translator.toJs(e);
+  E _fromJs(dynamic value) => _translator == null ? value : _translator.fromJs(value);
 
   @override void forEach(void callback(E o, num index)) {
-    $unsafe.forEach(new jsw.Callback.once((dynamic o, num index) => callback(jsw.transformIfNotNull(o, _transform), index)));
+    $unsafe.forEach(new js.Callback.once((dynamic o, num index) => callback(_fromJs(o), index)));
   }
-  @override jsw.JsArray<E> getArray() => jsw.JsArray.cast($unsafe.getArray(), _transform);
-  @override E getAt(num i) => jsw.transformIfNotNull($unsafe.getAt(i), _transform);
+  @override List<E> getArray() => jsw.JsArrayToListAdapter.cast($unsafe.getArray(), _translator);
+  @override E getAt(num i) => _fromJs($unsafe.getAt(i));
   @override num get length => $unsafe.getLength();
-  @override E pop() => jsw.transformIfNotNull($unsafe.pop(), _transform);
-  @override E removeAt(num i) => jsw.transformIfNotNull($unsafe.removeAt(i), _transform);
+  @override E pop() => _fromJs($unsafe.pop());
+  @override E removeAt(num i) => _fromJs($unsafe.removeAt(i));
 
   MVCArrayEvents<E> get on => new MVCArrayEvents<E>._(this);
 }

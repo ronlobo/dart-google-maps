@@ -22,11 +22,11 @@ abstract class _KmlLayerOptions {
   String url;
 }
 
-class KmlLayerOptions extends jsw.TypedProxy implements _KmlLayerOptions {
-  static KmlLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new KmlLayerOptions.fromJsProxy(jsProxy));
+class KmlLayerOptions extends jsw.MagicProxy implements _KmlLayerOptions {
+  static KmlLayerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new KmlLayerOptions.fromProxy(proxy));
 
   KmlLayerOptions() : super();
-  KmlLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap get map => GMap.cast($unsafe.map);
 }

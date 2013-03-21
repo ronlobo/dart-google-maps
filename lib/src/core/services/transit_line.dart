@@ -19,20 +19,20 @@ abstract class _TransitLine {
   String color;
   String icon;
   String name;
-  @jsw.dartified String short_name;
-  @jsw.dartified String text_color;
+  @dartified String short_name;
+  @dartified String text_color;
   String url;
   TransitVehicle vehicle;
 }
 
-class TransitLine extends jsw.TypedProxy implements _TransitLine {
-  static TransitLine cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TransitLine.fromJsProxy(jsProxy));
+class TransitLine extends jsw.MagicProxy implements _TransitLine {
+  static TransitLine cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TransitLine.fromProxy(proxy));
 
   TransitLine() : super();
-  TransitLine.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitLine.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<TransitAgency> get agencies => jsw.JsArray.cast($unsafe.agencies, TransitAgency.cast);
-  @override set agencies(List agencies) => $unsafe.agencies = jsw.JsArray.jsify(agencies);
+  @override List<TransitAgency> get agencies => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.agencies, TransitAgency.cast);
+  @override set agencies(List agencies) => $unsafe.agencies = jsifyList(agencies);
   @override TransitVehicle get vehicle => TransitVehicle.cast($unsafe.vehicle);
 
   String get shortName => short_name;

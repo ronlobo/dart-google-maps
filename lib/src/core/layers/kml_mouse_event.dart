@@ -21,10 +21,10 @@ abstract class _KmlMouseEvent {
 }
 
 class KmlMouseEvent extends jsw.TypedProxy implements _KmlMouseEvent {
-  static KmlMouseEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new KmlMouseEvent.fromJsProxy(jsProxy));
+  static KmlMouseEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new KmlMouseEvent.fromProxy(proxy));
 
   KmlMouseEvent() : super();
-  KmlMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override KmlFeatureData get featureData => KmlFeatureData.cast($unsafe.featureData);
   @override LatLng get latLng => LatLng.cast($unsafe.latLng);

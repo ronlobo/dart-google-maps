@@ -25,10 +25,10 @@ abstract class _KmlLayer {
 }
 
 class KmlLayer extends MVCObject implements _KmlLayer {
-  static KmlLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new KmlLayer.fromJsProxy(jsProxy));
+  static KmlLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new KmlLayer.fromProxy(proxy));
 
   KmlLayer([KmlLayerOptions options]) : super(maps.KmlLayer, [options]);
-  KmlLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   LatLngBounds get defaultViewport => LatLngBounds.cast($unsafe.getDefaultViewport());
   GMap get map => GMap.cast($unsafe.getMap());

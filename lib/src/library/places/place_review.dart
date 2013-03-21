@@ -16,18 +16,18 @@ part of google_maps_places;
 
 abstract class _PlaceReview {
   List<PlaceAspectRating> aspects;
-  @jsw.dartified String author_name;
-  @jsw.dartified String author_url;
+  @dartified String author_name;
+  @dartified String author_url;
   String text;
 }
 
-class PlaceReview extends jsw.TypedProxy implements _PlaceReview {
-  static PlaceReview cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceReview.fromJsProxy(jsProxy));
+class PlaceReview extends jsw.MagicProxy implements _PlaceReview {
+  static PlaceReview cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PlaceReview.fromProxy(proxy));
 
   PlaceReview() : super();
-  PlaceReview.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceReview.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<PlaceAspectRating> get aspects => jsw.JsArray.cast($unsafe.aspects, PlaceAspectRating.cast);
+  @override List<PlaceAspectRating> get aspects => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.aspects, PlaceAspectRating.cast);
 
   String get authorName => author_name;
   set authorName(String authorName) => author_name = authorName;

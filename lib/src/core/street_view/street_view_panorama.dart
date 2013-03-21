@@ -15,32 +15,32 @@
 part of google_maps;
 
 abstract class _StreetViewPanorama {
-  @jsw.dartified List<StreetViewLink> getLinks();
-  @jsw.dartified String getPano();
-  @jsw.dartified LatLng getPosition();
-  @jsw.dartified StreetViewPov getPov();
-  @jsw.dartified bool getVisible();
+  @dartified List<StreetViewLink> getLinks();
+  @dartified String getPano();
+  @dartified LatLng getPosition();
+  @dartified StreetViewPov getPov();
+  @dartified bool getVisible();
   void registerPanoProvider(StreetViewPanoramaData provider(String pano));
-  @jsw.dartified void setPano(String pano);
-  @jsw.dartified void setPosition(LatLng latLng);
-  @jsw.dartified void setPov(StreetViewPov pov);
-  @jsw.dartified void setVisible(bool flag);
+  @dartified void setPano(String pano);
+  @dartified void setPosition(LatLng latLng);
+  @dartified void setPov(StreetViewPov pov);
+  @dartified void setVisible(bool flag);
 
   Controls controls;
 }
 
 class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
-  static StreetViewPanorama cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewPanorama.fromJsProxy(jsProxy));
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.StreetViewPanorama);
+  static StreetViewPanorama cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewPanorama.fromProxy(proxy));
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.StreetViewPanorama);
 
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps.StreetViewPanorama, [container, opts]);
-  StreetViewPanorama.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewPanorama.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<StreetViewLink> getLinks() => jsw.JsArray.cast($unsafe.getLinks(), StreetViewLink.cast);
+  @override List<StreetViewLink> getLinks() => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getLinks(), StreetViewLink.cast);
   @override LatLng getPosition() => LatLng.cast($unsafe.getPosition());
   @override StreetViewPov getPov() => StreetViewPov.cast($unsafe.getPov());
   @override void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
-    $unsafe.registerPanoProvider(new jsw.Callback.many((String pano) => provider(pano)));
+    $unsafe.registerPanoProvider(new js.Callback.many((String pano) => provider(pano)));
   }
   @override Controls get controls => Controls.cast($unsafe.controls);
 

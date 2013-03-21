@@ -1,14 +1,14 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
 StreetViewPanorama panorama;
-final LatLng astorPlace = jsw.retain(new LatLng(40.729884, -73.990988));
-final LatLng busStop = jsw.retain(new LatLng(40.729559678851025, -73.99074196815491));
-final LatLng cafe = jsw.retain(new LatLng(40.730031233910694, -73.99142861366272));
-final LatLng bank = jsw.retain(new LatLng(40.72968163306612, -73.9911389350891));
+final LatLng astorPlace = js.retain(new LatLng(40.729884, -73.990988));
+final LatLng busStop = js.retain(new LatLng(40.729559678851025, -73.99074196815491));
+final LatLng cafe = js.retain(new LatLng(40.730031233910694, -73.99142861366272));
+final LatLng bank = js.retain(new LatLng(40.72968163306612, -73.9911389350891));
 
 void main() {
   js.scoped(() {
@@ -19,7 +19,7 @@ void main() {
       ..mapTypeId = MapTypeId.ROADMAP
       ..streetViewControl = false
       ;
-    map = jsw.retain(new GMap(query('#map_canvas'), mapOptions));
+    map = js.retain(new GMap(query('#map_canvas'), mapOptions));
 
     // Setup the markers on the map
     // TODO issue for MarkerImage deprecated
@@ -54,7 +54,7 @@ void main() {
 
     // We get the map's default panorama and set up some defaults.
     // Note that we don't yet set it visible.
-    panorama = jsw.retain(map.streetView);
+    panorama = js.retain(map.streetView);
     panorama.position = astorPlace;
     panorama.pov = new StreetViewPov()
       ..heading = 265

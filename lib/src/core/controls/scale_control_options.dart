@@ -20,10 +20,10 @@ abstract class _ScaleControlOptions {
 }
 
 class ScaleControlOptions extends jsw.TypedProxy implements _ScaleControlOptions {
-  static ScaleControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new ScaleControlOptions.fromJsProxy(jsProxy));
+  static ScaleControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new ScaleControlOptions.fromProxy(proxy));
 
   ScaleControlOptions() : super();
-  ScaleControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ScaleControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   ControlPosition get position => ControlPosition.find($unsafe.position);
   ScaleControlStyle get style => ScaleControlStyle.find($unsafe.style);

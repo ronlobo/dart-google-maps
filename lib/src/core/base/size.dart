@@ -21,11 +21,11 @@ abstract class _Size {
   String toString();
 }
 
-class Size extends jsw.TypedProxy implements _Size {
-  static Size cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Size.fromJsProxy(jsProxy));
+class Size extends jsw.MagicProxy implements _Size {
+  static Size cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Size.fromProxy(proxy));
 
   Size(num width, num height, [String widthUnit, String heightUnit]) : super(maps.Size, [width, height, widthUnit, heightUnit]);
-  Size.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Size.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String toString() => $unsafe.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", []));
+  @override String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
 }

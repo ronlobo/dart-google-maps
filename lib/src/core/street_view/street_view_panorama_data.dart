@@ -22,13 +22,13 @@ abstract class _StreetViewPanoramaData {
   StreetViewTileData tiles;
 }
 
-class StreetViewPanoramaData extends jsw.TypedProxy implements _StreetViewPanoramaData {
-  static StreetViewPanoramaData cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewPanoramaData.fromJsProxy(jsProxy));
+class StreetViewPanoramaData extends jsw.MagicProxy implements _StreetViewPanoramaData {
+  static StreetViewPanoramaData cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewPanoramaData.fromProxy(proxy));
 
   StreetViewPanoramaData() : super();
-  StreetViewPanoramaData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewPanoramaData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<StreetViewLink> get links => jsw.JsArray.cast($unsafe.links, StreetViewLink.cast);
+  @override List<StreetViewLink> get links => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.links, StreetViewLink.cast);
   @override StreetViewLocation get location => StreetViewLocation.cast($unsafe.location);
   @override StreetViewTileData get tiles => StreetViewTileData.cast($unsafe.tiles);
 }

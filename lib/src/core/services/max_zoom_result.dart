@@ -19,11 +19,11 @@ abstract class _MaxZoomResult {
   num zoom;
 }
 
-class MaxZoomResult extends jsw.TypedProxy implements _MaxZoomResult {
-  static MaxZoomResult cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MaxZoomResult.fromJsProxy(jsProxy));
+class MaxZoomResult extends jsw.MagicProxy implements _MaxZoomResult {
+  static MaxZoomResult cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MaxZoomResult.fromProxy(proxy));
 
   MaxZoomResult() : super();
-  MaxZoomResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MaxZoomResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override MaxZoomStatus get status => MaxZoomStatus.find($unsafe.status);
 }

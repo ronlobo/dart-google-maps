@@ -15,31 +15,31 @@
 part of google_maps;
 
 abstract class _Polygon {
-  @jsw.dartified bool getEditable();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified MVCArray<LatLng> getPath();
-  @jsw.dartified MVCArray<MVCArray<LatLng>> getPaths();
-  @jsw.dartified bool getVisible();
-  @jsw.dartified void setEditable(bool editable);
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOptions(PolygonOptions options);
-  @jsw.dartified void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path);
-  @jsw.dartified void setPaths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths);
-  @jsw.dartified void setVisible(bool visible);
+  @dartified bool getEditable();
+  @dartified GMap getMap();
+  @dartified MVCArray<LatLng> getPath();
+  @dartified MVCArray<MVCArray<LatLng>> getPaths();
+  @dartified bool getVisible();
+  @dartified void setEditable(bool editable);
+  @dartified void setMap(GMap map);
+  @dartified void setOptions(PolygonOptions options);
+  @dartified void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path);
+  @dartified void setPaths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths);
+  @dartified void setVisible(bool visible);
 }
 
 class Polygon extends MVCObject implements _Polygon {
-  static Polygon cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Polygon.fromJsProxy(jsProxy));
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Polygon);
+  static Polygon cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Polygon.fromProxy(proxy));
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Polygon);
 
   Polygon([PolygonOptions opts]) : super(maps.Polygon, [opts]);
-  Polygon.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Polygon.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap getMap() => GMap.cast($unsafe.getMap());
-  @override MVCArray<LatLng> getPath() => MVCArray.cast($unsafe.getPath(), (e) => LatLng.cast(e));
-  @override MVCArray<MVCArray<LatLng>> getPaths() => MVCArray.cast($unsafe.getPath(), (e) => MVCArray.cast(e, (e) => LatLng.cast(e)));
-  @override void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsw.JsArray.jsify(path) : path);
-  @override void setPaths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.setPaths(paths is List ? jsw.JsArray.jsify(paths) : paths);
+  @override MVCArray<LatLng> getPath() => MVCArray.castListOfSerializables($unsafe.getPath(), LatLng.cast);
+  @override MVCArray<MVCArray<LatLng>> getPaths() => MVCArray.castListOfSerializables($unsafe.getPath(), (e) => MVCArray.castListOfSerializables(e, LatLng.cast));
+  @override void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsifyList(path) : path);
+  @override void setPaths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.setPaths(paths is List ? jsifyList(paths) : paths);
 
   bool get editable => getEditable();
   GMap get map => getMap();

@@ -24,14 +24,14 @@ abstract class _PlaceSearchRequest {
   List<String> types;
 }
 
-class PlaceSearchRequest extends jsw.TypedProxy implements _PlaceSearchRequest {
-  static PlaceSearchRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceSearchRequest.fromJsProxy(jsProxy));
+class PlaceSearchRequest extends jsw.MagicProxy implements _PlaceSearchRequest {
+  static PlaceSearchRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PlaceSearchRequest.fromProxy(proxy));
 
   PlaceSearchRequest() : super();
-  PlaceSearchRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceSearchRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override LatLng get location => LatLng.cast($unsafe.location);
   @override RankBy get rankBy => RankBy.find($unsafe.rankBy);
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
 }

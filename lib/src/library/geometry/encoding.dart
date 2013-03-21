@@ -21,11 +21,11 @@ abstract class _Encoding {
   String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path);
 }
 class Encoding extends jsw.TypedProxy implements _Encoding {
-  static Encoding cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Encoding.fromJsProxy(jsProxy));
+  static Encoding cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Encoding.fromProxy(proxy));
 
-  Encoding() : super(maps.geometry.encoding);
-  Encoding.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Encoding() : super.fromProxy(maps.geometry.encoding);
+  Encoding.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<LatLng> decodePath(String encodedPath) => jsw.JsArray.cast($unsafe.decodePath(encodedPath), LatLng.cast);
-  @override String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.encodePath(path is List<LatLng> ? jsw.JsArray.jsify(path) : path);
+  @override List<LatLng> decodePath(String encodedPath) => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.decodePath(encodedPath), LatLng.cast);
+  @override String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.encodePath(path is List<LatLng> ? jsifyList(path) : path);
 }

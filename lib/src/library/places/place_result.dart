@@ -15,15 +15,15 @@
 part of google_maps_places;
 
 abstract class _PlaceResult {
-  @jsw.dartified List<GeocoderAddressComponent> address_components;
+  @dartified List<GeocoderAddressComponent> address_components;
   List<PlaceAspectRating> aspects;
-  @jsw.dartified String formatted_address;
-  @jsw.dartified String formatted_phone_number;
+  @dartified String formatted_address;
+  @dartified String formatted_phone_number;
   PlaceGeometry geometry;
-  @jsw.dartified List<String> html_attributions;
+  @dartified List<String> html_attributions;
   String icon;
   String id;
-  @jsw.dartified String international_phone_number;
+  @dartified String international_phone_number;
   String name;
   num rating;
   String reference;
@@ -34,18 +34,18 @@ abstract class _PlaceResult {
   String website;
 }
 
-class PlaceResult extends jsw.TypedProxy implements _PlaceResult {
-  static PlaceResult cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceResult.fromJsProxy(jsProxy));
+class PlaceResult extends jsw.MagicProxy implements _PlaceResult {
+  static PlaceResult cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PlaceResult.fromProxy(proxy));
 
   PlaceResult() : super();
-  PlaceResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<GeocoderAddressComponent> get address_components => jsw.JsArray.cast($unsafe.address_components, GeocoderAddressComponent.cast);
-  @override List<PlaceAspectRating> get aspects => jsw.JsArray.cast($unsafe.aspects, PlaceAspectRating.cast);
+  @override List<GeocoderAddressComponent> get address_components => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.address_components, GeocoderAddressComponent.cast);
+  @override List<PlaceAspectRating> get aspects => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.aspects, PlaceAspectRating.cast);
   @override PlaceGeometry get geometry => PlaceGeometry.cast($unsafe.geometry);
-  @override List<String> get html_attributions => jsw.JsArray.cast($unsafe.html_attributions);
-  @override List<PlaceReview> get reviews => jsw.JsArray.cast($unsafe.reviews, PlaceReview.cast);
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+  @override List<String> get html_attributions => jsw.JsArrayToListAdapter.cast($unsafe.html_attributions);
+  @override List<PlaceReview> get reviews => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.reviews, PlaceReview.cast);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
 
   List<GeocoderAddressComponent> get addressComponents => address_components;
   set addressComponents(List<GeocoderAddressComponent> addressComponents) => this.address_components = addressComponents;

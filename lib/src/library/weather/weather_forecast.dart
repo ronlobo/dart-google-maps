@@ -22,9 +22,9 @@ abstract class _WeatherForecast {
   String shortDay;
 }
 
-class WeatherForecast extends jsw.TypedProxy implements _WeatherForecast {
-  static WeatherForecast cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherForecast.fromJsProxy(jsProxy));
+class WeatherForecast extends jsw.MagicProxy implements _WeatherForecast {
+  static WeatherForecast cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new WeatherForecast.fromProxy(proxy));
 
   WeatherForecast() : super();
-  WeatherForecast.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherForecast.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

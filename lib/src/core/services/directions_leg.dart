@@ -15,23 +15,23 @@
 part of google_maps;
 
 abstract class _DirectionsLeg {
-  @jsw.dartified Time arrival_time;
-  @jsw.dartified Time departure_time;
+  @dartified Time arrival_time;
+  @dartified Time departure_time;
   Distance distance;
   GDuration duration;
-  @jsw.dartified String end_address;
-  @jsw.dartified LatLng end_location;
-  @jsw.dartified String start_address;
-  @jsw.dartified LatLng start_location;
+  @dartified String end_address;
+  @dartified LatLng end_location;
+  @dartified String start_address;
+  @dartified LatLng start_location;
   List<DirectionsStep> steps;
-  @jsw.dartified List<LatLng> via_waypoints;
+  @dartified List<LatLng> via_waypoints;
 }
 
-class DirectionsLeg extends jsw.TypedProxy implements _DirectionsLeg {
-  static DirectionsLeg cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsLeg.fromJsProxy(jsProxy));
+class DirectionsLeg extends jsw.MagicProxy implements _DirectionsLeg {
+  static DirectionsLeg cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsLeg.fromProxy(proxy));
 
   DirectionsLeg() : super();
-  DirectionsLeg.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsLeg.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Time get arrival_time => Time.cast($unsafe.arrival_time);
   @override Time get departure_time => Time.cast($unsafe.departure_time);
@@ -39,10 +39,10 @@ class DirectionsLeg extends jsw.TypedProxy implements _DirectionsLeg {
   @override GDuration get duration => GDuration.cast($unsafe.duration);
   @override LatLng get end_location => LatLng.cast($unsafe.end_location);
   @override LatLng get start_location => LatLng.cast($unsafe.start_location);
-  @override List<DirectionsStep> get steps => jsw.JsArray.cast($unsafe.steps, DirectionsStep.cast);
-  @override set steps(List<DirectionsStep> steps) => $unsafe.steps = jsw.JsArray.jsify(steps);
-  @override List<LatLng> get via_waypoints => jsw.JsArray.cast($unsafe.via_waypoints, LatLng.cast);
-  @override set via_waypoints(List<LatLng> via_waypoints) => $unsafe.via_waypoints = jsw.JsArray.jsify(via_waypoints);
+  @override List<DirectionsStep> get steps => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.steps, DirectionsStep.cast);
+  @override set steps(List<DirectionsStep> steps) => $unsafe.steps = jsifyList(steps);
+  @override List<LatLng> get via_waypoints => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.via_waypoints, LatLng.cast);
+  @override set via_waypoints(List<LatLng> via_waypoints) => $unsafe.via_waypoints = jsifyList(via_waypoints);
 
   Time get arrivalTime => arrival_time;
   set arrivalTime(Time arrivalTime) => this.arrival_time = arrivalTime;

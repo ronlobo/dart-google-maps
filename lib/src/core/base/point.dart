@@ -21,11 +21,11 @@ abstract class _Point {
   String toString();
 }
 
-class Point extends jsw.TypedProxy implements _Point {
-  static Point cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Point.fromJsProxy(jsProxy));
+class Point extends jsw.MagicProxy implements _Point {
+  static Point cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Point.fromProxy(proxy));
 
   Point(num x, num y) : super(maps.Point, [x, y]);
-  Point.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Point.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override String toString() => $unsafe.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", []));
+  @override String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
 }

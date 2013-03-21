@@ -22,11 +22,11 @@ abstract class _QueryAutocompletionRequest {
   num radius;
 }
 
-class QueryAutocompletionRequest extends jsw.TypedProxy implements _QueryAutocompletionRequest {
-  static QueryAutocompletionRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new QueryAutocompletionRequest.fromJsProxy(jsProxy));
+class QueryAutocompletionRequest extends jsw.MagicProxy implements _QueryAutocompletionRequest {
+  static QueryAutocompletionRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new QueryAutocompletionRequest.fromProxy(proxy));
 
   QueryAutocompletionRequest() : super();
-  QueryAutocompletionRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  QueryAutocompletionRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override LatLng get location => LatLng.cast($unsafe.location);

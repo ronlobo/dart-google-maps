@@ -22,9 +22,9 @@ abstract class _FusionTablesPolygonOptions {
   num strokeWeight;
 }
 
-class FusionTablesPolygonOptions extends jsw.TypedProxy implements _FusionTablesPolygonOptions {
-  static FusionTablesPolygonOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesPolygonOptions.fromJsProxy(jsProxy));
+class FusionTablesPolygonOptions extends jsw.MagicProxy implements _FusionTablesPolygonOptions {
+  static FusionTablesPolygonOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesPolygonOptions.fromProxy(proxy));
 
   FusionTablesPolygonOptions() : super();
-  FusionTablesPolygonOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesPolygonOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

@@ -21,12 +21,12 @@ abstract class _AutocompleteOptions {
 }
 
 class AutocompleteOptions extends jsw.TypedProxy implements _AutocompleteOptions {
-  static AutocompleteOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AutocompleteOptions.fromJsProxy(jsProxy));
+  static AutocompleteOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new AutocompleteOptions.fromProxy(proxy));
 
   AutocompleteOptions() : super();
-  AutocompleteOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AutocompleteOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe.componentRestrictions);
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
 }

@@ -19,11 +19,11 @@ abstract class _DistanceMatrixResponseRow {
 }
 
 class DistanceMatrixResponseRow extends jsw.TypedProxy implements _DistanceMatrixResponseRow {
-  static DistanceMatrixResponseRow cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DistanceMatrixResponseRow.fromJsProxy(jsProxy));
+  static DistanceMatrixResponseRow cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DistanceMatrixResponseRow.fromProxy(proxy));
 
   DistanceMatrixResponseRow() : super();
-  DistanceMatrixResponseRow.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DistanceMatrixResponseRow.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<DistanceMatrixResponseElement> get elements => jsw.JsArray.cast($unsafe.elements, DistanceMatrixResponseElement.cast);
-  @override set elements(List elements) => $unsafe.elements = jsw.JsArray.jsify(elements);
+  @override List<DistanceMatrixResponseElement> get elements => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.elements, DistanceMatrixResponseElement.cast);
+  @override set elements(List elements) => $unsafe.elements = jsifyList(elements);
 }

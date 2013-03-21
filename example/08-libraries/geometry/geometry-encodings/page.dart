@@ -1,6 +1,6 @@
 import 'dart:html' hide MouseEvent;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_geometry.dart';
 
@@ -22,7 +22,7 @@ void main() {
       ..strokeWeight = 3
       ..map = map
       ;
-    poly = jsw.retain(new Polyline(polyOptions));
+    poly = js.retain(new Polyline(polyOptions));
 
     // Add a listener for the click event
     map.on.click.add(addLatLng);
@@ -35,12 +35,14 @@ void main() {
  */
 void addLatLng(MouseEvent e) {
   final path = poly.path;
+
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
   path.push(e.latLng);
 
   // Update the text field to display the polyline encodings
   final encodeString = encoding.encodePath(path);
+
   if (encodeString != null) {
     (query('#encoded-polyline') as TextAreaElement).value = encodeString;
   }

@@ -23,9 +23,9 @@ abstract class _FusionTablesQuery {
   String where;
 }
 
-class FusionTablesQuery extends jsw.TypedProxy implements _FusionTablesQuery {
-  static FusionTablesQuery cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesQuery.fromJsProxy(jsProxy));
+class FusionTablesQuery extends jsw.MagicProxy implements _FusionTablesQuery {
+  static FusionTablesQuery cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesQuery.fromProxy(proxy));
 
   FusionTablesQuery() : super();
-  FusionTablesQuery.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesQuery.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

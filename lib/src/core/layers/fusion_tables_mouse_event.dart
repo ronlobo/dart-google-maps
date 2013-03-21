@@ -22,11 +22,11 @@ abstract class _FusionTablesMouseEvent {
   js.Proxy row;
 }
 
-class FusionTablesMouseEvent extends jsw.TypedProxy implements _FusionTablesMouseEvent {
-  static FusionTablesMouseEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesMouseEvent.fromJsProxy(jsProxy));
+class FusionTablesMouseEvent extends jsw.MagicProxy implements _FusionTablesMouseEvent {
+  static FusionTablesMouseEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesMouseEvent.fromProxy(proxy));
 
   FusionTablesMouseEvent() : super();
-  FusionTablesMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng get latLng => LatLng.cast($unsafe.latLng);
   @override Size get pixelOffset => Size.cast($unsafe.pixelOffset);

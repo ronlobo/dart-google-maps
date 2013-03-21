@@ -25,11 +25,11 @@ abstract class _MapTypeStyler {
   num weight;
 }
 
-class MapTypeStyler extends jsw.TypedProxy implements _MapTypeStyler {
-  static MapTypeStyler cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapTypeStyler.fromJsProxy(jsProxy));
+class MapTypeStyler extends jsw.MagicProxy implements _MapTypeStyler {
+  static MapTypeStyler cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapTypeStyler.fromProxy(proxy));
 
   MapTypeStyler() : super();
-  MapTypeStyler.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapTypeStyler.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   bool get invertLightness => $unsafe.invert_lightness;
   set invertLightness(bool invertLightness) => $unsafe.invert_lightness = invertLightness;

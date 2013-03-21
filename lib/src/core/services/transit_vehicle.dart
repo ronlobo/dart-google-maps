@@ -16,16 +16,16 @@ part of google_maps;
 
 abstract class _TransitVehicle {
   String icon;
-  @jsw.dartified String local_icon;
+  @dartified String local_icon;
   String name;
   VehicleType type;
 }
 
-class TransitVehicle extends jsw.TypedProxy implements _TransitVehicle {
-  static TransitVehicle cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TransitVehicle.fromJsProxy(jsProxy));
+class TransitVehicle extends jsw.MagicProxy implements _TransitVehicle {
+  static TransitVehicle cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TransitVehicle.fromProxy(proxy));
 
   TransitVehicle() : super();
-  TransitVehicle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitVehicle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override VehicleType get type => VehicleType.find($unsafe.type);
 

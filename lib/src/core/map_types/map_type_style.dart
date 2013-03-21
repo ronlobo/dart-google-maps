@@ -21,12 +21,12 @@ abstract class _MapTypeStyle {
 }
 
 class MapTypeStyle extends jsw.TypedProxy implements _MapTypeStyle {
-  static MapTypeStyle cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapTypeStyle.fromJsProxy(jsProxy));
+  static MapTypeStyle cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapTypeStyle.fromProxy(proxy));
 
   MapTypeStyle() : super();
-  MapTypeStyle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapTypeStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   MapTypeStyleElementType get elementType => MapTypeStyleElementType.find($unsafe.elementType);
   MapTypeStyleFeatureType get featureType => MapTypeStyleFeatureType.find($unsafe.featureType);
-  List<MapTypeStyler> get stylers => jsw.JsArray.cast($unsafe.stylers, (e) => MapTypeStyler.cast(e));
+  List<MapTypeStyler> get stylers => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.stylers, MapTypeStyler.cast);
 }

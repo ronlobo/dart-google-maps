@@ -19,9 +19,9 @@ abstract class _PlaceSearchPagination {
   bool hasNextPage;
 }
 
-class PlaceSearchPagination extends jsw.TypedProxy implements _PlaceSearchPagination {
-  static PlaceSearchPagination cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceSearchPagination.fromJsProxy(jsProxy));
+class PlaceSearchPagination extends jsw.MagicProxy implements _PlaceSearchPagination {
+  static PlaceSearchPagination cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PlaceSearchPagination.fromProxy(proxy));
 
   PlaceSearchPagination() : super();
-  PlaceSearchPagination.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceSearchPagination.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

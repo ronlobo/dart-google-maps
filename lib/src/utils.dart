@@ -14,8 +14,15 @@
 
 library utils;
 
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js.dart' as js;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:meta/meta.dart';
+
+/// metadata to indicate that an wrapped method has been renamed or customized in a darty way
+const dartified = const _Dartified();
+class _Dartified {
+  const _Dartified();
+}
 
 // utility to get js.Proxy even if out of scope
 dynamic findIn(List elements, Object o) => elements.where((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
@@ -27,10 +34,13 @@ dynamic firstNotNull(List elements) {
   return null;
 }
 
-class IsEnum<E> implements jsw.JsWrapper {
+class IsEnum<E> implements js.Serializable<E> {
   E value;
 
   IsEnum(this.value);
 
-  @override dynamic toJs() => value;
+  @override E toJs() => value;
 }
+
+js.Serializable<js.Proxy> jsifyList(List list) => (list is js.Serializable<js.Proxy>) ? list : js.array(list);
+js.Serializable<js.Proxy> jsifyDateTime(DateTime dateTime) => (dateTime is js.Serializable<js.Proxy>) ? (dateTime as js.Serializable<js.Proxy>) : new jsw.JsDateToDateTimeAdapter(dateTime);

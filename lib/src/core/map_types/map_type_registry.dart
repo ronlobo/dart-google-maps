@@ -19,8 +19,8 @@ abstract class _MapTypeRegistry {
 }
 
 class MapTypeRegistry extends MVCObject implements _MapTypeRegistry {
-  static MapTypeRegistry cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapTypeRegistry.fromJsProxy(jsProxy));
+  static MapTypeRegistry cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapTypeRegistry.fromProxy(proxy));
 
   MapTypeRegistry() : super(maps.MapTypeRegistry);
-  MapTypeRegistry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapTypeRegistry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

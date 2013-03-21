@@ -16,21 +16,21 @@ part of google_maps;
 
 abstract class _InfoWindow {
   void close();
-  @jsw.dartified dynamic/*string|Node*/ getContent();
-  @jsw.dartified LatLng getPosition();
-  @jsw.dartified num getZIndex();
+  @dartified dynamic/*string|Node*/ getContent();
+  @dartified LatLng getPosition();
+  @dartified num getZIndex();
   void open([dynamic/*Map|StreetViewPanorama*/ map, MVCObject anchor]);
-  @jsw.dartified void setContent(dynamic/*string|Node*/ content);
-  @jsw.dartified void setOptions(InfoWindowOptions options);
-  @jsw.dartified void setPosition(LatLng position);
-  @jsw.dartified void setZIndex(num zIndex);
+  @dartified void setContent(dynamic/*string|Node*/ content);
+  @dartified void setOptions(InfoWindowOptions options);
+  @dartified void setPosition(LatLng position);
+  @dartified void setZIndex(num zIndex);
 }
 
 class InfoWindow extends MVCObject implements _InfoWindow {
-  static InfoWindow cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new InfoWindow.fromJsProxy(jsProxy));
+  static InfoWindow cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new InfoWindow.fromProxy(proxy));
 
   InfoWindow([InfoWindowOptions opts]) : super(maps.InfoWindow, [opts]);
-  InfoWindow.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  InfoWindow.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng getPosition() => LatLng.cast($unsafe.getPosition());
 

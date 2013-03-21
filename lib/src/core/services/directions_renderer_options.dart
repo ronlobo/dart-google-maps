@@ -31,11 +31,11 @@ abstract class _DirectionsRendererOptions {
   bool suppressPolylines;
 }
 
-class DirectionsRendererOptions extends jsw.TypedProxy implements _DirectionsRendererOptions {
-  static DirectionsRendererOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsRendererOptions.fromJsProxy(jsProxy));
+class DirectionsRendererOptions extends jsw.MagicProxy implements _DirectionsRendererOptions {
+  static DirectionsRendererOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsRendererOptions.fromProxy(proxy));
 
   DirectionsRendererOptions() : super();
-  DirectionsRendererOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsRendererOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override DirectionsResult get directions => DirectionsResult.cast($unsafe.directions);
   @override InfoWindow get infoWindow => InfoWindow.cast($unsafe.infoWindow);

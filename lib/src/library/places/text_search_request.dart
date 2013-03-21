@@ -22,13 +22,13 @@ abstract class _TextSearchRequest {
   List<String> types;
 }
 
-class TextSearchRequest extends jsw.TypedProxy implements _TextSearchRequest {
-  static TextSearchRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TextSearchRequest.fromJsProxy(jsProxy));
+class TextSearchRequest extends jsw.MagicProxy implements _TextSearchRequest {
+  static TextSearchRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TextSearchRequest.fromProxy(proxy));
 
   TextSearchRequest() : super();
-  TextSearchRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TextSearchRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override LatLng get location => LatLng.cast($unsafe.location);
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
 }

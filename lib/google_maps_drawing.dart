@@ -15,10 +15,10 @@
 library google_maps_drawing;
 
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:meta/meta.dart';
 import 'google_maps.dart';
-import 'utils.dart';
+import 'src/utils.dart';
 
 part 'src/library/drawing/drawing_manager.dart';
 part 'src/library/drawing/drawing_manager_options.dart';

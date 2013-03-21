@@ -21,9 +21,9 @@ abstract class _Poly {
   bool isLocationOnEdge(LatLng point, dynamic/*Polygon|Polyline*/ poly, [num tolerance]);
 }
 
-class Poly extends jsw.TypedProxy implements _Poly {
-  static Poly cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Poly.fromJsProxy(jsProxy));
+class Poly extends jsw.MagicProxy implements _Poly {
+  static Poly cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Poly.fromProxy(proxy));
 
-  Poly() : super(maps.geometry.poly);
-  Poly.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Poly() : super.fromProxy(maps.geometry.poly);
+  Poly.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

@@ -20,9 +20,9 @@ abstract class _StreetViewLink {
   String pano;
 }
 
-class StreetViewLink extends jsw.TypedProxy implements _StreetViewLink {
-  static StreetViewLink cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewLink.fromJsProxy(jsProxy));
+class StreetViewLink extends jsw.MagicProxy implements _StreetViewLink {
+  static StreetViewLink cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewLink.fromProxy(proxy));
 
   StreetViewLink() : super();
-  StreetViewLink.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewLink.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

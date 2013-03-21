@@ -42,11 +42,11 @@ abstract class _GMap {
 }
 
 class GMap extends MVCObject implements _GMap {
-  static GMap cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GMap.fromJsProxy(jsProxy));
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Map);
+  static GMap cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GMap.fromProxy(proxy));
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Map);
 
   GMap(html.Node mapDiv, [MapOptions opts]) : super(maps.Map, [mapDiv, opts]);
-  GMap.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GMap.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   LatLng get center => LatLng.cast($unsafe.getCenter());
@@ -70,7 +70,7 @@ class GMap extends MVCObject implements _GMap {
 
   Controls get controls => Controls.cast($unsafe.controls);
   MapTypeRegistry get mapTypes => MapTypeRegistry.cast($unsafe.mapTypes);
-  MVCArray<MapType> get overlayMapTypes => MVCArray.cast($unsafe.overlayMapTypes, (e) => MapType.cast(e));
+  MVCArray<MapType> get overlayMapTypes => MVCArray.castListOfSerializables($unsafe.overlayMapTypes, MapType.cast);
 
   GMapEvents get on => new GMapEvents._(this);
 }
@@ -122,10 +122,10 @@ class GMapEvents {
 }
 
 class Controls extends jsw.TypedProxy {
-  static Controls cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Controls.fromJsProxy(jsProxy));
+  static Controls cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Controls.fromProxy(proxy));
 
-  Controls() : super.fromJsProxy(js.array([]));
-  Controls.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Controls() : super.fromProxy(js.array([]));
+  Controls.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   MVCArray<html.Node> getNodes(ControlPosition controlPosition) => MVCArray.cast($unsafe[controlPosition.value]);
   void setNodes(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $unsafe[controlPosition.value.toString()] = nodes; }

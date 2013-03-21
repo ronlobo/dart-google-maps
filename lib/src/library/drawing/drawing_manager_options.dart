@@ -26,11 +26,11 @@ abstract class _DrawingManagerOptions {
   RectangleOptions rectangleOptions;
 }
 
-class DrawingManagerOptions extends jsw.TypedProxy implements _DrawingManagerOptions {
-  static DrawingManagerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DrawingManagerOptions.fromJsProxy(jsProxy));
+class DrawingManagerOptions extends jsw.MagicProxy implements _DrawingManagerOptions {
+  static DrawingManagerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DrawingManagerOptions.fromProxy(proxy));
 
   DrawingManagerOptions() : super();
-  DrawingManagerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DrawingManagerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override CircleOptions get circleOptions => CircleOptions.cast($unsafe.circleOptions);
   @override DrawingControlOptions get drawingControlOptions => DrawingControlOptions.cast($unsafe.drawingControlOptions);

@@ -15,21 +15,21 @@
 part of google_maps;
 
 abstract class _TransitDetails {
-  @jsw.dartified TransitStop arrival_stop;
-  @jsw.dartified Time arrival_time;
-  @jsw.dartified TransitStop departure_stop;
-  @jsw.dartified Time departure_time;
+  @dartified TransitStop arrival_stop;
+  @dartified Time arrival_time;
+  @dartified TransitStop departure_stop;
+  @dartified Time departure_time;
   String headsign;
   num headway;
   TransitLine line;
-  @jsw.dartified num num_stops;
+  @dartified num num_stops;
 }
 
-class TransitDetails extends jsw.TypedProxy implements _TransitDetails {
-  static TransitDetails cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TransitDetails.fromJsProxy(jsProxy));
+class TransitDetails extends jsw.MagicProxy implements _TransitDetails {
+  static TransitDetails cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TransitDetails.fromProxy(proxy));
 
   TransitDetails() : super();
-  TransitDetails.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitDetails.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override TransitStop get arrival_stop => TransitStop.cast($unsafe.arrival_stop);
   @override Time get arrival_time => Time.cast($unsafe.arrival_time);

@@ -19,11 +19,11 @@ abstract class _DirectionsWaypoint {
   bool stopover;
 }
 
-class DirectionsWaypoint extends jsw.TypedProxy implements _DirectionsWaypoint {
-  static DirectionsWaypoint cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsWaypoint.fromJsProxy(jsProxy));
+class DirectionsWaypoint extends jsw.MagicProxy implements _DirectionsWaypoint {
+  static DirectionsWaypoint cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsWaypoint.fromProxy(proxy));
 
   DirectionsWaypoint() : super();
-  DirectionsWaypoint.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsWaypoint.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override dynamic/*LatLng|string*/ get location {
     final result = $unsafe.location;

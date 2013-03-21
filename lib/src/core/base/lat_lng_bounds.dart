@@ -29,16 +29,16 @@ abstract class _LatLngBounds {
   bool union(LatLngBounds other);
 }
 
-class LatLngBounds extends jsw.TypedProxy implements _LatLngBounds {
-  static LatLngBounds cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new LatLngBounds.fromJsProxy(jsProxy));
+class LatLngBounds extends jsw.MagicProxy implements _LatLngBounds {
+  static LatLngBounds cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new LatLngBounds.fromProxy(proxy));
 
   LatLngBounds([LatLng sw, LatLng ne]) : super(maps.LatLngBounds, [sw, ne]);
-  LatLngBounds.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  LatLngBounds.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds extend(LatLng point) => LatLngBounds.cast($unsafe.extend(point));
   LatLng get center => LatLng.cast($unsafe.getCenter());
   LatLng get northEast => LatLng.cast($unsafe.getNorthEast());
   LatLng get southWest => LatLng.cast($unsafe.getSouthWest());
   @override LatLng toSpan() => LatLng.cast($unsafe.toSpan());
-  @override String toString() => $unsafe.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", []));
+  @override String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
 }

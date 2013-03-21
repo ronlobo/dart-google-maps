@@ -18,9 +18,9 @@ abstract class _FusionTablesMarkerOptions {
   String iconName;
 }
 
-class FusionTablesMarkerOptions extends jsw.TypedProxy implements _FusionTablesMarkerOptions {
-  static FusionTablesMarkerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesMarkerOptions.fromJsProxy(jsProxy));
+class FusionTablesMarkerOptions extends jsw.MagicProxy implements _FusionTablesMarkerOptions {
+  static FusionTablesMarkerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesMarkerOptions.fromProxy(proxy));
 
   FusionTablesMarkerOptions() : super();
-  FusionTablesMarkerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesMarkerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

@@ -24,14 +24,14 @@ abstract class _AutocompletionRequest {
   List<String> types;
 }
 
-class AutocompletionRequest extends jsw.TypedProxy implements _AutocompletionRequest {
-  static AutocompletionRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AutocompletionRequest.fromJsProxy(jsProxy));
+class AutocompletionRequest extends jsw.MagicProxy implements _AutocompletionRequest {
+  static AutocompletionRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new AutocompletionRequest.fromProxy(proxy));
 
   AutocompletionRequest() : super();
-  AutocompletionRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AutocompletionRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe.componentRestrictions);
   @override LatLng get location => LatLng.cast($unsafe.location);
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
 }

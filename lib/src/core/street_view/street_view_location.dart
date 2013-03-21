@@ -20,11 +20,11 @@ abstract class _StreetViewLocation {
   String pano;
 }
 
-class StreetViewLocation extends jsw.TypedProxy implements _StreetViewLocation {
-  static StreetViewLocation cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewLocation.fromJsProxy(jsProxy));
+class StreetViewLocation extends jsw.MagicProxy implements _StreetViewLocation {
+  static StreetViewLocation cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewLocation.fromProxy(proxy));
 
   StreetViewLocation() : super();
-  StreetViewLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewLocation.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng get latLng => LatLng.cast($unsafe.latLng);
 }

@@ -20,13 +20,13 @@ abstract class _Projection {
 }
 
 class Projection extends jsw.TypedProxy implements _Projection {
-  static Projection cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Projection.fromJsProxy(jsProxy));
+  static Projection cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Projection.fromProxy(proxy));
 
   Projection() : super();
-  Projection.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Projection.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void set_fromLatLngToPoint(Point fromLatLngToPoint(LatLng latLng, [Point point])) {
-    $unsafe.fromLatLngToPoint = new jsw.Callback.many((js.Proxy latLng, [js.Proxy point]) {
+    $unsafe.fromLatLngToPoint = new js.Callback.many((js.Proxy latLng, [js.Proxy point]) {
       if (?point) {
         return fromLatLngToPoint(LatLng.cast(latLng), Point.cast(point));
       } else {
@@ -35,7 +35,7 @@ class Projection extends jsw.TypedProxy implements _Projection {
     });
   }
   void set_fromPointToLatLng(LatLng fromPointToLatLng(Point pixel, [bool nowrap])) {
-    $unsafe.fromPointToLatLng = new jsw.Callback.many((js.Proxy pixel, [bool nowrap]) {
+    $unsafe.fromPointToLatLng = new js.Callback.many((js.Proxy pixel, [bool nowrap]) {
       if (?nowrap) {
         return fromPointToLatLng(Point.cast(pixel), nowrap);
       } else {

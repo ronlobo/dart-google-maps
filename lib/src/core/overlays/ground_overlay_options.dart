@@ -20,11 +20,11 @@ abstract class _GroundOverlayOptions {
   num opacity;
 }
 
-class GroundOverlayOptions extends jsw.TypedProxy implements _GroundOverlayOptions {
-  static GroundOverlayOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GroundOverlayOptions.fromJsProxy(jsProxy));
+class GroundOverlayOptions extends jsw.MagicProxy implements _GroundOverlayOptions {
+  static GroundOverlayOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GroundOverlayOptions.fromProxy(proxy));
 
   GroundOverlayOptions() : super();
-  GroundOverlayOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GroundOverlayOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   GMap get map => GMap.cast($unsafe.map);
 }

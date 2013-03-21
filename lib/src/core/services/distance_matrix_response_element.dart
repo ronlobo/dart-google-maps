@@ -21,10 +21,10 @@ abstract class _DistanceMatrixResponseElement {
 }
 
 class DistanceMatrixResponseElement extends jsw.TypedProxy implements _DistanceMatrixResponseElement {
-  static DistanceMatrixResponseElement cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DistanceMatrixResponseElement.fromJsProxy(jsProxy));
+  static DistanceMatrixResponseElement cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DistanceMatrixResponseElement.fromProxy(proxy));
 
   DistanceMatrixResponseElement() : super();
-  DistanceMatrixResponseElement.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DistanceMatrixResponseElement.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Distance get distance => Distance.cast($unsafe.distance);
   @override GDuration get duration => GDuration.cast($unsafe.duration);

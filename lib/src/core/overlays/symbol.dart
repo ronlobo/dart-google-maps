@@ -26,11 +26,11 @@ abstract class _Symbol {
   num strokeWeight;
 }
 
-class Symbol extends jsw.TypedProxy implements _Symbol {
-  static Symbol cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Symbol.fromJsProxy(jsProxy));
+class Symbol extends jsw.MagicProxy implements _Symbol {
+  static Symbol cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Symbol.fromProxy(proxy));
 
   Symbol() : super();
-  Symbol.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Symbol.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Point get anchor => Point.cast($unsafe.anchor);
   @override dynamic/*SymbolPath|string*/ get path {

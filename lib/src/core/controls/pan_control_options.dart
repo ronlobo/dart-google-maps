@@ -19,10 +19,10 @@ abstract class _PanControlOptions {
 }
 
 class PanControlOptions extends jsw.TypedProxy implements _PanControlOptions {
-  static PanControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PanControlOptions.fromJsProxy(jsProxy));
+  static PanControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PanControlOptions.fromProxy(proxy));
 
   PanControlOptions() : super();
-  PanControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PanControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   ControlPosition get position => ControlPosition.find($unsafe.position);
 }

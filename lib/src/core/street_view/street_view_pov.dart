@@ -20,9 +20,9 @@ abstract class _StreetViewPov {
   num zoom;
 }
 
-class StreetViewPov extends jsw.TypedProxy implements _StreetViewPov {
-  static StreetViewPov cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewPov.fromJsProxy(jsProxy));
+class StreetViewPov extends jsw.MagicProxy implements _StreetViewPov {
+  static StreetViewPov cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewPov.fromProxy(proxy));
 
   StreetViewPov() : super();
-  StreetViewPov.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewPov.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

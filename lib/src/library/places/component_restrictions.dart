@@ -18,9 +18,9 @@ abstract class _ComponentRestrictions {
   String country;
 }
 
-class ComponentRestrictions extends jsw.TypedProxy implements _ComponentRestrictions {
-  static ComponentRestrictions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new ComponentRestrictions.fromJsProxy(jsProxy));
+class ComponentRestrictions extends jsw.MagicProxy implements _ComponentRestrictions {
+  static ComponentRestrictions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new ComponentRestrictions.fromProxy(proxy));
 
   ComponentRestrictions() : super();
-  ComponentRestrictions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ComponentRestrictions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

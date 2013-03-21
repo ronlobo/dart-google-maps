@@ -22,16 +22,16 @@ abstract class _StreetViewTileData {
   Size worldSize;
 }
 
-class StreetViewTileData extends jsw.TypedProxy implements _StreetViewTileData {
-  static StreetViewTileData cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewTileData.fromJsProxy(jsProxy));
+class StreetViewTileData extends jsw.MagicProxy implements _StreetViewTileData {
+  static StreetViewTileData cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewTileData.fromProxy(proxy));
 
   StreetViewTileData() : super();
-  StreetViewTileData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewTileData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Size get tileSize => Size.cast($unsafe.tileSize);
   @override Size get worldSize => Size.cast($unsafe.worldSize);
 
   void set_getTileUrl(String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
-    $unsafe.getTileUrl = new jsw.Callback.many(getTileUrl);
+    $unsafe.getTileUrl = new js.Callback.many(getTileUrl);
   }
 }

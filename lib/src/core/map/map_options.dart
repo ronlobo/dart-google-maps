@@ -52,11 +52,11 @@ abstract class _MapOptions {
   ZoomControlOptions zoomControlOptions;
 }
 
-class MapOptions extends jsw.TypedProxy implements _MapOptions {
-  static MapOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapOptions.fromJsProxy(jsProxy));
+class MapOptions extends jsw.MagicProxy implements _MapOptions {
+  static MapOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapOptions.fromProxy(proxy));
 
   MapOptions() : super();
-  MapOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   LatLng get center => LatLng.cast($unsafe.center);
   MapTypeControlOptions get mapTypeControlOptions => MapTypeControlOptions.cast($unsafe.mapTypeControlOptions);
@@ -70,6 +70,6 @@ class MapOptions extends jsw.TypedProxy implements _MapOptions {
   ScaleControlOptions get scaleControlOptions => ScaleControlOptions.cast($unsafe.scaleControlOptions);
   StreetViewPanorama get streetView => StreetViewPanorama.cast($unsafe.streetView);
   StreetViewControlOptions get streetViewControlOptions => StreetViewControlOptions.cast($unsafe.streetViewControlOptions);
-  List<MapTypeStyle> get styles => jsw.JsArray.cast($unsafe.mapTypeIds, (e) => MapTypeStyle.cast(e));
+  List<MapTypeStyle> get styles => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.mapTypeIds, MapTypeStyle.cast);
   ZoomControlOptions get zoomControlOptions => ZoomControlOptions.cast($unsafe.zoomControlOptions);
 }

@@ -22,14 +22,14 @@ abstract class _WeatherFeature {
   WindSpeedUnit windSpeedUnit;
 }
 
-class WeatherFeature extends jsw.TypedProxy implements _WeatherFeature {
-  static WeatherFeature cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherFeature.fromJsProxy(jsProxy));
+class WeatherFeature extends jsw.MagicProxy implements _WeatherFeature {
+  static WeatherFeature cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new WeatherFeature.fromProxy(proxy));
 
   WeatherFeature() : super();
-  WeatherFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherFeature.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override WeatherConditions get current => WeatherConditions.cast($unsafe.current);
-  @override List<WeatherForecast> get forecast => jsw.JsArray.cast($unsafe.forecast, WeatherForecast.cast);
+  @override List<WeatherForecast> get forecast => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.forecast, WeatherForecast.cast);
   @override TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe.temperatureUnit);
   @override WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe.windSpeedUnit);
 }

@@ -19,11 +19,11 @@ abstract class _TransitStop {
   String name;
 }
 
-class TransitStop extends jsw.TypedProxy implements _TransitStop {
-  static TransitStop cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TransitStop.fromJsProxy(jsProxy));
+class TransitStop extends jsw.MagicProxy implements _TransitStop {
+  static TransitStop cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TransitStop.fromProxy(proxy));
 
   TransitStop() : super();
-  TransitStop.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitStop.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng get location => LatLng.cast($unsafe.location);
 }

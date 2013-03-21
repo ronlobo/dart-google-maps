@@ -19,9 +19,9 @@ abstract class _PredictionTerm {
   String value;
 }
 
-class PredictionTerm extends jsw.TypedProxy implements _PredictionTerm {
-  static PredictionTerm cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PredictionTerm.fromJsProxy(jsProxy));
+class PredictionTerm extends jsw.MagicProxy implements _PredictionTerm {
+  static PredictionTerm cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PredictionTerm.fromProxy(proxy));
 
   PredictionTerm() : super();
-  PredictionTerm.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PredictionTerm.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

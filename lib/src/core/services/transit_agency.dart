@@ -20,9 +20,9 @@ abstract class _TransitAgency {
   String url;
 }
 
-class TransitAgency extends jsw.TypedProxy implements _TransitAgency {
-  static TransitAgency cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TransitAgency.fromJsProxy(jsProxy));
+class TransitAgency extends jsw.MagicProxy implements _TransitAgency {
+  static TransitAgency cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TransitAgency.fromProxy(proxy));
 
   TransitAgency() : super();
-  TransitAgency.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitAgency.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

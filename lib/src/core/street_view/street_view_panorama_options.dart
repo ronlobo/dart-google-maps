@@ -36,16 +36,16 @@ abstract class _StreetViewPanoramaOptions {
   ZoomControlOptions zoomControlOptions;
 }
 
-class StreetViewPanoramaOptions extends jsw.TypedProxy implements _StreetViewPanoramaOptions {
-  static StreetViewPanoramaOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewPanoramaOptions.fromJsProxy(jsProxy));
+class StreetViewPanoramaOptions extends jsw.MagicProxy implements _StreetViewPanoramaOptions {
+  static StreetViewPanoramaOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewPanoramaOptions.fromProxy(proxy));
 
   StreetViewPanoramaOptions() : super();
-  StreetViewPanoramaOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewPanoramaOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override StreetViewAddressControlOptions get addressControlOptions => StreetViewAddressControlOptions.cast($unsafe.addressControlOptions);
   @override PanControlOptions get panControlOptions => PanControlOptions.cast($unsafe.panControlOptions);
   @override PanoProvider get panoProvider => (String pano) => $unsafe.provider(pano);
-  @override set panoProvider(PanoProvider panoProvider) => $unsafe.panoProvider = new jsw.Callback.many(panoProvider);
+  @override set panoProvider(PanoProvider panoProvider) => $unsafe.panoProvider = new js.Callback.many(panoProvider);
   @override LatLng get position => LatLng.cast($unsafe.position);
   @override StreetViewPov get pov => StreetViewPov.cast($unsafe.pov);
   @override ZoomControlOptions get zoomControlOptions => ZoomControlOptions.cast($unsafe.zoomControlOptions);

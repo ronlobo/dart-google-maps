@@ -17,21 +17,21 @@ part of google_maps_places;
 abstract class _AutocompletePrediction {
   String description;
   String id;
-  @jsw.dartified List<PredictionSubstring> matched_substrings;
+  @dartified List<PredictionSubstring> matched_substrings;
   String reference;
   List<PredictionTerm> terms;
   List<String> types;
 }
 
-class AutocompletePrediction extends jsw.TypedProxy implements _AutocompletePrediction {
-  static AutocompletePrediction cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AutocompletePrediction.fromJsProxy(jsProxy));
+class AutocompletePrediction extends jsw.MagicProxy implements _AutocompletePrediction {
+  static AutocompletePrediction cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new AutocompletePrediction.fromProxy(proxy));
 
   AutocompletePrediction() : super();
-  AutocompletePrediction.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AutocompletePrediction.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<PredictionSubstring> get matched_substrings => jsw.JsArray.cast($unsafe.matched_substrings, PredictionSubstring.cast);
-  @override List<PredictionTerm> get terms => jsw.JsArray.cast($unsafe.terms, PredictionTerm.cast);
-  @override List<String> get types => jsw.JsArray.cast($unsafe.types);
+  @override List<PredictionSubstring> get matched_substrings => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.matched_substrings, PredictionSubstring.cast);
+  @override List<PredictionTerm> get terms => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.terms, PredictionTerm.cast);
+  @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
 
   List<PredictionSubstring> get matchedSubstrings => matched_substrings;
   set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => this.matched_substrings = matchedSubstrings;

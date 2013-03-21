@@ -18,9 +18,9 @@ abstract class _FusionTablesHeatmap {
   bool enabled;
 }
 
-class FusionTablesHeatmap extends jsw.TypedProxy implements _FusionTablesHeatmap {
-  static FusionTablesHeatmap cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesHeatmap.fromJsProxy(jsProxy));
+class FusionTablesHeatmap extends jsw.MagicProxy implements _FusionTablesHeatmap {
+  static FusionTablesHeatmap cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesHeatmap.fromProxy(proxy));
 
   FusionTablesHeatmap() : super();
-  FusionTablesHeatmap.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesHeatmap.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

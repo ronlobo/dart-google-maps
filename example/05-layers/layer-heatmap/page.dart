@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_visualization.dart';
 
@@ -520,11 +520,11 @@ void main() {
       ..center = new LatLng(37.774546, -122.433523)
       ..mapTypeId = MapTypeId.SATELLITE
       ;
-    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
+    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    pointArray = jsw.retain(new MVCArray(taxiData));
+    pointArray = js.retain(new MVCArray(taxiData));
 
-    heatmap = jsw.retain(new HeatmapLayer(new HeatmapLayerOptions()
+    heatmap = js.retain(new HeatmapLayer(new HeatmapLayerOptions()
       ..data = pointArray
     ));
 

@@ -18,8 +18,8 @@ abstract class _SearchBoxOptions {
 }
 
 class SearchBoxOptions extends jsw.TypedProxy implements _SearchBoxOptions {
-  static SearchBoxOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new SearchBoxOptions.fromJsProxy(jsProxy));
+  static SearchBoxOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new SearchBoxOptions.fromProxy(proxy));
 
   SearchBoxOptions() : super();
-  SearchBoxOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  SearchBoxOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

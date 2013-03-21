@@ -30,20 +30,20 @@ abstract class _PolygonOptions {
   num zIndex;
 }
 
-class PolygonOptions extends jsw.TypedProxy implements _PolygonOptions {
-  static PolygonOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PolygonOptions.fromJsProxy(jsProxy));
+class PolygonOptions extends jsw.MagicProxy implements _PolygonOptions {
+  static PolygonOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PolygonOptions.fromProxy(proxy));
 
   PolygonOptions() : super();
-  PolygonOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PolygonOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap get map => GMap.cast($unsafe.map);
   @override dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ get paths {
     final result = $unsafe.paths;
     if (MVCArray.isInstance(result)) {
-      return MVCArray.cast(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : MVCArray.cast(e, (e) => LatLng.cast(e)));
+      return MVCArray.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : MVCArray.castListOfSerializables(e, LatLng.cast));
     }
-    return jsw.JsArray.cast(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : jsw.JsArray.cast(e, (e) => LatLng.cast(e)));
+    return jsw.JsArrayToListAdapter.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : jsw.JsArrayToListAdapter.castListOfSerializables(e, LatLng.cast));
   }
-  @override set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.setPaths(paths is List ? jsw.JsArray.jsify(paths) : paths);
+  @override set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.setPaths(paths is List ? jsifyList(paths) : paths);
   @override StrokePosition get strokePosition => StrokePosition.find($unsafe.strokePosition);
 }

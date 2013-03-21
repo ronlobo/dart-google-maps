@@ -19,9 +19,9 @@ abstract class _FusionTablesCell {
   String value;
 }
 
-class FusionTablesCell extends jsw.TypedProxy implements _FusionTablesCell {
-  static FusionTablesCell cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesCell.fromJsProxy(jsProxy));
+class FusionTablesCell extends jsw.MagicProxy implements _FusionTablesCell {
+  static FusionTablesCell cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesCell.fromProxy(proxy));
 
   FusionTablesCell() : super();
-  FusionTablesCell.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesCell.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

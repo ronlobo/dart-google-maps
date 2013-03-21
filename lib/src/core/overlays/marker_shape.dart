@@ -20,13 +20,13 @@ abstract class _MarkerShape {
 }
 
 class MarkerShape extends jsw.TypedProxy implements _MarkerShape {
-  static MarkerShape cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MarkerShape.fromJsProxy(jsProxy));
+  static MarkerShape cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MarkerShape.fromProxy(proxy));
 
   MarkerShape() : super();
-  MarkerShape.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MarkerShape.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<num> get coords => jsw.JsArray.cast($unsafe.coords);
-  @override set coords(List<num> coords) => $unsafe.coords = jsw.JsArray.jsify(coords);
+  @override List<num> get coords => jsw.JsArrayToListAdapter.cast($unsafe.coords);
+  @override set coords(List<num> coords) => $unsafe.coords = jsifyList(coords);
   @override MarkerShapeType get type => MarkerShapeType.find($unsafe.type);
 }
 

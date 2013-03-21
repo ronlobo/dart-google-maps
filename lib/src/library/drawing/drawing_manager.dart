@@ -15,16 +15,16 @@
 part of google_maps_drawing;
 
 abstract class _DrawingManager {
-  @jsw.dartified OverlayType getDrawingMode();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified void setDrawingMode(OverlayType drawingMode);
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOptions(DrawingManagerOptions options);
+  @dartified OverlayType getDrawingMode();
+  @dartified GMap getMap();
+  @dartified void setDrawingMode(OverlayType drawingMode);
+  @dartified void setMap(GMap map);
+  @dartified void setOptions(DrawingManagerOptions options);
 }
 
 class DrawingManager extends MVCObject implements _DrawingManager {
   DrawingManager([DrawingManagerOptions opts]) : super(maps.drawing.DrawingManager, [opts]);
-  DrawingManager.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DrawingManager.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override OverlayType getDrawingMode() => OverlayType.find($unsafe.getDrawingMode());
   @override GMap getMap() => GMap.cast($unsafe.getMap());

@@ -19,9 +19,9 @@ abstract class _Distance {
   num value;
 }
 
-class Distance extends jsw.TypedProxy implements _Distance {
-  static Distance cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Distance.fromJsProxy(jsProxy));
+class Distance extends jsw.MagicProxy implements _Distance {
+  static Distance cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Distance.fromProxy(proxy));
 
   Distance() : super();
-  Distance.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Distance.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

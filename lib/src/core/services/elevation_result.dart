@@ -20,11 +20,11 @@ abstract class _ElevationResult {
   num resolution;
 }
 
-class ElevationResult extends jsw.TypedProxy implements _ElevationResult {
-  static ElevationResult cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new ElevationResult.fromJsProxy(jsProxy));
+class ElevationResult extends jsw.MagicProxy implements _ElevationResult {
+  static ElevationResult cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new ElevationResult.fromProxy(proxy));
 
   ElevationResult() : super();
-  ElevationResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ElevationResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng get location => LatLng.cast($unsafe.location);
 }

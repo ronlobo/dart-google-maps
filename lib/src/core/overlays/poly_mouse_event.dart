@@ -21,8 +21,8 @@ abstract class _PolyMouseEvent {
 }
 
 class PolyMouseEvent extends MouseEvent implements _PolyMouseEvent {
-  static PolyMouseEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PolyMouseEvent.fromJsProxy(jsProxy));
+  static PolyMouseEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PolyMouseEvent.fromProxy(proxy));
 
   PolyMouseEvent() : super();
-  PolyMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PolyMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

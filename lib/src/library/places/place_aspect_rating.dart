@@ -19,9 +19,9 @@ abstract class _PlaceAspectRating {
   String type;
 }
 
-class PlaceAspectRating extends jsw.TypedProxy implements _PlaceAspectRating {
-  static PlaceAspectRating cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceAspectRating.fromJsProxy(jsProxy));
+class PlaceAspectRating extends jsw.MagicProxy implements _PlaceAspectRating {
+  static PlaceAspectRating cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PlaceAspectRating.fromProxy(proxy));
 
   PlaceAspectRating() : super();
-  PlaceAspectRating.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceAspectRating.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

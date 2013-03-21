@@ -27,31 +27,31 @@ abstract class _GEvent {
   void trigger(dynamic instance, String eventName, List<dynamic> args);
 }
 
-class GEvent extends jsw.TypedProxy implements _GEvent {
-  static GEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GEvent.fromJsProxy(jsProxy));
+class GEvent extends jsw.MagicProxy implements _GEvent {
+  static GEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GEvent.fromProxy(proxy));
 
-  GEvent() : super.fromJsProxy(maps.event);
-  GEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GEvent() : super.fromProxy(maps.event);
+  GEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) {
-    final callback = new jsw.Callback.many(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
-    return jsw.transformIfNotNull($unsafe.addDomListener(instance, eventName, callback, capture), instanciator);
+    final callback = new js.Callback.many(handler);
+    final instanciator = (js.Proxy proxy) => new MapsEventListener.fromProxy(proxy, () => callback.dispose());
+    return jsw.mapNotNull($unsafe.addDomListener(instance, eventName, callback, capture), instanciator);
   }
   @override MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) {
-    final callback = new jsw.Callback.once(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
-    return jsw.transformIfNotNull($unsafe.addDomListenerOnce(instance, eventName, callback, capture), instanciator);
+    final callback = new js.Callback.once(handler);
+    final instanciator = (js.Proxy proxy) => new MapsEventListener.fromProxy(proxy);
+    return jsw.mapNotNull($unsafe.addDomListenerOnce(instance, eventName, callback, capture), instanciator);
   }
   @override MapsEventListener addListener(dynamic instance, String eventName, Function handler) {
-    final callback = new jsw.Callback.many(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
-    return jsw.transformIfNotNull($unsafe.addListener(instance, eventName, callback), instanciator);
+    final callback = new js.Callback.many(handler);
+    final instanciator = (js.Proxy proxy) => new MapsEventListener.fromProxy(proxy, () => callback.dispose());
+    return jsw.mapNotNull($unsafe.addListener(instance, eventName, callback), instanciator);
   }
   @override MapsEventListener addListenerOnce(dynamic instance, String eventName, Function handler) {
-    final callback = new jsw.Callback.once(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
-    return jsw.transformIfNotNull($unsafe.addListenerOnce(instance, eventName, callback), instanciator);
+    final callback = new js.Callback.once(handler);
+    final instanciator = (js.Proxy proxy) => new MapsEventListener.fromProxy(proxy);
+    return jsw.mapNotNull($unsafe.addListenerOnce(instance, eventName, callback), instanciator);
   }
   @override void removeListener(MapsEventListener listener) {
     if (listener.onRelease != null) {

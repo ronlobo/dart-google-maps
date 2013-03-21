@@ -1,6 +1,6 @@
 import 'dart:html' hide MouseEvent;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
@@ -15,7 +15,7 @@ void main() {
       ..center = myLatLng
       ..mapTypeId = MapTypeId.TERRAIN
       ;
-    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
+    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
     final triangleCoords = [
                           new LatLng(25.774252, -80.190262),
@@ -23,7 +23,7 @@ void main() {
                           new LatLng(32.321384, -64.75737)
                           ];
 
-    bermudaTriangle = jsw.retain(new Polygon(new PolygonOptions()
+    bermudaTriangle = js.retain(new Polygon(new PolygonOptions()
       ..paths = triangleCoords
       ..strokeColor = '#FF0000'
       ..strokeOpacity = 0.8
@@ -37,7 +37,7 @@ void main() {
     // Add a listener for the click event
     bermudaTriangle.on.click.add(showArrays);
 
-    infoWindow = jsw.retain(new InfoWindow());
+    infoWindow = js.retain(new InfoWindow());
   });
 }
 
@@ -47,14 +47,14 @@ void showArrays(MouseEvent e) {
   final vertices = bermudaTriangle.path;
 
   final contentString = new StringBuffer()
-    ..add('<b>Bermuda Triangle Polygon</b><br>')
-    ..add('Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>')
+    ..write('<b>Bermuda Triangle Polygon</b><br>')
+    ..write('Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>')
     ;
 
   // Iterate over the vertices.
   for (var i =0; i < vertices.length; i++) {
     var xy = vertices.getAt(i);
-    contentString.add('<br>Coordinate: ${i}<br>${xy.lat},${xy.lng}');
+    contentString.write('<br>Coordinate: ${i}<br>${xy.lat},${xy.lng}');
   }
 
   // Replace our Info Window's content and position

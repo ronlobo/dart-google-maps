@@ -20,15 +20,15 @@ abstract class _StreetViewService {
 }
 
 class StreetViewService extends jsw.TypedProxy implements _StreetViewService {
-  static StreetViewService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewService.fromJsProxy(jsProxy));
+  static StreetViewService cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewService.fromProxy(proxy));
 
   StreetViewService() : super(maps.StreetViewService);
-  StreetViewService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.getPanoramaById(pano, new jsw.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
+    $unsafe.getPanoramaById(pano, new js.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
   }
   @override void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.getPanoramaByLocation(latlng, radius, new jsw.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
+    $unsafe.getPanoramaByLocation(latlng, radius, new js.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
   }
 }

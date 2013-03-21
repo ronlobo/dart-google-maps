@@ -19,9 +19,9 @@ abstract class _GDuration {
   num value;
 }
 
-class GDuration extends jsw.TypedProxy implements _GDuration {
-  static GDuration cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GDuration.fromJsProxy(jsProxy));
+class GDuration extends jsw.MagicProxy implements _GDuration {
+  static GDuration cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GDuration.fromProxy(proxy));
 
   GDuration() : super();
-  GDuration.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GDuration.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

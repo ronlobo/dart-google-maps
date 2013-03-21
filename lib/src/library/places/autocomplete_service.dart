@@ -20,15 +20,15 @@ abstract class _AutocompleteService {
 }
 
 class AutocompleteService extends jsw.TypedProxy implements _AutocompleteService {
-  static AutocompleteService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new AutocompleteService.fromJsProxy(jsProxy));
+  static AutocompleteService cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new AutocompleteService.fromProxy(proxy));
 
   AutocompleteService() : super(maps.places.AutocompleteService);
-  AutocompleteService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AutocompleteService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.getPlacePredictions(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArray.cast(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))));
+    $unsafe.getPlacePredictions(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))));
   }
   @override void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.getQueryPredictions(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArray.cast(results, QueryAutocompletionRequest.cast), PlacesServiceStatus.find(status))));
+    $unsafe.getQueryPredictions(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, QueryAutocompletionRequest.cast), PlacesServiceStatus.find(status))));
   }
 }

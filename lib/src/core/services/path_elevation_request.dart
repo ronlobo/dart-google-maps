@@ -19,12 +19,12 @@ abstract class _PathElevationRequest {
   num samples;
 }
 
-class PathElevationRequest extends jsw.TypedProxy implements _PathElevationRequest {
-  static PathElevationRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PathElevationRequest.fromJsProxy(jsProxy));
+class PathElevationRequest extends jsw.MagicProxy implements _PathElevationRequest {
+  static PathElevationRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PathElevationRequest.fromProxy(proxy));
 
   PathElevationRequest() : super();
-  PathElevationRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PathElevationRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override List<LatLng> get path => jsw.JsArray.cast($unsafe.path, LatLng.cast);
-  @override set path(List<LatLng> path) => $unsafe.path = jsw.JsArray.jsify(path);
+  @override List<LatLng> get path => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.path, LatLng.cast);
+  @override set path(List<LatLng> path) => $unsafe.path = jsifyList(path);
 }

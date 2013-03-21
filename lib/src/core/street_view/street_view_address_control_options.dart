@@ -19,10 +19,10 @@ abstract class _StreetViewAddressControlOptions {
 }
 
 class StreetViewAddressControlOptions extends jsw.TypedProxy implements _StreetViewAddressControlOptions {
-  static StreetViewAddressControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StreetViewAddressControlOptions.fromJsProxy(jsProxy));
+  static StreetViewAddressControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StreetViewAddressControlOptions.fromProxy(proxy));
 
   StreetViewAddressControlOptions() : super();
-  StreetViewAddressControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewAddressControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override ControlPosition get position => ControlPosition.find($unsafe.position);
 }

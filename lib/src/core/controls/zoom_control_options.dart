@@ -20,10 +20,10 @@ abstract class _ZoomControlOptions {
 }
 
 class ZoomControlOptions extends jsw.TypedProxy implements _ZoomControlOptions {
-  static ZoomControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new ZoomControlOptions.fromJsProxy(jsProxy));
+  static ZoomControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new ZoomControlOptions.fromProxy(proxy));
 
   ZoomControlOptions() : super();
-  ZoomControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ZoomControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   ControlPosition get position => ControlPosition.find($unsafe.position);
   ZoomControlStyle get style => ZoomControlStyle.find($unsafe.style);

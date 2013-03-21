@@ -19,11 +19,11 @@ abstract class _WeightedLocation {
   num weight;
 }
 
-class WeightedLocation extends jsw.TypedProxy implements _WeightedLocation {
-  static WeightedLocation cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeightedLocation.fromJsProxy(jsProxy));
+class WeightedLocation extends jsw.MagicProxy implements _WeightedLocation {
+  static WeightedLocation cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new WeightedLocation.fromProxy(proxy));
 
   WeightedLocation() : super();
-  WeightedLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeightedLocation.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng get location => LatLng.cast($unsafe.location);
 }

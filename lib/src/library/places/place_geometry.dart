@@ -20,10 +20,10 @@ abstract class _PlaceGeometry {
 }
 
 class PlaceGeometry extends jsw.TypedProxy implements _PlaceGeometry {
-  static PlaceGeometry cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PlaceGeometry.fromJsProxy(jsProxy));
+  static PlaceGeometry cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PlaceGeometry.fromProxy(proxy));
 
   PlaceGeometry() : super();
-  PlaceGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceGeometry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng get location => LatLng.cast($unsafe.location);
   @override LatLngBounds get viewport => LatLngBounds.cast($unsafe.viewport);

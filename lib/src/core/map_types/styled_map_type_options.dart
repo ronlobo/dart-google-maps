@@ -21,9 +21,9 @@ abstract class _StyledMapTypeOptions {
   String name;
 }
 
-class StyledMapTypeOptions extends jsw.TypedProxy implements _StyledMapTypeOptions {
-  static StyledMapTypeOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new StyledMapTypeOptions.fromJsProxy(jsProxy));
+class StyledMapTypeOptions extends jsw.MagicProxy implements _StyledMapTypeOptions {
+  static StyledMapTypeOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new StyledMapTypeOptions.fromProxy(proxy));
 
   StyledMapTypeOptions() : super();
-  StyledMapTypeOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StyledMapTypeOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

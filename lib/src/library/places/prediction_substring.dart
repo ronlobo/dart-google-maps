@@ -19,9 +19,9 @@ abstract class _PredictionSubstring {
   num value;
 }
 
-class PredictionSubstring extends jsw.TypedProxy implements _PredictionSubstring {
-  static PredictionSubstring cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PredictionSubstring.fromJsProxy(jsProxy));
+class PredictionSubstring extends jsw.MagicProxy implements _PredictionSubstring {
+  static PredictionSubstring cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PredictionSubstring.fromProxy(proxy));
 
   PredictionSubstring() : super();
-  PredictionSubstring.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PredictionSubstring.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

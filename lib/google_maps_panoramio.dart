@@ -15,10 +15,10 @@
 library google_maps_panoramio;
 
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:meta/meta.dart';
 import 'google_maps.dart';
-import 'utils.dart';
+import 'src/utils.dart';
 
 part 'src/library/panoramio/panoramio_layer.dart';
 part 'src/library/panoramio/panoramio_layer_options.dart';

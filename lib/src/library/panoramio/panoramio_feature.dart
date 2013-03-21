@@ -22,9 +22,9 @@ abstract class _PanoramioFeature {
   String userId;
 }
 
-class PanoramioFeature extends jsw.TypedProxy implements _PanoramioFeature {
-  static PanoramioFeature cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PanoramioFeature.fromJsProxy(jsProxy));
+class PanoramioFeature extends jsw.MagicProxy implements _PanoramioFeature {
+  static PanoramioFeature cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PanoramioFeature.fromProxy(proxy));
 
   PanoramioFeature() : super();
-  PanoramioFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PanoramioFeature.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

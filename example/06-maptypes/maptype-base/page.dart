@@ -1,15 +1,15 @@
 import 'dart:html' hide Point;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 class CoordMapType extends MapType {
   CoordMapType() : super() {
-    this.tileSize = jsw.retain(new Size(256,256));
+    this.tileSize = js.retain(new Size(256,256));
     this.maxZoom = 19;
-    $unsafe.getTile = new jsw.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
+    $unsafe.getTile = new js.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
       if (ownerDocument.createElement("div") is js.Proxy) {
-        return _getTileFromOtherDocument(Point.cast(tileCoord), zoom, new jsw.TypedProxy.fromJsProxy(ownerDocument));
+        return _getTileFromOtherDocument(Point.cast(tileCoord), zoom, new jsw.TypedProxy.fromProxy(ownerDocument));
       } else {
         return _getTile(Point.cast(tileCoord), zoom);
       }
@@ -35,10 +35,10 @@ class CoordMapType extends MapType {
   }
 
   jsw.TypedProxy _getTileFromOtherDocument(Point coord, num zoom, jsw.TypedProxy ownerDocument) {
-    final div = new jsw.TypedProxy.fromJsProxy(ownerDocument.$unsafe.createElement("div"))
+    final div = new jsw.TypedProxy.fromProxy(ownerDocument.$unsafe.createElement("div"))
       ..$unsafe.innerHTML = coord.toString()
       ;
-    final style = new jsw.TypedProxy.fromJsProxy(div.$unsafe.style);
+    final style = new jsw.TypedProxy.fromProxy(div.$unsafe.style);
     style
       ..$unsafe.width = '${tileSize.width}px'
       ..$unsafe.height = '${tileSize.height}px'
@@ -53,8 +53,8 @@ class CoordMapType extends MapType {
 }
 
 GMap map;
-final LatLng chicago = jsw.retain(new LatLng(41.850033,-87.6500523));
-final CoordMapType coordinateMapType = jsw.retain(new CoordMapType());
+final LatLng chicago = js.retain(new LatLng(41.850033,-87.6500523));
+final CoordMapType coordinateMapType = js.retain(new CoordMapType());
 
 void main() {
   js.scoped(() {
@@ -68,7 +68,7 @@ void main() {
         ..style = MapTypeControlStyle.DROPDOWN_MENU
       )
       ;
-    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
+    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
     map.on.maptypeidChanged.add(() {
       final showStreetViewControl = map.mapTypeId != 'coordinate';

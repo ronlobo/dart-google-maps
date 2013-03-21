@@ -19,12 +19,12 @@ abstract class _DistanceMatrixService {
 }
 
 class DistanceMatrixService extends jsw.TypedProxy implements _DistanceMatrixService {
-  static DistanceMatrixService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DistanceMatrixService.fromJsProxy(jsProxy));
+  static DistanceMatrixService cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DistanceMatrixService.fromProxy(proxy));
 
   DistanceMatrixService() : super(maps.DistanceMatrixService);
-  DistanceMatrixService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DistanceMatrixService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
-    $unsafe.getDistanceMatrix(request, new jsw.Callback.once((js.Proxy response, js.Proxy status) => callback(DistanceMatrixResponse.cast(response), DistanceMatrixStatus.find(status))));
+    $unsafe.getDistanceMatrix(request, new js.Callback.once((js.Proxy response, js.Proxy status) => callback(DistanceMatrixResponse.cast(response), DistanceMatrixStatus.find(status))));
   }
 }

@@ -19,12 +19,12 @@ abstract class _DirectionsService {
 }
 
 class DirectionsService extends jsw.TypedProxy implements _DirectionsService {
-  static DirectionsService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsService.fromJsProxy(jsProxy));
+  static DirectionsService cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsService.fromProxy(proxy));
 
   DirectionsService() : super(maps.DirectionsService);
-  DirectionsService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    $unsafe.route(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(DirectionsResult.cast(results), DirectionsStatus.find(status))));
+    $unsafe.route(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(DirectionsResult.cast(results), DirectionsStatus.find(status))));
   }
 }

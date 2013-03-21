@@ -15,18 +15,18 @@
 part of google_maps_places;
 
 abstract class _Autocomplete {
-  @jsw.dartified LatLngBounds getBounds();
-  @jsw.dartified PlaceResult getPlace();
-  @jsw.dartified void setBounds(LatLngBounds bounds);
-  @jsw.dartified void setComponentRestrictions(ComponentRestrictions restrictions);
-  @jsw.dartified void setTypes(List<String> types);
+  @dartified LatLngBounds getBounds();
+  @dartified PlaceResult getPlace();
+  @dartified void setBounds(LatLngBounds bounds);
+  @dartified void setComponentRestrictions(ComponentRestrictions restrictions);
+  @dartified void setTypes(List<String> types);
 }
 
 class Autocomplete extends MVCObject implements _Autocomplete {
-  static Autocomplete cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Autocomplete.fromJsProxy(jsProxy));
+  static Autocomplete cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Autocomplete.fromProxy(proxy));
 
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps.places.Autocomplete, [inputField, opts]);
-  Autocomplete.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Autocomplete.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds getBounds() => LatLngBounds.cast($unsafe.getBound());
   @override PlaceResult getPlace() => PlaceResult.cast($unsafe.getPlace());

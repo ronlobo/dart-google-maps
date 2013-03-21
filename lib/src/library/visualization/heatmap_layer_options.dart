@@ -24,13 +24,13 @@ abstract class _HeatmapLayerOptions {
   num radius;
 }
 
-class HeatmapLayerOptions extends jsw.TypedProxy implements _HeatmapLayerOptions {
-  static HeatmapLayerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new HeatmapLayerOptions.fromJsProxy(jsProxy));
+class HeatmapLayerOptions extends jsw.MagicProxy implements _HeatmapLayerOptions {
+  static HeatmapLayerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new HeatmapLayerOptions.fromProxy(proxy));
 
   HeatmapLayerOptions() : super();
-  HeatmapLayerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  HeatmapLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override MVCArray<LatLng> get data => MVCArray.cast($unsafe.data, LatLng.cast);
-  @override List<String> get gradient => jsw.JsArray.cast($unsafe.gradient);
+  @override MVCArray<LatLng> get data => MVCArray.castListOfSerializables($unsafe.data, LatLng.cast);
+  @override List<String> get gradient => jsw.JsArrayToListAdapter.cast($unsafe.gradient);
   @override GMap get map => GMap.cast($unsafe.map);
 }

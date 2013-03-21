@@ -16,19 +16,19 @@ part of google_maps;
 
 abstract class _OverlayView {
   void draw();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified MapPanes getPanes();
-  @jsw.dartified MapCanvasProjection getProjection();
+  @dartified GMap getMap();
+  @dartified MapPanes getPanes();
+  @dartified MapCanvasProjection getProjection();
   void onAdd();
   void onRemove();
-  @jsw.dartified void setMap(dynamic/*Map|StreetViewPanorama*/ map);
+  @dartified void setMap(dynamic/*Map|StreetViewPanorama*/ map);
 }
 
 class OverlayView extends MVCObject implements _OverlayView {
-  static OverlayView cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new OverlayView.fromJsProxy(jsProxy));
+  static OverlayView cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new OverlayView.fromProxy(proxy));
 
   OverlayView() : super(maps.OverlayView);
-  OverlayView.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  OverlayView.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap getMap() => GMap.cast($unsafe.getMap());
   @override MapPanes getPanes() => MapPanes.cast($unsafe.getPanes());
@@ -39,7 +39,7 @@ class OverlayView extends MVCObject implements _OverlayView {
   MapCanvasProjection get projection => getProjection();
   set map(dynamic/*Map|StreetViewPanorama*/ map) => setMap(map);
 
-  void set_onAdd(onAdd()) { $unsafe.onAdd = new jsw.Callback.many(onAdd); }
-  void set_onRemove(onRemove()) { $unsafe.onRemove = new jsw.Callback.many(onRemove); }
-  void set_draw(draw()) { $unsafe.draw = new jsw.Callback.many(draw); }
+  void set_onAdd(onAdd()) { $unsafe.onAdd = new js.Callback.many(onAdd); }
+  void set_onRemove(onRemove()) { $unsafe.onRemove = new js.Callback.many(onRemove); }
+  void set_draw(draw()) { $unsafe.draw = new js.Callback.many(draw); }
 }

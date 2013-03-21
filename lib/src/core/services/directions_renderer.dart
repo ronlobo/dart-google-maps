@@ -15,22 +15,22 @@
 part of google_maps;
 
 abstract class _DirectionsRenderer {
-  @jsw.dartified DirectionsResult getDirections();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified html.Node getPanel();
-  @jsw.dartified num getRouteIndex();
-  @jsw.dartified void setDirections(DirectionsResult direction);
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOptions(DirectionsRendererOptions options);
-  @jsw.dartified void setPanel(html.Node panel);
-  @jsw.dartified void setRouteIndex(num routeIndex);
+  @dartified DirectionsResult getDirections();
+  @dartified GMap getMap();
+  @dartified html.Node getPanel();
+  @dartified num getRouteIndex();
+  @dartified void setDirections(DirectionsResult direction);
+  @dartified void setMap(GMap map);
+  @dartified void setOptions(DirectionsRendererOptions options);
+  @dartified void setPanel(html.Node panel);
+  @dartified void setRouteIndex(num routeIndex);
 }
 
 class DirectionsRenderer extends MVCObject implements _DirectionsRenderer {
-  static DirectionsRenderer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsRenderer.fromJsProxy(jsProxy));
+  static DirectionsRenderer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsRenderer.fromProxy(proxy));
 
   DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps.DirectionsRenderer, [opts]);
-  DirectionsRenderer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsRenderer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override DirectionsResult getDirections() => DirectionsResult.cast($unsafe.getDirection());
   @override GMap getMap() => GMap.cast($unsafe.getMap());

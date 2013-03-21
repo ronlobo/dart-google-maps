@@ -19,11 +19,11 @@ abstract class _MouseEvent {
   void stop();
 }
 
-class MouseEvent extends jsw.TypedProxy implements _MouseEvent {
-  static MouseEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MouseEvent.fromJsProxy(jsProxy));
+class MouseEvent extends jsw.MagicProxy implements _MouseEvent {
+  static MouseEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MouseEvent.fromProxy(proxy));
 
   MouseEvent() : super();
-  MouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLng get latLng => LatLng.cast($unsafe.latLng);
 }

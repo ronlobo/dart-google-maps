@@ -29,11 +29,11 @@ abstract class _CircleOptions {
   num zIndex;
 }
 
-class CircleOptions extends jsw.TypedProxy implements _CircleOptions {
-  static CircleOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new CircleOptions.fromJsProxy(jsProxy));
+class CircleOptions extends jsw.MagicProxy implements _CircleOptions {
+  static CircleOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new CircleOptions.fromProxy(proxy));
 
   CircleOptions() : super();
-  CircleOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  CircleOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   LatLng get center => LatLng.cast($unsafe.center);
   GMap get map => GMap.cast($unsafe.map);

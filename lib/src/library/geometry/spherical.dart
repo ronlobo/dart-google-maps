@@ -28,16 +28,16 @@ abstract class _Spherical {
 
 }
 
-class Spherical extends jsw.TypedProxy implements _Spherical {
-  static Spherical cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Spherical.fromJsProxy(jsProxy));
+class Spherical extends jsw.MagicProxy implements _Spherical {
+  static Spherical cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Spherical.fromProxy(proxy));
 
-  Spherical() : super(maps.geometry.spherical);
-  Spherical.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Spherical() : super.fromProxy(maps.geometry.spherical);
+  Spherical.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override num computeArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.computeArea(path is List<LatLng> ? jsw.JsArray.jsify(path) : path, radius);
-  @override num computeLength(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.computeLength(path is List<LatLng> ? jsw.JsArray.jsify(path) : path, radius);
+  @override num computeArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.computeArea(path is List<LatLng> ? jsifyList(path) : path, radius);
+  @override num computeLength(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.computeLength(path is List<LatLng> ? jsifyList(path) : path, radius);
   @override LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => LatLng.cast($unsafe.computeOffset(from, distance, heading, radius));
   @override LatLng computeOffsetOrigin(LatLng to, num distance, num heading, [num radius]) => LatLng.cast($unsafe.computeOffsetOrigin(to, distance, heading, radius));
-  @override num computeSignedArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ loop, [num radius]) => $unsafe.computeSignedArea(loop is List<LatLng> ? jsw.JsArray.jsify(loop) : loop, radius);
+  @override num computeSignedArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ loop, [num radius]) => $unsafe.computeSignedArea(loop is List<LatLng> ? jsifyList(loop) : loop, radius);
   @override LatLng interpolate(LatLng from, LatLng to, num fraction) => LatLng.cast($unsafe.interpolate(from, to, fraction));
 }

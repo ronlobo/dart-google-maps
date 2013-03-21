@@ -15,19 +15,19 @@
 part of google_maps;
 
 abstract class _GroundOverlay {
-  @jsw.dartified LatLngBounds getBounds();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified num getOpacity();
-  @jsw.dartified String getUrl();
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOpacity(num opacity);
+  @dartified LatLngBounds getBounds();
+  @dartified GMap getMap();
+  @dartified num getOpacity();
+  @dartified String getUrl();
+  @dartified void setMap(GMap map);
+  @dartified void setOpacity(num opacity);
 }
 
 class GroundOverlay extends MVCObject implements _GroundOverlay {
-  static GroundOverlay cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GroundOverlay.fromJsProxy(jsProxy));
+  static GroundOverlay cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GroundOverlay.fromProxy(proxy));
 
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps.GroundOverlay, [url, bounds, opts]);
-  GroundOverlay.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GroundOverlay.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds getBounds() => LatLngBounds.cast($unsafe.getBounds());
   @override GMap getMap() => GMap.cast($unsafe.getMap());

@@ -22,11 +22,11 @@ abstract class _Icon {
   String url;
 }
 
-class Icon extends jsw.TypedProxy implements _Icon {
-  static Icon cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Icon.fromJsProxy(jsProxy));
+class Icon extends jsw.MagicProxy implements _Icon {
+  static Icon cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Icon.fromProxy(proxy));
 
   Icon() : super();
-  Icon.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Icon.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   Point get anchor => Point.cast($unsafe.anchor);
   Point get origin => Point.cast($unsafe.origin);

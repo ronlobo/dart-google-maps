@@ -17,15 +17,15 @@ part of google_maps;
 abstract class _GeocoderGeometry {
   LatLngBounds bounds;
   LatLng location;
-  @jsw.dartified GeocoderLocationType location_type;
+  @dartified GeocoderLocationType location_type;
   LatLngBounds viewport;
 }
 
 class GeocoderGeometry extends jsw.TypedProxy implements _GeocoderGeometry {
-  static GeocoderGeometry cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new GeocoderGeometry.fromJsProxy(jsProxy));
+  static GeocoderGeometry cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new GeocoderGeometry.fromProxy(proxy));
 
   GeocoderGeometry() : super();
-  GeocoderGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GeocoderGeometry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override LatLng get location => LatLng.cast($unsafe.location);

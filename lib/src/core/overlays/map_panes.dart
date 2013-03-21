@@ -24,9 +24,9 @@ abstract class _MapPanes {
   html.Node overlayShadow;
 }
 
-class MapPanes extends jsw.TypedProxy implements _MapPanes {
-  static MapPanes cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MapPanes.fromJsProxy(jsProxy));
+class MapPanes extends jsw.MagicProxy implements _MapPanes {
+  static MapPanes cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MapPanes.fromProxy(proxy));
 
   MapPanes() : super();
-  MapPanes.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapPanes.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

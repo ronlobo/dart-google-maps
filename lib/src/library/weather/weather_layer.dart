@@ -15,16 +15,16 @@
 part of google_maps_weather;
 
 abstract class _WeatherLayer {
-  @jsw.dartified GMap getMap();
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOptions(WeatherLayerOptions options);
+  @dartified GMap getMap();
+  @dartified void setMap(GMap map);
+  @dartified void setOptions(WeatherLayerOptions options);
 }
 
 class WeatherLayer extends MVCObject implements _WeatherLayer {
-  static WeatherLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherLayer.fromJsProxy(jsProxy));
+  static WeatherLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new WeatherLayer.fromProxy(proxy));
 
   WeatherLayer([WeatherLayerOptions opts]) : super(maps.weather.WeatherLayer, [opts]);
-  WeatherLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap getMap() => GMap.cast($unsafe.getMap());
 

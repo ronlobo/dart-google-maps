@@ -33,11 +33,11 @@ abstract class _MarkerOptions {
   num zIndex;
 }
 
-class MarkerOptions extends jsw.TypedProxy implements _MarkerOptions {
-  static MarkerOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MarkerOptions.fromJsProxy(jsProxy));
+class MarkerOptions extends jsw.MagicProxy implements _MarkerOptions {
+  static MarkerOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MarkerOptions.fromProxy(proxy));
 
   MarkerOptions() : super();
-  MarkerOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MarkerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Point get anchorPoint => Point.cast($unsafe.anchorPoint);
   @override Animation get animation => Animation.find($unsafe.animation);
@@ -48,9 +48,9 @@ class MarkerOptions extends jsw.TypedProxy implements _MarkerOptions {
     } else if (result is js.Proxy) {
       final type = Marker._isSymbolOrIcon(result);
       if (type == "Symbol") {
-        return new Symbol.fromJsProxy(result);
+        return new Symbol.fromProxy(result);
       } else if (type == "Icon") {
-        return new Icon.fromJsProxy(result);
+        return new Icon.fromProxy(result);
       }
     }
     return result;
@@ -58,9 +58,9 @@ class MarkerOptions extends jsw.TypedProxy implements _MarkerOptions {
   @override dynamic/*Map|StreetViewPanorama*/ get map {
     final result = $unsafe.map;
     if (GMap.isInstance(result)) {
-      return new GMap.fromJsProxy(result);
+      return new GMap.fromProxy(result);
     } else if (StreetViewPanorama.isInstance(result)) {
-      return new StreetViewPanorama.fromJsProxy(result);
+      return new StreetViewPanorama.fromProxy(result);
     }
     return result;
   }
@@ -72,9 +72,9 @@ class MarkerOptions extends jsw.TypedProxy implements _MarkerOptions {
     } else if (result is js.Proxy) {
       final type = Marker._isSymbolOrIcon(result);
       if (type == "Symbol") {
-        return new Symbol.fromJsProxy(result);
+        return new Symbol.fromProxy(result);
       } else if (type == "Icon") {
-        return new Icon.fromJsProxy(result);
+        return new Icon.fromProxy(result);
       }
     }
     return result;

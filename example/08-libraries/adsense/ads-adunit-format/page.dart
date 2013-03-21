@@ -1,6 +1,6 @@
 import 'dart:html' hide Events;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_adsense.dart';
 
@@ -99,14 +99,14 @@ void main() {
     final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 
     final SelectElement format = query('#format');
-    jsw.retain(adUnit);
+    js.retain(adUnit);
     event.addDomListener(format, 'change', (e) {
-      final adsFormat = new jsw.TypedProxy.fromJsProxy(maps.adsense.AdFormat).$unsafe[format.value] as String;
+      final adsFormat = new jsw.TypedProxy.fromProxy(maps.adsense.AdFormat).$unsafe[format.value] as String;
       adUnit.format = AdFormat.find(adsFormat);
     });
 
     final SelectElement style = query('#style');
-    jsw.retain(adUnit);
+    js.retain(adUnit);
     event.addDomListener(style, 'change', (e) {
       final adStyle = SAMPLE_AD_STYLES[style.value];
       // TODO undocumented or undefined functions
@@ -120,9 +120,9 @@ void main() {
     });
 
     final SelectElement position = query('#position');
-    jsw.retain(adUnit);
+    js.retain(adUnit);
     event.addDomListener(position, 'change', (e) {
-      final adsPosition = new jsw.TypedProxy.fromJsProxy(maps.ControlPosition).$unsafe[position.value] as int;
+      final adsPosition = new jsw.TypedProxy.fromProxy(maps.ControlPosition).$unsafe[position.value] as int;
       adUnit.position = ControlPosition.find(adsPosition);
     });
   });

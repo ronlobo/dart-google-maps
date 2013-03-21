@@ -23,11 +23,11 @@ abstract class _MarkerImage {
 }
 
 @deprecated
-class MarkerImage extends jsw.TypedProxy implements _MarkerImage {
-  static MarkerImage cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new MarkerImage.fromJsProxy(jsProxy));
+class MarkerImage extends jsw.MagicProxy implements _MarkerImage {
+  static MarkerImage cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new MarkerImage.fromProxy(proxy));
 
   MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super(maps.MarkerImage, [url, size, origin, anchor, scaledSize]);
-  MarkerImage.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MarkerImage.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Point get anchor => Point.cast($unsafe.anchor);
   @override Point get origin => Point.cast($unsafe.origin);

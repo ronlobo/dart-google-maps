@@ -20,15 +20,15 @@ abstract class _ElevationService {
 }
 
 class ElevationService extends jsw.TypedProxy implements _ElevationService {
-  static ElevationService cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new ElevationService.fromJsProxy(jsProxy));
+  static ElevationService cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new ElevationService.fromProxy(proxy));
 
   ElevationService() : super(maps.ElevationService);
-  ElevationService.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ElevationService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.getElevationAlongPath(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArray.cast(results, ElevationResult.cast), ElevationStatus.find(status))));
+    $unsafe.getElevationAlongPath(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))));
   }
   @override void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.getElevationForLocations(request, new jsw.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArray.cast(results, ElevationResult.cast), ElevationStatus.find(status))));
+    $unsafe.getElevationForLocations(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))));
   }
 }

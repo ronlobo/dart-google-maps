@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'dart:math' as Math;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -47,9 +47,9 @@ void attachSecretMessage(Marker marker, num number) {
   final infowindow = new InfoWindow(new InfoWindowOptions()
     ..content = message[number]
   );
-  jsw.retain(infowindow);
-  jsw.retain(marker.map);
-  jsw.retain(marker);
+  js.retain(infowindow);
+  js.retain(marker.map);
+  js.retain(marker);
   marker.on.click.add((e) {
     infowindow.open(marker.map, marker);
   });

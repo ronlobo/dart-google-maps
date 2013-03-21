@@ -28,11 +28,11 @@ abstract class _RectangleOptions {
   num zIndex;
 }
 
-class RectangleOptions extends jsw.TypedProxy implements _RectangleOptions {
-  static RectangleOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new RectangleOptions.fromJsProxy(jsProxy));
+class RectangleOptions extends jsw.MagicProxy implements _RectangleOptions {
+  static RectangleOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new RectangleOptions.fromProxy(proxy));
 
   RectangleOptions() : super();
-  RectangleOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  RectangleOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override GMap get map => GMap.cast($unsafe.map);

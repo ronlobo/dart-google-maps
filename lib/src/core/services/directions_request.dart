@@ -28,11 +28,11 @@ abstract class _DirectionsRequest {
   List<DirectionsWaypoint> waypoints;
 }
 
-class DirectionsRequest extends jsw.TypedProxy implements _DirectionsRequest {
-  static DirectionsRequest cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new DirectionsRequest.fromJsProxy(jsProxy));
+class DirectionsRequest extends jsw.MagicProxy implements _DirectionsRequest {
+  static DirectionsRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new DirectionsRequest.fromProxy(proxy));
 
   DirectionsRequest() : super();
-  DirectionsRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override dynamic/*LatLng|string*/ get destination {
     final result = $unsafe.destination;
@@ -51,6 +51,6 @@ class DirectionsRequest extends jsw.TypedProxy implements _DirectionsRequest {
   @override TransitOptions get transitOptions => TransitOptions.cast($unsafe.transitOptions);
   @override TravelMode get travelMode => TravelMode.find($unsafe.travelMode);
   @override UnitSystem get unitSystem => UnitSystem.find($unsafe.unitSystem);
-  @override List<DirectionsWaypoint> get waypoints => jsw.JsArray.cast($unsafe.waypoints, DirectionsWaypoint.cast);
-  @override set waypoints(List<DirectionsWaypoint> waypoints) => $unsafe.waypoints = jsw.JsArray.jsify(waypoints);
+  @override List<DirectionsWaypoint> get waypoints => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.waypoints, DirectionsWaypoint.cast);
+  @override set waypoints(List<DirectionsWaypoint> waypoints) => $unsafe.waypoints = jsifyList(waypoints);
 }

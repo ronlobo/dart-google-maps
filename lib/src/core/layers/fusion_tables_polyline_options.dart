@@ -20,9 +20,9 @@ abstract class _FusionTablesPolylineOptions {
   num strokeWeight;
 }
 
-class FusionTablesPolylineOptions extends jsw.TypedProxy implements _FusionTablesPolylineOptions {
-  static FusionTablesPolylineOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new FusionTablesPolylineOptions.fromJsProxy(jsProxy));
+class FusionTablesPolylineOptions extends jsw.MagicProxy implements _FusionTablesPolylineOptions {
+  static FusionTablesPolylineOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new FusionTablesPolylineOptions.fromProxy(proxy));
 
   FusionTablesPolylineOptions() : super();
-  FusionTablesPolylineOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  FusionTablesPolylineOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

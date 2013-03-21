@@ -15,15 +15,15 @@
 part of google_maps_weather;
 
 abstract class _CloudLayer {
-  @jsw.dartified GMap getMap();
-  @jsw.dartified void setMap(GMap map);
+  @dartified GMap getMap();
+  @dartified void setMap(GMap map);
 }
 
 class CloudLayer extends MVCObject implements _CloudLayer {
-  static CloudLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new CloudLayer.fromJsProxy(jsProxy));
+  static CloudLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new CloudLayer.fromProxy(proxy));
 
   CloudLayer() : super(maps.weather.CloudLayer);
-  CloudLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  CloudLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap getMap() => GMap.cast($unsafe.getMap());
 

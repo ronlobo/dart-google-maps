@@ -26,9 +26,9 @@ abstract class _WeatherConditions {
   num windSpeed;
 }
 
-class WeatherConditions extends jsw.TypedProxy implements _WeatherConditions {
-  static WeatherConditions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new WeatherConditions.fromJsProxy(jsProxy));
+class WeatherConditions extends jsw.MagicProxy implements _WeatherConditions {
+  static WeatherConditions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new WeatherConditions.fromProxy(proxy));
 
   WeatherConditions() : super();
-  WeatherConditions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherConditions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

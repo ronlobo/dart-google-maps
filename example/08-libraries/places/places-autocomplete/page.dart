@@ -1,6 +1,6 @@
 import 'dart:html' hide Point, Events;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
@@ -23,10 +23,10 @@ void main() {
       ..map = map
     );
 
-    jsw.retain(map);
-    jsw.retain(marker);
-    jsw.retain(infowindow);
-    jsw.retain(autocomplete);
+    js.retain(map);
+    js.retain(marker);
+    js.retain(infowindow);
+    js.retain(autocomplete);
     autocomplete.on.placeChanged.add(() {
       infowindow.close();
       final place = autocomplete.place;
@@ -50,11 +50,11 @@ void main() {
 
       String address = '';
       if (place.addressComponents != null) {
-        address = Strings.join([
+        address = [
           (place.addressComponents[0] != null && place.addressComponents[0].shortName != null ? place.addressComponents[0].shortName : ''),
           (place.addressComponents[1] != null && place.addressComponents[1].shortName != null ? place.addressComponents[1].shortName : ''),
           (place.addressComponents[2] != null && place.addressComponents[2].shortName != null ? place.addressComponents[2].shortName : '')
-        ], ' ');
+        ].join(' ');
       }
 
       infowindow.content = '<div><strong>${place.name}</strong><br>${address}';

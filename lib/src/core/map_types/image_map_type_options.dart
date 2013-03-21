@@ -27,13 +27,13 @@ abstract class _ImageMapTypeOptions {
   Size tileSize;
 }
 
-class ImageMapTypeOptions extends jsw.TypedProxy implements _MapTypeControlOptions {
-  static ImageMapTypeOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new ImageMapTypeOptions.fromJsProxy(jsProxy));
+class ImageMapTypeOptions extends jsw.MagicProxy implements _MapTypeControlOptions {
+  static ImageMapTypeOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new ImageMapTypeOptions.fromProxy(proxy));
 
   ImageMapTypeOptions() : super();
-  ImageMapTypeOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ImageMapTypeOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  set getTileUrl(GetTileUrl callback) => $unsafe.getTileUrl = new jsw.Callback.many((js.Proxy point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel));
+  set getTileUrl(GetTileUrl callback) => $unsafe.getTileUrl = new js.Callback.many((js.Proxy point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel));
   GetTileUrl  get getTileUrl => (Point point, num zoomLevel) => $unsafe.getTileUrl(point, zoomLevel);
   Size get tileSize => Size.cast($unsafe.tileSize);
 }

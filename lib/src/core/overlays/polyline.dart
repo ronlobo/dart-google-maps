@@ -15,27 +15,27 @@
 part of google_maps;
 
 abstract class _Polyline {
-  @jsw.dartified bool getEditable();
-  @jsw.dartified GMap getMap();
-  @jsw.dartified MVCArray<LatLng> getPath();
-  @jsw.dartified bool getVisible();
-  @jsw.dartified void setEditable(bool editable);
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOptions(PolylineOptions options);
-  @jsw.dartified void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path);
-  @jsw.dartified void setVisible(bool visible);
+  @dartified bool getEditable();
+  @dartified GMap getMap();
+  @dartified MVCArray<LatLng> getPath();
+  @dartified bool getVisible();
+  @dartified void setEditable(bool editable);
+  @dartified void setMap(GMap map);
+  @dartified void setOptions(PolylineOptions options);
+  @dartified void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path);
+  @dartified void setVisible(bool visible);
 }
 
 class Polyline extends MVCObject implements _Polyline {
-  static Polyline cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new Polyline.fromJsProxy(jsProxy));
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Polyline);
+  static Polyline cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new Polyline.fromProxy(proxy));
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Polyline);
 
   Polyline([PolylineOptions opts]) : super(maps.Polyline, [opts]);
-  Polyline.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Polyline.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap getMap() => GMap.cast($unsafe.getMap());
-  @override MVCArray<LatLng> getPath() => MVCArray.cast($unsafe.getPath(), (e) => LatLng.cast(e));
-  @override void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsw.JsArray.jsify(path) : path);
+  @override MVCArray<LatLng> getPath() => MVCArray.castListOfSerializables($unsafe.getPath(), LatLng.cast);
+  @override void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsifyList(path) : path);
 
   bool get editable => getEditable();
   GMap get map => getMap();

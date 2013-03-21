@@ -20,9 +20,9 @@ abstract class _KmlAuthor {
   String uri;
 }
 
-class KmlAuthor extends jsw.TypedProxy implements _KmlAuthor {
-  static KmlAuthor cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new KmlAuthor.fromJsProxy(jsProxy));
+class KmlAuthor extends jsw.MagicProxy implements _KmlAuthor {
+  static KmlAuthor cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new KmlAuthor.fromProxy(proxy));
 
   KmlAuthor() : super();
-  KmlAuthor.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlAuthor.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

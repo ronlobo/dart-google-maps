@@ -21,10 +21,10 @@ abstract class _ImageMapType {
 
 // TODO extends MVCObject mixin MapType
 class ImageMapType extends MapType implements _ImageMapType {
-  static ImageMapType cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new ImageMapType.fromJsProxy(jsProxy));
+  static ImageMapType cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new ImageMapType.fromProxy(proxy));
 
   ImageMapType(ImageMapTypeOptions opts) : super(maps.ImageMapType, [opts]);
-  ImageMapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ImageMapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   num get opacity => $unsafe.getOpacity();
   set opacity(num opacity) => $unsafe.setOpacity(opacity);

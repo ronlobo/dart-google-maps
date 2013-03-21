@@ -20,10 +20,10 @@ abstract class _TrafficLayer {
 }
 
 class TrafficLayer extends MVCObject implements _TrafficLayer {
-  static TrafficLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new TrafficLayer.fromJsProxy(jsProxy));
+  static TrafficLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new TrafficLayer.fromProxy(proxy));
 
   TrafficLayer() : super(maps.TrafficLayer);
-  TrafficLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TrafficLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   GMap get map => GMap.cast($unsafe.getMap());
   set map(GMap map) => $unsafe.setMap(map);

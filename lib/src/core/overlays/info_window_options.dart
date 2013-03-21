@@ -23,11 +23,11 @@ abstract class _InfoWindowOptions {
   num zIndex;
 }
 
-class InfoWindowOptions extends jsw.TypedProxy implements _InfoWindowOptions {
-  static InfoWindowOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new InfoWindowOptions.fromJsProxy(jsProxy));
+class InfoWindowOptions extends jsw.MagicProxy implements _InfoWindowOptions {
+  static InfoWindowOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new InfoWindowOptions.fromProxy(proxy));
 
   InfoWindowOptions() : super();
-  InfoWindowOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  InfoWindowOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override Size get pixelOffset => Size.cast($unsafe.pixelOffset);
   @override LatLng get position => LatLng.cast($unsafe.position);

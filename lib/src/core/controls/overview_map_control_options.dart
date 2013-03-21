@@ -18,9 +18,9 @@ abstract class _OverviewMapControlOptions {
   bool opened;
 }
 
-class OverviewMapControlOptions extends jsw.TypedProxy implements _OverviewMapControlOptions {
-  static OverviewMapControlOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new OverviewMapControlOptions.fromJsProxy(jsProxy));
+class OverviewMapControlOptions extends jsw.MagicProxy implements _OverviewMapControlOptions {
+  static OverviewMapControlOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new OverviewMapControlOptions.fromProxy(proxy));
 
   OverviewMapControlOptions() : super();
-  OverviewMapControlOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  OverviewMapControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

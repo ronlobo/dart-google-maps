@@ -20,10 +20,10 @@ abstract class _BicyclingLayer {
 }
 
 class BicyclingLayer extends MVCObject implements _BicyclingLayer {
-  static BicyclingLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new BicyclingLayer.fromJsProxy(jsProxy));
+  static BicyclingLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new BicyclingLayer.fromProxy(proxy));
 
   BicyclingLayer() : super(maps.BicyclingLayer);
-  BicyclingLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  BicyclingLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   GMap get map => GMap.cast($unsafe.getMap());
   set map(GMap map) => $unsafe.setMap(map);

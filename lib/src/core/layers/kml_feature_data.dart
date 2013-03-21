@@ -23,11 +23,11 @@ abstract class _KmlFeatureData {
   String snippet;
 }
 
-class KmlFeatureData extends jsw.TypedProxy implements _KmlFeatureData {
-  static KmlFeatureData cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new KmlFeatureData.fromJsProxy(jsProxy));
+class KmlFeatureData extends jsw.MagicProxy implements _KmlFeatureData {
+  static KmlFeatureData cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new KmlFeatureData.fromProxy(proxy));
 
   KmlFeatureData() : super();
-  KmlFeatureData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlFeatureData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override KmlAuthor get author => KmlAuthor.cast($unsafe.author);
 }

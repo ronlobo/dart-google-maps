@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -19,19 +20,19 @@ void main() {
       ..title = "Click to zoom"
     );
 
-    jsw.retain(map);
-    jsw.retain(marker);
+    js.retain(map);
+    js.retain(marker);
     map.on.centerChanged.add(() {
       // 3 seconds after the center of the map has changed, pan back to the marker.
-      window.setTimeout(() {
+      new Timer(const Duration(seconds: 3), () {
         js.scoped(() {
           map.panTo(marker.position);
         });
-      }, 3000);
+      });
     });
 
-    jsw.retain(map);
-    jsw.retain(marker);
+    js.retain(map);
+    js.retain(marker);
     marker.on.click.add((e) {
       map.zoom = 8;
       map.center = marker.position;

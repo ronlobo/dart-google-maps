@@ -16,10 +16,10 @@ library google_maps_adsense;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:meta/meta.dart';
 import 'google_maps.dart';
-import 'utils.dart';
+import 'src/utils.dart';
 
 part 'src/library/adsense/ad_unit.dart';
 part 'src/library/adsense/ad_unit_options.dart';

@@ -15,20 +15,20 @@
 part of google_maps_panoramio;
 
 abstract class _PanoramioLayer {
-  @jsw.dartified GMap getMap();
-  @jsw.dartified String getTag();
-  @jsw.dartified String getUserId();
-  @jsw.dartified void setMap(GMap map);
-  @jsw.dartified void setOptions(PanoramioLayerOptions options);
-  @jsw.dartified void setTag(String tag);
-  @jsw.dartified void setUserId(String userId);
+  @dartified GMap getMap();
+  @dartified String getTag();
+  @dartified String getUserId();
+  @dartified void setMap(GMap map);
+  @dartified void setOptions(PanoramioLayerOptions options);
+  @dartified void setTag(String tag);
+  @dartified void setUserId(String userId);
 }
 
 class PanoramioLayer extends MVCObject implements _PanoramioLayer {
-  static PanoramioLayer cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PanoramioLayer.fromJsProxy(jsProxy));
+  static PanoramioLayer cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PanoramioLayer.fromProxy(proxy));
 
   PanoramioLayer([PanoramioLayerOptions opts]) : super(maps.panoramio.PanoramioLayer, [opts]);
-  PanoramioLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PanoramioLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override GMap getMap() => GMap.cast($unsafe.getMap());
 

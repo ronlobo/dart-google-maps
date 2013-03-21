@@ -28,21 +28,21 @@ abstract class _PolylineOptions {
   num zIndex;
 }
 
-class PolylineOptions extends jsw.TypedProxy implements _PolylineOptions {
-  static PolylineOptions cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PolylineOptions.fromJsProxy(jsProxy));
+class PolylineOptions extends jsw.MagicProxy implements _PolylineOptions {
+  static PolylineOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PolylineOptions.fromProxy(proxy));
 
   PolylineOptions() : super();
-  PolylineOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PolylineOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  @override set icons(List<IconSequence> icons) => $unsafe.icons = jsw.JsArray.jsify(icons);
+  @override set icons(List<IconSequence> icons) => $unsafe.icons = jsifyList(icons);
   @override GMap get map => GMap.cast($unsafe.map);
   @override dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ get path {
     final result = $unsafe.path;
     if (MVCArray.isInstance(result)) {
-      return MVCArray.cast(result, (e) => LatLng.cast(e));
+      return MVCArray.castListOfSerializables(result, LatLng.cast);
     } else {
-      return jsw.JsArray.cast(result, (e) => LatLng.cast(e));
+      return jsw.JsArrayToListAdapter.castListOfSerializables(result, LatLng.cast);
     }
   }
-  @override set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.path = path is List ? jsw.JsArray.jsify(path) : path;
+  @override set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.path = path is List ? jsifyList(path) : path;
 }

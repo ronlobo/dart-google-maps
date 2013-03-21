@@ -21,11 +21,11 @@ abstract class _IconSequence {
   String repeat;
 }
 
-class IconSequence extends jsw.TypedProxy implements _IconSequence {
-  static IconSequence cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new IconSequence.fromJsProxy(jsProxy));
+class IconSequence extends jsw.MagicProxy implements _IconSequence {
+  static IconSequence cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new IconSequence.fromProxy(proxy));
 
   IconSequence() : super();
-  IconSequence.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  IconSequence.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   Symbol get icon => Symbol.cast($unsafe.icon);
 }

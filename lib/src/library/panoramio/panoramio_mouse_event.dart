@@ -21,11 +21,11 @@ abstract class _PanoramioMouseEvent {
   Size pixelOffset;
 }
 
-class PanoramioMouseEvent extends jsw.TypedProxy implements _PanoramioMouseEvent {
-  static PanoramioMouseEvent cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new PanoramioMouseEvent.fromJsProxy(jsProxy));
+class PanoramioMouseEvent extends jsw.MagicProxy implements _PanoramioMouseEvent {
+  static PanoramioMouseEvent cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new PanoramioMouseEvent.fromProxy(proxy));
 
   PanoramioMouseEvent() : super();
-  PanoramioMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PanoramioMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe.featureDetails);
   @override LatLng get latLng => LatLng.cast($unsafe.latLng);

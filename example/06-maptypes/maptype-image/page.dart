@@ -1,15 +1,15 @@
 import 'dart:html' hide Point;
 import 'dart:math' as Math;
 import 'package:js/js.dart' as js;
-import 'package:js_wrap/js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
-final moonTypeOptions = jsw.retain(new ImageMapTypeOptions()
+final moonTypeOptions = js.retain(new ImageMapTypeOptions()
   ..tileSize = new Size(256, 256)
   ..maxZoom = 9
   ..minZoom = 0
   // TODO undocumented
-  ..$.radius = 1738000
+  ..$unsafe.radius = 1738000
   ..name = 'Moon'
   ..getTileUrl = (Point point, num zoomLevel) {
     final normalizedCoord = getNormalizedCoord(point, zoomLevel);

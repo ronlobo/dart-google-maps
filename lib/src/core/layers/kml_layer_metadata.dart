@@ -21,11 +21,11 @@ abstract class _KmlLayerMetadata {
   String snippet;
 }
 
-class KmlLayerMetadata extends jsw.TypedProxy implements _KmlLayerMetadata {
-  static KmlLayerMetadata cast(js.Proxy jsProxy) => jsw.transformIfNotNull(jsProxy, (jsProxy) => new KmlLayerMetadata.fromJsProxy(jsProxy));
+class KmlLayerMetadata extends jsw.MagicProxy implements _KmlLayerMetadata {
+  static KmlLayerMetadata cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new KmlLayerMetadata.fromProxy(proxy));
 
   KmlLayerMetadata() : super();
-  KmlLayerMetadata.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlLayerMetadata.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override KmlAuthor get author => KmlAuthor.cast($unsafe.author);
 }

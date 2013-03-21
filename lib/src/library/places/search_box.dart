@@ -15,13 +15,13 @@
 part of google_maps_places;
 
 abstract class _SearchBox {
-  @jsw.dartified LatLngBounds getBounds();
-  @jsw.dartified void setBounds(LatLngBounds bounds);
+  @dartified LatLngBounds getBounds();
+  @dartified void setBounds(LatLngBounds bounds);
 }
 
 class SearchBox extends MVCObject implements _SearchBox {
   SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps.places.SearchBox, [inputField, opts]);
-  SearchBox.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  SearchBox.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds getBounds() => LatLngBounds.cast($unsafe.getBounds());
 
