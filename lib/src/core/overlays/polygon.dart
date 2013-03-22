@@ -15,11 +15,13 @@
 part of google_maps;
 
 abstract class _Polygon {
+  @dartified bool getDraggable();
   @dartified bool getEditable();
   @dartified GMap getMap();
   @dartified MVCArray<LatLng> getPath();
   @dartified MVCArray<MVCArray<LatLng>> getPaths();
   @dartified bool getVisible();
+  @dartified void setDraggable(bool draggable);
   @dartified void setEditable(bool editable);
   @dartified void setMap(GMap map);
   @dartified void setOptions(PolygonOptions options);
@@ -41,11 +43,13 @@ class Polygon extends MVCObject implements _Polygon {
   @override void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsifyList(path) : path);
   @override void setPaths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.setPaths(paths is List ? jsifyList(paths) : paths);
 
+  bool get draggable => getDraggable();
   bool get editable => getEditable();
   GMap get map => getMap();
   MVCArray<LatLng> get path => getPath();
   MVCArray<MVCArray<LatLng>> get paths => getPaths();
   bool get visible => getVisible();
+  set draggable(bool draggable) => setDraggable(draggable);
   set editable(bool editable) => setEditable(editable);
   set map(GMap map) => setMap(map);
   set options(PolygonOptions options) => setOptions(options);

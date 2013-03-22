@@ -17,12 +17,14 @@ part of google_maps;
 abstract class _RectangleOptions {
   LatLngBounds bounds;
   bool clickable;
+  bool draggable;
   bool editable;
   String fillColor;
   num fillOpacity;
   GMap map;
   String strokeColor;
   num strokeOpacity;
+  StrokePosition strokePosition;
   num strokeWeight;
   bool visible;
   num zIndex;
@@ -36,4 +38,5 @@ class RectangleOptions extends jsw.MagicProxy implements _RectangleOptions {
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
   @override GMap get map => GMap.cast($unsafe.map);
+  @override StrokePosition get strokePosition => StrokePosition.find($unsafe.strokePosition);
 }

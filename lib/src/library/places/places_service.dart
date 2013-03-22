@@ -17,6 +17,7 @@ part of google_maps_places;
 abstract class _PlacesService {
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status));
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination));
+  void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status));
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status));
 }
 
@@ -31,6 +32,9 @@ class PlacesService extends jsw.TypedProxy implements _PlacesService {
   }
   @override void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
     $unsafe.nearbySearch(request, new js.Callback.once((js.Proxy results, js.Proxy status, js.Proxy pagination) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status), PlaceSearchPagination.cast(pagination))));
+  }
+  @override void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
+    $unsafe.radarSearch(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
   }
   @override void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
     $unsafe.textSearch(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));

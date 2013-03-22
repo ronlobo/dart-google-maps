@@ -17,6 +17,7 @@ part of google_maps;
 abstract class _StreetViewPanorama {
   @dartified List<StreetViewLink> getLinks();
   @dartified String getPano();
+  @dartified StreetViewPov getPhotographerPov();
   @dartified LatLng getPosition();
   @dartified StreetViewPov getPov();
   @dartified bool getVisible();
@@ -25,6 +26,7 @@ abstract class _StreetViewPanorama {
   @dartified void setPosition(LatLng latLng);
   @dartified void setPov(StreetViewPov pov);
   @dartified void setVisible(bool flag);
+  @dartified void setZoom(num zoom);
 
   Controls controls;
 }
@@ -37,6 +39,7 @@ class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
   StreetViewPanorama.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override List<StreetViewLink> getLinks() => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getLinks(), StreetViewLink.cast);
+  @override StreetViewPov getPhotographerPov() => StreetViewPov.cast($unsafe.getPhotographerPov());
   @override LatLng getPosition() => LatLng.cast($unsafe.getPosition());
   @override StreetViewPov getPov() => StreetViewPov.cast($unsafe.getPov());
   @override void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
@@ -46,6 +49,7 @@ class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
 
   List<StreetViewLink> get links => getLinks();
   String get pano => getPano();
+  StreetViewPov get photographerPov => getPhotographerPov();
   LatLng get position => getPosition();
   StreetViewPov get pov => getPov();
   bool get visible => getVisible();
@@ -53,6 +57,7 @@ class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
   set position(LatLng latLng) => setPosition(latLng);
   set pov(StreetViewPov pov) => setPov(pov);
   set visible(bool flag) => setVisible(flag);
+  set zoom(num zoom) => setZoom(zoom);
 
   StreetViewPanoramaEvents get on => new StreetViewPanoramaEvents._(this);
 }
@@ -65,6 +70,7 @@ class StreetViewPanoramaEvents {
   static final POV_CHANGED = "pov_changed";
   static final RESIZE = "resize";
   static final VISIBLE_CHANGED = "visible_changed";
+  static final ZOOM_CHANGED = "zoom_changed";
 
   final StreetViewPanorama _streetViewPanorama;
 
@@ -77,4 +83,5 @@ class StreetViewPanoramaEvents {
   NoArgsEventListenerAdder get povChanged => new NoArgsEventListenerAdder(_streetViewPanorama, POV_CHANGED);
   NoArgsEventListenerAdder get resize => new NoArgsEventListenerAdder(_streetViewPanorama, RESIZE);
   NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_streetViewPanorama, VISIBLE_CHANGED);
+  NoArgsEventListenerAdder get zoomChanged => new NoArgsEventListenerAdder(_streetViewPanorama, ZOOM_CHANGED);
 }

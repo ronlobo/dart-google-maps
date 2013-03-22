@@ -17,6 +17,7 @@ part of google_maps;
 abstract class _CircleOptions {
   LatLng center;
   bool clickable;
+  bool draggable;
   bool editable;
   String fillColor;
   num fillOpacity;
@@ -24,6 +25,7 @@ abstract class _CircleOptions {
   num radius;
   String strokeColor;
   num strokeOpacity;
+  StrokePosition strokePosition;
   num strokeWeight;
   bool visible;
   num zIndex;
@@ -37,4 +39,5 @@ class CircleOptions extends jsw.MagicProxy implements _CircleOptions {
 
   LatLng get center => LatLng.cast($unsafe.center);
   GMap get map => GMap.cast($unsafe.map);
+  StrokePosition get strokePosition => StrokePosition.find($unsafe.strokePosition);
 }

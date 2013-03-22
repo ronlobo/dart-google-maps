@@ -22,7 +22,7 @@ void main() {
   });
 }
 
-void rotate90() {
+void rotate90(_) {
   js.scoped(() {
     final headingMap = map.heading;
     final heading = headingMap != null ? headingMap : 0;
@@ -34,7 +34,7 @@ void autoRotate() {
   js.scoped(() {
     // Determine if we're showing aerial imagery
     if (map.tilt != 0) {
-      new Timer(const Duration(milliseconds: 3000), rotate90);
+      new Timer.periodic(const Duration(milliseconds: 3000), rotate90);
     }
   });
 }

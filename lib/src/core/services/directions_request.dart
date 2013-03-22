@@ -18,6 +18,7 @@ abstract class _DirectionsRequest {
   bool avoidHighways;
   bool avoidTolls;
   dynamic/*LatLng|string*/ destination;
+  bool durationInTraffic;
   bool optimizeWaypoints;
   dynamic/*LatLng|string*/ origin;
   bool provideRouteAlternatives;

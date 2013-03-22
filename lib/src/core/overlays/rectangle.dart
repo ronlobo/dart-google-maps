@@ -16,10 +16,12 @@ part of google_maps;
 
 abstract class _Rectangle {
   @dartified LatLngBounds getBounds();
+  @dartified bool getDraggable();
   @dartified bool getEditable();
   @dartified GMap getMap();
   @dartified bool getVisible();
   @dartified void setBounds(LatLngBounds bounds);
+  @dartified void setDraggable(bool draggable);
   @dartified void setEditable(bool editable);
   @dartified void setMap(GMap map);
   @dartified void setOptions(RectangleOptions options);
@@ -37,10 +39,12 @@ class Rectangle extends MVCObject implements _Rectangle {
   @override GMap getMap() => GMap.cast($unsafe.getMap());
 
   LatLngBounds get bounds => getBounds();
+  bool get draggable => getDraggable();
   bool get editable => getEditable();
   GMap get map => getMap();
   bool get visible => getVisible();
   set bounds(LatLngBounds bounds) => setBounds(bounds);
+  set draggable(bool draggable) => setDraggable(draggable);
   set editable(bool editable) => setEditable(editable);
   set map(GMap map) => setMap(map);
   set options(RectangleOptions options) => setOptions(options);

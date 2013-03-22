@@ -16,6 +16,7 @@ part of google_maps;
 
 abstract class _PolylineOptions {
   bool clickable;
+  bool draggable;
   bool editable;
   bool geodesic;
   List<IconSequence> icons;

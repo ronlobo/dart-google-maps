@@ -25,8 +25,12 @@ abstract class _PlaceResult {
   String id;
   @dartified String international_phone_number;
   String name;
+  @dartified bool permanently_closed;
+  List<PlacePhoto> photos;
+  @dartified num price_level;
   num rating;
   String reference;
+  @dartified String review_summary;
   List<PlaceReview> reviews;
   List<String> types;
   String url;
@@ -44,6 +48,8 @@ class PlaceResult extends jsw.MagicProxy implements _PlaceResult {
   @override List<PlaceAspectRating> get aspects => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.aspects, PlaceAspectRating.cast);
   @override PlaceGeometry get geometry => PlaceGeometry.cast($unsafe.geometry);
   @override List<String> get html_attributions => jsw.JsArrayToListAdapter.cast($unsafe.html_attributions);
+  @override List<PlacePhoto> get photos => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.photos, PlacePhoto.cast);
+  @override set photos(List<PlacePhoto> photos) => $unsafe.photos = jsifyList(photos);
   @override List<PlaceReview> get reviews => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.reviews, PlaceReview.cast);
   @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
 
@@ -57,4 +63,10 @@ class PlaceResult extends jsw.MagicProxy implements _PlaceResult {
   set htmlAttributions(List<String> htmlAttributions) => this.html_attributions = htmlAttributions;
   String get internationalPhoneNumber => international_phone_number;
   set internationalPhoneNumber(String internationalPhoneNumber) => international_phone_number = internationalPhoneNumber;
+  bool get permanentlyClosed => permanently_closed;
+  set permanentlyClosed(bool permanentlyClosed) => this.permanently_closed = permanentlyClosed;
+  num get priceLevel => price_level;
+  set priceLevel(num priceLevel) => this.price_level = priceLevel;
+  String get reviewSummary => review_summary;
+  set reviewSummary(String reviewSummary) => review_summary = reviewSummary;
 }

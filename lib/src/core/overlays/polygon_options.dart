@@ -16,6 +16,7 @@ part of google_maps;
 
 abstract class _PolygonOptions {
   bool clickable;
+  bool draggable;
   bool editable;
   String fillColor;
   num fillOpacity;

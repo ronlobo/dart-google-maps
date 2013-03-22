@@ -32,5 +32,6 @@ class HeatmapLayerOptions extends jsw.MagicProxy implements _HeatmapLayerOptions
 
   @override MVCArray<LatLng> get data => MVCArray.castListOfSerializables($unsafe.data, LatLng.cast);
   @override List<String> get gradient => jsw.JsArrayToListAdapter.cast($unsafe.gradient);
+  @override set gradient(List<String> gradient) => $unsafe.gradient = jsifyList(gradient);
   @override GMap get map => GMap.cast($unsafe.map);
 }

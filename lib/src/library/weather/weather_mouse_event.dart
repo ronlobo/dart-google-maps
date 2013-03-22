@@ -28,5 +28,6 @@ class WeatherMouseEvent extends jsw.MagicProxy implements _WeatherMouseEvent {
   WeatherMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override WeatherFeature get featureDetails => WeatherFeature.cast($unsafe.featureDetails);
+  @override LatLng get latLng => LatLng.cast($unsafe.latLng);
   @override Size get pixelOffset => Size.cast($unsafe.pixelOffset);
 }

@@ -16,6 +16,7 @@ part of google_maps_places;
 
 abstract class _SearchBox {
   @dartified LatLngBounds getBounds();
+  @dartified List<PlaceResult> getPlaces();
   @dartified void setBounds(LatLngBounds bounds);
 }
 
@@ -24,8 +25,10 @@ class SearchBox extends MVCObject implements _SearchBox {
   SearchBox.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds getBounds() => LatLngBounds.cast($unsafe.getBounds());
+  @override List<PlaceResult> getPlaces() => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getPlaces(), PlaceResult.cast);
 
   LatLngBounds get bounds => this.getBound();
+  List<PlaceResult> get places => this.getPlaces();
   set bounds(LatLngBounds bounds) => this.setBound(bounds);
 
   SearchBoxEvents get on => new SearchBoxEvents._(this);

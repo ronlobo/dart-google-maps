@@ -17,11 +17,13 @@ part of google_maps;
 abstract class _Circle {
   @dartified LatLngBounds getBounds();
   @dartified LatLng getCenter();
+  @dartified bool getDraggable();
   @dartified bool getEditable();
   @dartified GMap getMap();
   @dartified num getRadius();
   @dartified bool getVisible();
   @dartified void setCenter(LatLng center);
+  @dartified void setDraggable(bool draggable);
   @dartified void setEditable(bool editable);
   @dartified void setMap(GMap map);
   @dartified void setOptions(CircleOptions options);
@@ -42,11 +44,13 @@ class Circle extends MVCObject implements _Circle{
 
   LatLngBounds get bounds => getBounds();
   LatLng get center => getCenter();
+  bool get draggable => getDraggable();
   bool get editable => getEditable();
   GMap get map => getMap();
   num get radius => getRadius();
   bool get visible => getVisible();
   set center(LatLng center) => setCenter(center);
+  set draggable(bool draggable) => setDraggable(draggable);
   set editable(bool editable) => setEditable(editable);
   set map(GMap map) => setMap(map);
   set options(CircleOptions options) => setOptions(options);

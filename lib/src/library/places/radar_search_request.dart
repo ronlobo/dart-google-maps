@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2013, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,20 +14,23 @@
 
 part of google_maps_places;
 
-abstract class _AutocompleteOptions {
+abstract class _RadarSearchRequest {
   LatLngBounds bounds;
-  ComponentRestrictions componentRestrictions;
+  String keyword;
+  LatLng location;
+  String name;
+  num radius;
   List<String> types;
 }
 
-class AutocompleteOptions extends jsw.TypedProxy implements _AutocompleteOptions {
-  static AutocompleteOptions cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new AutocompleteOptions.fromProxy(proxy));
+class RadarSearchRequest extends jsw.MagicProxy implements _RadarSearchRequest {
+  static RadarSearchRequest cast(js.Proxy proxy) => jsw.mapNotNull(proxy, (proxy) => new RadarSearchRequest.fromProxy(proxy));
 
-  AutocompleteOptions() : super();
-  AutocompleteOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  RadarSearchRequest() : super();
+  RadarSearchRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   @override LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
-  @override ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe.componentRestrictions);
+  @override LatLng get location => LatLng.cast($unsafe.location);
   @override List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
   @override set types(List<String> types) => $unsafe.types = jsifyList(types);
 }

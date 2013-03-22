@@ -15,10 +15,12 @@
 part of google_maps;
 
 abstract class _Polyline {
+  @dartified bool getDraggable();
   @dartified bool getEditable();
   @dartified GMap getMap();
   @dartified MVCArray<LatLng> getPath();
   @dartified bool getVisible();
+  @dartified void setDraggable(bool draggable);
   @dartified void setEditable(bool editable);
   @dartified void setMap(GMap map);
   @dartified void setOptions(PolylineOptions options);
@@ -37,10 +39,12 @@ class Polyline extends MVCObject implements _Polyline {
   @override MVCArray<LatLng> getPath() => MVCArray.castListOfSerializables($unsafe.getPath(), LatLng.cast);
   @override void setPath(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsifyList(path) : path);
 
+  bool get draggable => getDraggable();
   bool get editable => getEditable();
   GMap get map => getMap();
   MVCArray<LatLng> get path => getPath();
   bool get visible => getVisible();
+  set draggable(bool draggable) => setDraggable(draggable);
   set editable(bool editable) => setEditable(editable);
   set map(GMap map) => setMap(map);
   set options(PolylineOptions options) => setOptions(options);
