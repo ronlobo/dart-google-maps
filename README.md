@@ -21,14 +21,15 @@ import 'package:google_maps/google_maps.dart';
 * Include the Maps API JavaScript using a `script` tag.
 
 ```html
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
 ```
+
+Please see the Google Maps JavaScript API v3 [Getting Started guide](https://developers.google.com/maps/documentation/javascript/tutorial#api_key) for information about obtaining an API Key.
 
 * Include the js-interop script using a `script` tag just after `packages/browser/dart.js`.
 
 ```html
 <script src="packages/browser/dart.js"></script>
-<script src="packages/browser/interop.js"></script>
 ```
 
 A very [simple example](example/01-basics/map-simple) :

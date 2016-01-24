@@ -1,0 +1,33 @@
+// Copyright (c) 2015, Alexandre Ardhuin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+part of google_maps.src.places;
+
+@anonymous
+abstract class _QueryAutocompletePrediction implements JsInterface {
+  external factory _QueryAutocompletePrediction();
+
+  String description;
+  List<PredictionSubstring> _matched_substrings;
+  List<PredictionSubstring> get matchedSubstrings => _matched_substrings;
+  void set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
+    _matched_substrings = matchedSubstrings;
+  }
+  String _place_id;
+  String get placeId => _place_id;
+  void set placeId(String placeId) {
+    _place_id = placeId;
+  }
+  List<PredictionTerm> terms;
+}
